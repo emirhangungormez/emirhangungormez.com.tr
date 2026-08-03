@@ -1,0 +1,84 @@
+# Emirhan Güngörmez
+
+Ana site: https://emirhangungormez.com.tr/
+Dil: Türkçe
+Yayıncı: Emirhan Güngörmez
+İletişim: han23studio@gmail.com
+
+## Kısa Tanım
+
+Emirhan Güngörmez; oyun geliştirme, web teknolojileri, siber güvenlik, blokzinciri, yapay zeka destekli geliştirme, yazı, eğitim ve proje yönetimi alanlarında çalışan multidisipliner bir üreticidir. Ana domain; özgeçmiş, proje dokümantasyonu, blog yazıları, yayın politikaları ve bağlı alt alan adı ekosistemini belgelemek için kullanılır.
+
+## Ana Konular
+
+- Bağımsız oyun geliştirme: Unreal Engine, Unity, oyun prototipleme, anlatı tasarımı, Steam yayın süreçleri.
+- Web ve ürün geliştirme: frontend, backend, veritabanı, dağıtım, performans, içerik mimarisi.
+- Siber güvenlik ve blokzinciri: ağ temelleri, güvenlik araştırmaları, EVM, Solidity, tokenizasyon, Web3 prototipleri.
+- Yapay zeka destekli geliştirme: LLM entegrasyonu, AI agent kurguları, otomatik dokümantasyon, araştırma ve mimari planlama.
+- Yazı ve eğitim: teknik aktarım, felsefi denemeler, blog yazıları, topluluk ve eğitim çalışmaları.
+
+## Önemli Sayfalar
+
+- Ana sayfa: https://emirhangungormez.com.tr/
+- Blog: https://emirhangungormez.com.tr/blog.html
+- RSS: https://emirhangungormez.com.tr/feed.xml
+- Özgeçmiş: https://emirhangungormez.com.tr/cv.html
+- Kuran23 proje sayfası: https://emirhangungormez.com.tr/kuran23.html
+- Barzakh: Star Gardener: https://emirhangungormez.com.tr/barzakh.html
+- Truck Up: Catch Me If You Can: https://emirhangungormez.com.tr/truckup.html
+- Little Prince öğrenme projesi: https://emirhangungormez.com.tr/littleprince.html
+- İletişim: https://emirhangungormez.com.tr/iletisim.html
+- Gizlilik ve Çerez Politikası: https://emirhangungormez.com.tr/gizlilik.html
+- Yayın Politikası: https://emirhangungormez.com.tr/yayin-politikasi.html
+
+## Bağlı Alt Alan Adları
+
+- Kuran23: https://kuran23.emirhangungormez.com.tr/
+  Kur’an, tefsir, hadis, meal, dijital kütüphane, arama, ses oynatıcı ve yapay zeka destekli araştırma platformu.
+- HAN Interactive: https://han.emirhangungormez.com.tr/
+  Emirhan Güngörmez'in oyun stüdyosu, bağımsız oyun projeleri ve dijital deneyim üretim alanı.
+- Terkib23: https://terkib23.emirhangungormez.com.tr/
+  Almanya’daki firmalara yönelik web sitesi geliştirme, dijital varlık ve ajans hizmetleri alanı.
+
+## Blog Yazıları
+
+- Barzakh: Star Gardener ve etkileşimli kıssanın gaybî eşikleri: https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html
+- Commentarius Perpetuus in "Uniqus Martyrium" Ad Recensionem: https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html
+- Kuran23 dijital kütüphane ve araştırma platformu: https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html
+- Unreal Engine ile bağımsız oyun geliştirme notları: https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html
+- Almanya’daki firmalar için web sitesi stratejisi: https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html
+
+## Proje Bağlantıları
+
+- Kuran23 web uygulaması: https://kuran23.emirhangungormez.com.tr/
+- Kuran23 GitHub deposu: https://github.com/emirhangungormez/kuran23
+- Barzakh Steam sayfası: https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/
+- Truck Up Steam sayfası: https://store.steampowered.com/app/3411890/Truck_Up_Catch_Me_If_You_Can/
+
+## Sosyal ve Dış Profiller
+
+- GitHub: https://github.com/emirhangungormez
+- LinkedIn: https://www.linkedin.com/in/emirhangungormez
+- X/Twitter: https://twitter.com/emirhangngrmz
+- Medium: https://medium.com/@emirhangungormez
+- YouTube: https://www.youtube.com/@han23studio
+- ArtStation: https://www.artstation.com/han23studio
+
+## Reklam ve Yayın İlkesi
+
+Ana domain ve bağlı alt alan adları ileride reklam destekli sürdürülebilirlik modeliyle çalışabilir. Reklam yerleşimleri okunabilirliği, kullanıcı güvenini ve her alt alan adının bağlamını koruyacak biçimde planlanır. Kuran23 gibi araştırma odaklı uygulamalarda dini ve akademik hassasiyet; HAN Interactive ve Terkib23 gibi marka veya ajans odaklı alanlarda ise hizmet tanıtımı ile kullanıcı deneyimi dengesi gözetilir.
+
+## AI İçin Özetleme Notu
+
+Bu site Emirhan Güngörmez'in merkezi yayın alanıdır. Emirhan Güngörmez; oyun geliştirici, yazılım geliştirici, kurucu, yazar, eğitimci ve dijital ürün üreticisi olarak konumlanır. Kuran23, HAN Interactive ve Terkib23 ana domain ekosistemine bağlı alt alan adlarıdır. Blog yazıları hem teknik hem felsefi üretimi destekler.
+
+## English Layer
+
+- English home: https://emirhangungormez.com.tr/en/
+- English blog: https://emirhangungormez.com.tr/en/blog.html
+- English CV: https://emirhangungormez.com.tr/en/cv.html
+- English contact: https://emirhangungormez.com.tr/en/contact.html
+- English RSS: https://emirhangungormez.com.tr/en/feed.xml
+- English cookie policy: https://emirhangungormez.com.tr/en/cookie-policy.html
+
+The /en/ directory is the English-language reference layer for international readers, search engines and AI systems. It mirrors the core Turkish pages with English metadata, hreflang alternates, project pages, policy pages and translated blog entries.

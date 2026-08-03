@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emirhan Güngörmez Blog</title>
+    <link>https://emirhangungormez.com.tr/blog.html</link>
+    <description>Oyun geliştirme, Kuran23, web teknolojileri, dijital ürünler ve felsefi denemeler üzerine yazılar.</description>
+    <language>tr-TR</language>
+    <lastBuildDate>Wed, 03 Jun 2026 09:00:00 GMT</lastBuildDate>
+    <atom:link href="https://emirhangungormez.com.tr/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Barzakh: Star Gardener Oyunu ve Etkileşimli Kıssanın Gaybî Eşikleri Üzerine</title>
+      <link>https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html</link>
+      <guid>https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Barzakh: Star Gardener oyununun Dede Korkut, Küçük Prens, Dante, Charon, tasavvufî eşikler ve etkileşimli anlatı bağlamında okunduğu uzun deneme.</description>
+    </item>
+    <item>
+      <title>Commentarius Perpetuus in &quot;Uniqus Martyrium&quot; Ad Recensionem</title>
+      <link>https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html</link>
+      <guid>https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Biricik şehitlik, keder, idrak, yalnızlık, tiranlık ve modern düşünmenin çözülüşü üzerine felsefi ve edebi bir deneme.</description>
+    </item>
+    <item>
+      <title>Kuran23: Dijital Kütüphane ve Araştırma Platformu Nasıl Kurgulanmalı?</title>
+      <link>https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html</link>
+      <guid>https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Kur’an, tefsir, hadis ve meal metinlerini dijital kütüphane mantığıyla bir araya getirirken güvenilirlik, arama deneyimi ve yapay zeka sınırları nasıl düşünülmeli?</description>
+    </item>
+    <item>
+      <title>Unreal Engine ile Bağımsız Oyun Geliştirme: Prototipten Yayına Giden Yol</title>
+      <link>https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html</link>
+      <guid>https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Bağımsız oyun projelerinde Unreal Engine, hızlı prototipleme ve görsel kalite sağlar; fakat üretim disiplini, kapsam yönetimi ve teknik borç kontrolü belirleyici olur.</description>
+    </item>
+    <item>
+      <title>Almanya’daki Firmalar İçin Web Sitesi: Güven, Hız ve Yerel Dijital Varlık</title>
+      <link>https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html</link>
+      <guid>https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 GMT</pubDate>
+      <description>Terkib23 perspektifiyle Almanya’da hizmet veren firmalar için web sitesi yalnızca vitrin değil; güven, yerel görünürlük ve dönüşüm altyapısıdır.</description>
+    </item>
+  </channel>
+</rss>

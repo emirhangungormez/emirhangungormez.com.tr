@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emirhan Gungormez Blog</title>
+    <link>https://emirhangungormez.com.tr/en/blog.html</link>
+    <description>English articles by Emirhan Gungormez on games, software, digital products, research and philosophical writing.</description>
+    <language>en</language>
+    <atom:link href="https://emirhangungormez.com.tr/en/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Barzakh: Star Gardener and the Unseen Thresholds of an Interactive Parable</title>
+      <link>https://emirhangungormez.com.tr/en/blog/barzakh-star-gardener-interactive-parable-unseen-thresholds.html</link>
+      <guid>https://emirhangungormez.com.tr/en/blog/barzakh-star-gardener-interactive-parable-unseen-thresholds.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 +0300</pubDate>
+      <description>A long essay on Barzakh: Star Gardener through Dede Korkut, The Little Prince, Dante, Charon, symbolic thresholds and interactive narrative.</description>
+    </item>
+    <item>
+      <title>Commentarius Perpetuus in "Uniqus Martyrium"</title>
+      <link>https://emirhangungormez.com.tr/en/blog/commentarius-perpetuus-uniqus-martyrium.html</link>
+      <guid>https://emirhangungormez.com.tr/en/blog/commentarius-perpetuus-uniqus-martyrium.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 +0300</pubDate>
+      <description>A philosophical essay on grief, perception, solitude and the collapse of modern thinking.</description>
+    </item>
+    <item>
+      <title>Kuran23 as a Digital Library and Research Platform</title>
+      <link>https://emirhangungormez.com.tr/en/blog/kuran23-digital-library-research-platform.html</link>
+      <guid>https://emirhangungormez.com.tr/en/blog/kuran23-digital-library-research-platform.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 +0300</pubDate>
+      <description>Notes on Kuran23 as a searchable digital library for Quran, tafsir, hadith, translation and AI-assisted research.</description>
+    </item>
+    <item>
+      <title>Independent Game Development Notes with Unreal Engine</title>
+      <link>https://emirhangungormez.com.tr/en/blog/unreal-engine-independent-game-development-notes.html</link>
+      <guid>https://emirhangungormez.com.tr/en/blog/unreal-engine-independent-game-development-notes.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 +0300</pubDate>
+      <description>Technical notes on Unreal Engine, prototype culture, production discipline and independent game development.</description>
+    </item>
+    <item>
+      <title>Website Strategy for Companies in Germany</title>
+      <link>https://emirhangungormez.com.tr/en/blog/website-strategy-for-companies-in-germany.html</link>
+      <guid>https://emirhangungormez.com.tr/en/blog/website-strategy-for-companies-in-germany.html</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 +0300</pubDate>
+      <description>A practical note on website strategy, digital trust and content architecture for companies operating in Germany.</description>
+    </item>
+  </channel>
+</rss>

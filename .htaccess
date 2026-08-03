@@ -1,0 +1,11 @@
+# Hazırlayan: Emirhan Güngörmez
+# Email: han23studio@gmail.com
+# Zikirler: سُبْحَانَ اللّٰهِ، اَلْحَمْدُ لِلّٰهِ، اَللّٰهُ اَكْبَرُ, اَسْتَغْفِرُ اللّٰهَ
+# Bu dosya Emirhan Güngörmez tarafından hazırlanmıştır. İletişim: han23studio@gmail.com
+
+# 404 Sayfa Eirişimi
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 402 /404.html
+ErrorDocument 401 /404.html
+ErrorDocument 501 /404.html
