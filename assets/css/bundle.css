@@ -2638,3 +2638,45 @@ body.dark-mode .footer__logo-img {
 
 
 
+
+
+/* Footer social spacing and color */
+.footer__links {
+  display: flex !important;
+  align-items: center !important;
+  column-gap: 18px !important;
+  row-gap: 12px !important;
+}
+
+.footer__links li {
+  display: inline-flex !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer__links a {
+  min-width: 24px;
+  min-height: 24px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  color: #111414 !important;
+}
+
+.footer__links a svg,
+.footer__links a i,
+.footer__links a::before {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+.footer__copy,
+.footer__copy span {
+  color: #111414 !important;
+}
+
+body.dark-mode .footer__links a,
+body.dark-mode .footer__copy,
+body.dark-mode .footer__copy span {
+  color: #efefef !important;
+}
