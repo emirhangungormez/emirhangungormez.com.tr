@@ -181,6 +181,271 @@
   ]
 }</script>
     <link rel="alternate" type="application/rss+xml" title="Emirhan Güngörmez Blog" href="https://emirhangungormez.com.tr/feed.xml">
+    <style>
+        .verse-banner-section {
+            padding: 3.5em 0;
+        }
+        .verse-banner {
+            position: relative;
+            width: 100%;
+            min-height: 25em;
+            border-radius: 24px;
+            overflow: hidden;
+            color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+            background-color: #111414;
+        }
+        .verse-banner__slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3.5em 4em;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .verse-banner__slide.is-active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 3;
+        }
+        .verse-banner__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .verse-banner:hover .verse-banner__bg {
+            transform: scale(1.03);
+        }
+        .verse-banner__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            background: linear-gradient(
+                110deg,
+                rgba(12, 14, 14, 0.78) 0%,
+                rgba(12, 14, 14, 0.48) 50%,
+                rgba(12, 14, 14, 0.18) 100%
+            );
+        }
+        .verse-banner__card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            cursor: pointer;
+        }
+        .verse-banner__content {
+            position: relative;
+            z-index: 5;
+            max-width: 44em;
+        }
+        .verse-banner__quote {
+            font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+            font-weight: 500;
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            font-style: normal;
+            margin-bottom: 2em;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.95);
+        }
+        .verse-banner__footer {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .verse-banner__meta-link {
+            position: relative;
+            z-index: 5;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75em;
+            padding: 0;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.25s ease;
+        }
+        .verse-banner__meta-link:hover {
+            opacity: 0.85;
+        }
+        .verse-banner__logo {
+            height: 25px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+        .verse-banner__divider {
+            width: 1px;
+            height: 18px;
+            background-color: rgba(255, 255, 255, 0.4);
+            display: inline-block;
+        }
+        .verse-banner__verse-name {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+        .verse-banner__brand {
+            position: absolute;
+            bottom: 3.5em;
+            right: 4em;
+            z-index: 6;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .verse-banner__han13-logo {
+            height: 22px;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+        .verse-banner__brand:hover .verse-banner__han13-logo {
+            opacity: 1;
+        }
+        .verse-banner__dots {
+            position: absolute;
+            bottom: 1.25em;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .verse-banner__dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .verse-banner__dot.is-active {
+            width: 24px;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+        @media screen and (max-width: 768px) {
+            .verse-banner {
+                min-height: 22em;
+                border-radius: 16px;
+            }
+            .verse-banner__slide {
+                padding: 2.2em;
+            }
+            .verse-banner__brand {
+                bottom: 2.2em;
+                right: 2.2em;
+            }
+        }
+
+        /* Matte Dark Card Theme matching user screenshot */
+        .home-journal__shelf,
+        .blog-list {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+            gap: 1.25em !important;
+        }
+
+        .home-journal__book,
+        .blog-card {
+            position: relative !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            aspect-ratio: auto !important;
+            min-height: 230px !important;
+            padding: 2.2em 1.8em 1.8em !important;
+            background-color: #181818 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, box-shadow 0.35s ease !important;
+            text-decoration: none !important;
+        }
+
+        .home-journal__book::before {
+            display: none !important;
+        }
+
+        .home-journal__book:hover,
+        .blog-card:hover {
+            transform: translateY(-4px) !important;
+            border-color: rgba(255, 255, 255, 0.28) !important;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
+        }
+
+        .card-dots {
+            display: block;
+            margin-bottom: 1.8em;
+            color: #ffffff;
+            opacity: 0.7;
+        }
+
+        .home-journal__book h3,
+        .blog-card h2 {
+            color: #ffffff !important;
+            font-size: 1.22rem !important;
+            font-weight: 500 !important;
+            line-height: 1.35 !important;
+            letter-spacing: -0.01em !important;
+            margin-bottom: 0.6em !important;
+            max-width: 100% !important;
+            -webkit-line-clamp: 3 !important;
+        }
+
+        .home-journal__book p,
+        .blog-card p {
+            color: rgba(255, 255, 255, 0.68) !important;
+            font-size: 0.85rem !important;
+            line-height: 1.5 !important;
+            margin-bottom: 1.2em !important;
+            -webkit-line-clamp: 4 !important;
+        }
+
+        .home-journal__book small,
+        .blog-card small {
+            color: rgba(255, 255, 255, 0.55) !important;
+            font-size: 0.76rem !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            display: block;
+            margin-bottom: 0.6em;
+        }
+
+        .home-journal__meta {
+            color: rgba(255, 255, 255, 0.45) !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            padding-top: 0.85em !important;
+            margin-top: auto !important;
+        }
+    </style>
 </head>
 
 <body data-barba="wrapper">
@@ -222,8 +487,8 @@
                     <div class="wrapper">
                         <div class="h-hero__top" style="display: flex; gap: 3.5em; align-items: flex-start; justify-content: flex-start; flex-wrap: wrap;">
                             <div class="h-hero__title" style="flex: 0 1 auto; min-width: 0; width: 100%;">
-                                <div style="font-size: 1.35em; font-weight: 600; line-height: 1.3; color: inherit; opacity: 0.95; margin-bottom: 0.2em; margin-left: 0;">Indie Game Developer &amp; Technical Founder</div>
-                                <div style="font-size: 1.05em; font-weight: 400; opacity: 0.7; margin-bottom: 1em; margin-left: 0; letter-spacing: 0.01em;">AI &amp; Software Engineer &middot; R&amp;D Manager</div>
+                                <div style="font-size: 1.35em; font-weight: 600; line-height: 1.3; color: inherit; opacity: 0.95; margin-bottom: 0.2em; margin-left: 0;">Bağımsız Oyun Geliştiricisi &amp; Teknik Kurucu</div>
+                                <div style="font-size: 1.05em; font-weight: 400; opacity: 0.7; margin-bottom: 1em; margin-left: 0; letter-spacing: 0.01em;">Yapay Zekâ &amp; Yazılım Mühendisi &middot; Ar-Ge Yöneticisi</div>
                                 <h1><span class="text-hidden">Emirhan Güngörmez </span>
                                     <span>Emirhan<br class="mobile-break"> Güngörmez</span>
                                 </h1>
@@ -235,7 +500,7 @@
                                         </div>
                                         <div class="services__item hero-stat" style="padding-left: 1.4em; padding-top: 0; padding-bottom: 0; display: flex; align-items: center; gap: 0.6em;">
                                             <span class="hero-stat__number" data-target="30" data-prefix="$" data-suffix="K+" style="font-size: 1.85em; font-weight: 700; line-height: 1; letter-spacing: -0.01em; display: inline-block;">$30K+</span>
-                                            <h2 class="hero-stat__label" style="font-size: 0.74em; font-weight: 500; opacity: 0.7; margin: 0; line-height: 1.25; max-width: 95px;">Elde Edilen Gelir</h2>
+                                            <h2 class="hero-stat__label" style="font-size: 0.74em; font-weight: 500; opacity: 0.7; margin: 0; line-height: 1.25; max-width: 105px;">Oyun &amp; Ürün Geliri</h2>
                                         </div>
                                         <div class="services__item hero-stat" style="padding-left: 1.4em; padding-top: 0; padding-bottom: 0; display: flex; align-items: center; gap: 0.6em;">
                                             <span class="hero-stat__number" data-target="3" data-prefix="0" data-suffix="" style="font-size: 1.85em; font-weight: 700; line-height: 1; letter-spacing: -0.01em; display: inline-block;">03</span>
@@ -270,8 +535,14 @@
                         <div class="h-hero__bottom" style="margin-top: 7.5em; padding-top: 3.5em; border-top: 1px solid rgba(17, 20, 20, 0.08);">
                             <div id="about" class="h-hero__text">
                                 <p>Veri sınırsızdır; değer, onu anlamlandıran zihinde doğar.
-                                    <br> <br>
-                                    Geleceğin nasıl olacağını bilmiyorum. Ama ona ne katacağımı biliyorum.</p>
+                                    <br><br>
+                                    Geleceğin nasıl olacağını bilmiyorum. Ama ona ne katacağımı biliyorum.
+                                </p>
+                                <p style="margin-top: 1.2em; font-style: italic; opacity: 0.85;">
+                                    “İhtiyaç, icadın anasıdır.”
+                                    <br>
+                                    <span style="font-size: 0.7em; opacity: 0.7; letter-spacing: 0.04em; font-weight: 500; display: inline-block; margin-top: 0.4em; font-style: normal;">— Platon, Devlet (II. Kitap)</span>
+                                </p>
                                 <div class="h-hero__actions" style="display: flex; align-items: center; gap: 1.25em; flex-wrap: wrap; margin-top: 1.8em;">
                                     <a href="mailto:han23studio@gmail.com" class="button">
                                         <span class="button__text">Benimle iletişime geç!</span>
@@ -296,36 +567,43 @@
                                 </li>
                                 <li>
                                     <a href="https://github.com/emirhangungormez" target="_blank" class="text-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                                         <span>Github</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
                                         <span>Linkedin</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link">
-                                        <span>Twitter</span>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                        <span>Twitter (X)</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42c1.87 0 3.38 2.88 3.38 6.42zm2.99 0c0 3.02-.45 5.47-1 5.47-.56 0-1.01-2.45-1.01-5.47s.45-5.47 1.01-5.47c.55 0 1 2.45 1 5.47z"/></svg>
                                         <span>Medium</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.youtube.com/@han23studio" target="_blank" class="text-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                                         <span>YouTube</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://www.artstation.com/han23studio" target="_blank" class="text-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M.267 18.257l2.452 4.249h.001c.42.72 1.18 1.168 2.014 1.168h12.529l-3.328-5.748H.267zm23.466.425l-8.683-15.04c-.42-.727-1.182-1.173-2.02-1.173h-4.06l12.441 21.547 2.322-4.021a2.33 2.33 0 0 0 0-2.313zM8.349 4.381l-4.542 7.868h9.085l-4.543-7.868z"/></svg>
                                         <span>Artstation</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/" target="_blank" class="text-link">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.03 4.524 4.524s-2.03 4.525-4.524 4.525c-.103 0-.204-.007-.306-.014l-4.106 2.836c.005.086.012.171.012.258 0 1.933-1.567 3.5-3.5 3.5-1.611 0-2.969-1.092-3.382-2.58L.33 18.21C2.083 21.71 5.748 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
                                         <span>Steam</span>
                                     </a>
                                 </li>
@@ -341,7 +619,10 @@
                         </div>
                         <div class="services__list">
                             <div class="services__item">
-                                <span>01</span>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2em;">
+                                    <span style="font-size: 3.58em; line-height: 1.1; letter-spacing: -0.02em; opacity: 0.85; font-weight: 600; margin-bottom: 0;">01</span>
+                                    <span class="tag-pill" style="font-size: 0.72rem !important; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px !important;">Keşif &amp; R&amp;D</span>
+                                </div>
                                 <h2>Ne mümkün?</h2>
                                 <p>Henüz mümkün olmadığı söylenen şeyleri, önce anlaşılması gereken problemler olarak ele alıyorum.</p>
                                 <div class="services__tags">
@@ -353,7 +634,10 @@
                             </div>
                             
                             <div class="services__item">
-                                <span>02</span>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2em;">
+                                    <span style="font-size: 3.58em; line-height: 1.1; letter-spacing: -0.02em; opacity: 0.85; font-weight: 600; margin-bottom: 0;">02</span>
+                                    <span class="tag-pill" style="font-size: 0.72rem !important; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px !important;">Mühendislik &amp; İnşa</span>
+                                </div>
                                 <h2>Nasıl var olur?</h2>
                                 <p>Bir fikrin gerçekliği, zihinde kurulmasıyla değil; doğru bilgi, doğru sistem ve doğru uygulamayla inşa edilmesiyle başlar.</p>
                                 <div class="services__tags">
@@ -365,7 +649,10 @@
                             </div>
 
                             <div class="services__item">
-                                <span>03</span>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2em;">
+                                    <span style="font-size: 3.58em; line-height: 1.1; letter-spacing: -0.02em; opacity: 0.85; font-weight: 600; margin-bottom: 0;">03</span>
+                                    <span class="tag-pill" style="font-size: 0.72rem !important; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px !important;">Değer &amp; Girişim</span>
+                                </div>
                                 <h2>Neden değerli?</h2>
                                 <p>Teknolojik yenilik, ancak insan davranışına, pazara ve ekonomik gerçekliğe temas ettiğinde sürdürülebilir bir değere dönüşür.</p>
                                 <div class="services__tags">
@@ -377,14 +664,17 @@
                             </div>
 
                             <div class="services__item">
-                                <span>04</span>
-                                <h2>Ne kaldı?</h2>
-                                <p>Her tamamlanan çalışma yeni bir arayışın başlangıcıdır. Kalıcı olan, geride bırakılan eserler ve sorulan sorular olur.</p>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2em;">
+                                    <span style="font-size: 3.58em; line-height: 1.1; letter-spacing: -0.02em; opacity: 0.85; font-weight: 600; margin-bottom: 0;">04</span>
+                                    <span class="tag-pill tag-pill--featured" style="font-size: 0.72rem !important; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px !important;">Vizyon &amp; Etki</span>
+                                </div>
+                                <h2>Ne iz bırakır?</h2>
+                                <p>Tamamlanan her çalışma daha büyük bir vizyonun basamağıdır. Teknolojiyi estetikle harmanlayarak kalıcı eserler ve sürdürülebilir bir etki bırakmak.</p>
                                 <div class="services__tags">
-                                    <div class="tag-pill">Estetik</div>
-                                    <div class="tag-pill">Felsefe</div>
-                                    <div class="tag-pill">Vizyon</div>
-                                    <div class="tag-pill">Gelecek</div>
+                                    <div class="tag-pill tag-pill--featured">Estetik</div>
+                                    <div class="tag-pill tag-pill--featured">Felsefe</div>
+                                    <div class="tag-pill">Kalıcı Etki</div>
+                                    <div class="tag-pill">Gelecek Vizyonu</div>
                                 </div>
                             </div>
                         </div>
@@ -501,23 +791,93 @@
                             <a href="blog.html" class="text-link">Devamı</a>
                         </div>
                         <div class="home-journal__shelf" aria-label="Son blog yazıları">
+                            <a href="/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" class="home-journal__book">
+                                <div>
+                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
+                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
+                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
+                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
+                                    </svg>
+                                    <small>Felsefe ve Ekoloji</small>
+                                    <h3>Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi</h3>
+                                    <p>Farabi, İbn Sina ve Gazali'nin terbiye anlayışından hareketle; günümüz akademisine, unvansızlık ve bütüncül hakikat anlayışına dair felsefi bir sorgulama.</p>
+                                </div>
+                                <div class="home-journal__meta">
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        2026-08-10
+                                    </span>
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        7 dk
+                                    </span>
+                                </div>
+                            </a>
                             <a href="/blog/immateryalizm-ve-berkeleyin-idealizmi.html" class="home-journal__book">
-                                <small>Felsefe ve Teoloji</small>
-                                <h3>Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İdealizmi</h3>
-                                <p>Putperestlerin tanrıtanımaz eğilimleri, algısal estetik ve George Berkeley’in varoluş ilkesi üzerine felsefi bir sorgulama.</p>
-                                <div class="home-journal__meta"><span>2026-08-02</span><span>6 dk</span></div>
+                                <div>
+                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
+                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
+                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
+                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
+                                    </svg>
+                                    <small>Felsefe ve Teoloji</small>
+                                    <h3>Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İidealizmi</h3>
+                                    <p>Putperestlerin tanrıtanımaz eğilimleri, algısal estetik ve George Berkeley’in varoluş ilkesi üzerine felsefi bir sorgulama.</p>
+                                </div>
+                                <div class="home-journal__meta">
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        2026-08-02
+                                    </span>
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        6 dk
+                                    </span>
+                                </div>
                             </a>
                             <a href="/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html" class="home-journal__book">
-                                <small>Oyun ve Felsefi Anlatı</small>
-                                <h3>Barzakh: Star Gardener Oyunu ve Etkileşimli Kıssanın Gaybî Eşikleri Üzerine</h3>
-                                <p>Dede Korkut, Küçük Prens, Dante ve tasavvufî eşikler üzerinden Barzakh anlatısına uzun bir okuma.</p>
-                                <div class="home-journal__meta"><span>2026-06-02</span><span>9 dk</span></div>
+                                <div>
+                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
+                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
+                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
+                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
+                                    </svg>
+                                    <small>Oyun ve Felsefi Anlatı</small>
+                                    <h3>Barzakh: Star Gardener Oyunu ve Etkileşimli Kıssanın Gaybî Eşikleri Üzerine</h3>
+                                    <p>Dede Korkut, Küçük Prens, Dante ve tasavvufî eşikler üzerinden Barzakh anlatısına uzun bir okuma.</p>
+                                </div>
+                                <div class="home-journal__meta">
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        2026-06-02
+                                    </span>
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        9 dk
+                                    </span>
+                                </div>
                             </a>
                             <a href="/blog/commentarius-perpetuus-uniqus-martyrium.html" class="home-journal__book">
-                                <small>Felsefi Deneme</small>
-                                <h3>Commentarius Perpetuus in "Uniqus Martyrium"</h3>
-                                <p>Keder, idrak, yalnızlık ve modern düşünmenin çözülüşü üzerine felsefi ve edebi bir deneme.</p>
-                                <div class="home-journal__meta"><span>2026-06-02</span><span>12 dk</span></div>
+                                <div>
+                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
+                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
+                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
+                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
+                                    </svg>
+                                    <small>Felsefi Deneme</small>
+                                    <h3>Commentarius Perpetuus in "Uniqus Martyrium"</h3>
+                                    <p>Keder, idrak, yalnızlık ve modern düşünmenin çözülüşü üzerine felsefi ve edebi bir deneme.</p>
+                                </div>
+                                <div class="home-journal__meta">
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                        2026-06-02
+                                    </span>
+                                    <span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        12 dk
+                                    </span>
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -639,6 +999,88 @@
 
 
 
+                <!-- Tefekkür Verse Banner Section (Dynamic Slider) -->
+                <section class="verse-banner-section">
+                    <div class="wrapper">
+                        <div class="verse-banner" id="verseBanner">
+                            <!-- Slide 1 -->
+                            <div class="verse-banner__slide is-active" data-index="0">
+                                <img src="assets/images/tefekkur-landscape.jpg" alt="Bakara 115" class="verse-banner__bg">
+                                <div class="verse-banner__overlay"></div>
+                                <a href="https://kuran23.emirhangungormez.com.tr/kuran/sure/2#115" target="_blank" class="verse-banner__card-link" aria-label="Bakara Suresi 115. Ayeti Kuran23 Platformunda Oku"></a>
+                                
+                                <div class="verse-banner__content">
+                                    <div class="verse-banner__quote">
+                                        “Nereye dönerseniz dönün, Allah’ın vechi (rahmeti, kudreti ve tecellisi) oradadır.”
+                                    </div>
+                                </div>
+
+                                <div class="verse-banner__footer">
+                                    <a href="https://kuran23.emirhangungormez.com.tr/kuran/sure/2#115" target="_blank" class="verse-banner__meta-link" title="Kuran23 Platformunda Bakara 115'i Aç">
+                                        <img src="assets/images/logos/kuran23.svg" alt="Kuran23 Logo" class="verse-banner__logo">
+                                        <span class="verse-banner__divider"></span>
+                                        <span class="verse-banner__verse-name">Bakara, 115</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 (Savaşçı / Azim & İman Görseli) -->
+                            <div class="verse-banner__slide" data-index="1">
+                                <img src="assets/images/tefekkur-warrior.jpg" alt="Âl-i İmrân 139" class="verse-banner__bg">
+                                <div class="verse-banner__overlay"></div>
+                                <a href="https://kuran23.emirhangungormez.com.tr/kuran/sure/3#139" target="_blank" class="verse-banner__card-link" aria-label="Âl-i İmrân Suresi 139. Ayeti Kuran23 Platformunda Oku"></a>
+                                
+                                <div class="verse-banner__content">
+                                    <div class="verse-banner__quote">
+                                        “Gevşemeyin, hüzünlenmeyin; eğer gerçekten inanıyorsanız en üstün olan sizsiniz.”
+                                    </div>
+                                </div>
+
+                                <div class="verse-banner__footer">
+                                    <a href="https://kuran23.emirhangungormez.com.tr/kuran/sure/3#139" target="_blank" class="verse-banner__meta-link" title="Kuran23 Platformunda Âl-i İmrân 139'u Aç">
+                                        <img src="assets/images/logos/kuran23.svg" alt="Kuran23 Logo" class="verse-banner__logo">
+                                        <span class="verse-banner__divider"></span>
+                                        <span class="verse-banner__verse-name">Âl-i İmrân, 139</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 (Batık Tapınak & İki Deniz Görseli) -->
+                            <div class="verse-banner__slide" data-index="2">
+                                <img src="assets/images/tefekkur-ocean.png" alt="Rahmân 19-20" class="verse-banner__bg">
+                                <div class="verse-banner__overlay"></div>
+                                <a href="https://kuran23.emirhangungormez.com.tr/kuran/sure/55#19" target="_blank" class="verse-banner__card-link" aria-label="Rahmân Suresi 19-20. Ayetleri Kuran23 Platformunda Oku"></a>
+                                
+                                <div class="verse-banner__content">
+                                    <div class="verse-banner__quote">
+                                        “O, iki denizi birbirine kavuşmak üzere salıvermiştir. Aralarında bir engel vardır, birbirine geçip karışmazlar.”
+                                    </div>
+                                </div>
+
+                                <div class="verse-banner__footer">
+                                    <a href="https://kuran23.emirhangungormez.com.tr/kuran/sure/55#19" target="_blank" class="verse-banner__meta-link" title="Kuran23 Platformunda Rahmân 19'u Aç">
+                                        <img src="assets/images/logos/kuran23.svg" alt="Kuran23 Logo" class="verse-banner__logo">
+                                        <span class="verse-banner__divider"></span>
+                                        <span class="verse-banner__verse-name">Rahmân, 19-20</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Sabit Han13 Logosu -->
+                            <a href="https://han13.emirhangungormez.com.tr" target="_blank" aria-label="Han13 Studio" class="verse-banner__brand">
+                                <img src="assets/images/logos/han13.svg" alt="Han13 Logo" class="verse-banner__han13-logo">
+                            </a>
+
+                            <!-- Slider Noktaları -->
+                            <div class="verse-banner__dots">
+                                <span class="verse-banner__dot is-active" onclick="switchVerseSlide(0)"></span>
+                                <span class="verse-banner__dot" onclick="switchVerseSlide(1)"></span>
+                                <span class="verse-banner__dot" onclick="switchVerseSlide(2)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="cta">
                     <div class="wrapper">
                         <div class="cta__content">
@@ -677,7 +1119,7 @@
                                 <a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link">Linkedin</a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link">Twitter</a>
+                                <a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link">Twitter (X)</a>
                             </li>
                             <li>
                                 <a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link">Medium</a>
@@ -688,10 +1130,12 @@
                             <li>
                                 <a href="https://www.artstation.com/han23studio" target="_blank" class="text-link">Artstation</a>
                             </li>
-                                            <li><a href="en/" class="text-link" hreflang="en">English</a></li><li>
-                            <a href="gizlilik.html" class="text-link">Gizlilik ve Çerezler</a>
-                        </li>
-
+                            <li>
+                                <a href="en/" class="text-link" hreflang="en">English</a>
+                            </li>
+                            <li>
+                                <a href="gizlilik.html" class="text-link">Gizlilik ve Çerezler</a>
+                            </li>
                         </ul>
                         <div class="footer__legal">
                             <a href="https://han13.emirhangungormez.com.tr" target="_blank" aria-label="Han13 Studio">
@@ -706,6 +1150,59 @@
     <script src="assets/js/bundle.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/site.js?v=20260604-gallery1"></script>
+    <script>
+        (function() {
+            var banner = document.getElementById('verseBanner');
+            if (!banner) return;
+            var slides = banner.querySelectorAll('.verse-banner__slide');
+            var dots = banner.querySelectorAll('.verse-banner__dot');
+            if (!slides.length) return;
+
+            var currentIndex = 0;
+            var timer = null;
+
+            function showSlide(index) {
+                for (var i = 0; i < slides.length; i++) {
+                    if (i === index) {
+                        slides[i].classList.add('is-active');
+                        if (dots[i]) dots[i].classList.add('is-active');
+                    } else {
+                        slides[i].classList.remove('is-active');
+                        if (dots[i]) dots[i].classList.remove('is-active');
+                    }
+                }
+                currentIndex = index;
+            }
+
+            window.switchVerseSlide = function(index) {
+                showSlide(index);
+                resetTimer();
+            };
+
+            function nextSlide() {
+                var next = (currentIndex + 1) % slides.length;
+                showSlide(next);
+            }
+
+            function startTimer() {
+                timer = setInterval(nextSlide, 6000);
+            }
+
+            function resetTimer() {
+                if (timer) clearInterval(timer);
+                startTimer();
+            }
+
+            banner.addEventListener('mouseenter', function() {
+                if (timer) clearInterval(timer);
+            });
+            banner.addEventListener('mouseleave', function() {
+                startTimer();
+            });
+
+            startTimer();
+        })();
+    </script>
 </body>
 </html>
 
