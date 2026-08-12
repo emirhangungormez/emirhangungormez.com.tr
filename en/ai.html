@@ -182,13 +182,12 @@
             position: relative;
             background: #2b2b2e;
             border-radius: 20px;
-            padding: 1.2rem 1.4rem 1.2rem 1.6rem;
+            padding: 1.1rem 1.2rem 1.1rem 1.6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
             box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
             min-height: 104px;
         }
 
@@ -211,8 +210,7 @@
             flex-direction: column;
             justify-content: center;
             gap: 0.4rem;
-            z-index: 2;
-            padding-right: 90px;
+            padding-right: 96px;
         }
 
         .tp-field-label {
@@ -240,14 +238,14 @@
             opacity: 0.38;
         }
 
-        /* Sharp Crisp ISO L-Shaped Purple Enter Button */
-        .tp-crisp-enter-btn {
+        /* Exact Replica ISO L-Shaped Purple Enter Button Button Container */
+        .tp-exact-l-enter-btn {
             position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 86px;
-            height: 104px;
+            right: 8px;
+            top: 8px;
+            bottom: 8px;
+            width: 88px;
+            height: calc(100% - 16px);
             background: transparent;
             border: none;
             cursor: pointer;
@@ -259,14 +257,14 @@
             justify-content: center;
         }
 
-        .tp-crisp-enter-btn:hover {
+        .tp-exact-l-enter-btn:hover {
             transform: scale(1.03);
             filter: brightness(1.08);
         }
 
-        .tp-crisp-enter-btn svg {
-            width: 86px;
-            height: 104px;
+        .tp-exact-l-enter-btn svg {
+            width: 88px;
+            height: 100%;
             display: block;
         }
 
@@ -277,14 +275,14 @@
             .tp-main-input {
                 font-size: 1.15rem;
             }
-            .tp-crisp-enter-btn {
-                width: 74px;
+            .tp-exact-l-enter-btn {
+                width: 76px;
             }
-            .tp-crisp-enter-btn svg {
-                width: 74px;
+            .tp-exact-l-enter-btn svg {
+                width: 76px;
             }
             .tp-input-group {
-                padding-right: 76px;
+                padding-right: 82px;
             }
         }
     </style>
@@ -343,13 +341,13 @@
                             <input type="text" id="chatInput" class="tp-main-input" placeholder="Ask Digital Emirhan..." autocomplete="off">
                         </div>
 
-                        <!-- Sharp Crisp ISO L-Shaped Purple Enter Button SVG -->
-                        <button type="submit" class="tp-crisp-enter-btn" title="Send (Enter)">
-                            <svg width="86" height="104" viewBox="0 0 86 104" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Crisp ISO Enter Key Path: Top narrow, bottom extending left -->
-                                <path d="M 32 0 H 66 C 77.046 0 86 8.954 86 20 V 84 C 86 95.046 77.046 104 66 104 H 20 C 8.954 104 0 95.046 0 84 V 62 C 0 50.954 8.954 42 20 42 H 32 V 0 Z" fill="#8b5cf6"/>
-                                <!-- Crisp Return Arrow ↵ -->
-                                <path d="M 58 74 L 44 74 M 44 74 L 51 67 M 44 74 L 51 81 M 66 52 V 64 C 66 69.523 61.523 74 56 74 H 44" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Pixel Perfect Replica ISO L-Shaped Purple Enter Button SVG -->
+                        <button type="submit" class="tp-exact-l-enter-btn" title="Send (Enter)">
+                            <svg width="88" height="96" viewBox="0 0 88 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Curved ISO Enter L-Key with Outer & Concave Inner Fillets -->
+                                <path d="M 42 20 C 42 13.37 47.37 8 54 8 H 68 C 74.63 8 80 13.37 80 20 V 76 C 80 82.63 74.63 88 68 88 H 20 C 13.37 88 8 82.63 8 76 V 60 C 8 53.37 13.37 48 20 48 H 30 C 36.63 48 42 42.63 42 36 V 20 Z" fill="#8b5cf6"/>
+                                <!-- Return Arrow ↵ -->
+                                <path d="M 68 76 L 58 76 M 58 76 L 62 72 M 58 76 L 62 80 M 70 64 V 71 C 70 73.761 67.761 76 65 76 H 58" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
                     </form>
