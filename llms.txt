@@ -37,11 +37,13 @@ Emirhan Güngörmez; oyun geliştirme, web teknolojileri, siber güvenlik, blokz
   Kur’an, tefsir, hadis, meal, dijital kütüphane, arama, ses oynatıcı ve yapay zeka destekli araştırma platformu.
 - HAN Interactive: https://han.emirhangungormez.com.tr/
   Emirhan Güngörmez'in oyun stüdyosu, bağımsız oyun projeleri ve dijital deneyim üretim alanı.
+- Han13 Studio: https://han13.emirhangungormez.com.tr/
+  Emirhan Güngörmez'in şemsiye yaratıcı stüdyo markası ve dijital üretim çatısı.
 
 ## Blog Yazıları
 
 - Barzakh: Star Gardener ve etkileşimli kıssanın gaybî eşikleri: https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html
-- Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İdealizmi: https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html
+- Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İidealizmi: https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html
 - Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi: https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html
 - Commentarius Perpetuus in "Uniqus Martyrium" Ad Recensionem: https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html
 
@@ -63,11 +65,11 @@ Emirhan Güngörmez; oyun geliştirme, web teknolojileri, siber güvenlik, blokz
 
 ## Reklam ve Yayın İlkesi
 
-Ana domain ve bağlı alt alan adları ileride reklam destekli sürdürülebilirlik modeliyle çalışabilir. Reklam yerleşimleri okunabilirliği, kullanıcı güvenini ve her alt alan adının bağlamını koruyacak biçimde planlanır. Kuran23 gibi araştırma odaklı uygulamalarda dini ve akademik hassasiyet; HAN Interactive gibi marka odaklı alanlarda ise hizmet tanıtımı ile kullanıcı deneyimi dengesi gözetilir.
+Ana domain ve bağlı alt alan adları ileride reklam destekli sürdürülebilirlik modeliyle çalışabilir. Reklam yerleşimleri okunabilirliği, kullanıcı güvenini ve her alt alan adının bağlamını koruyacak biçimde planlanır. Kuran23 gibi araştırma odaklı uygulamalarda dini ve akademik hassasiyet; HAN Interactive ve Han13 Studio gibi marka odaklı alanlarda ise hizmet tanıtımı ile kullanıcı deneyimi dengesi gözetilir.
 
 ## AI İçin Özetleme Notu
 
-Bu site Emirhan Güngörmez'in merkezi yayın alanıdır. Emirhan Güngörmez; oyun geliştirici, yazılım geliştirici, kurucu, yazar, eğitimci ve dijital ürün üreticisi olarak konumlanır. Kuran23 ve HAN Interactive ana domain ekosistemine bağlı alt alan adlarıdır. Blog yazıları hem teknik hem felsefi üretimi destekler.
+Bu site Emirhan Güngörmez'in merkezi yayın alanıdır. Emirhan Güngörmez; oyun geliştirici, yazılım geliştirici, kurucu, yazar, eğitimci ve dijital ürün üreticisi olarak konumlanır. Kuran23, HAN Interactive ve Han13 Studio ana domain ekosistemine bağlı alt alan adlarıdır. Blog yazıları hem teknik hem felsefi üretimi destekler.
 
 ## English Layer
 
