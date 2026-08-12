@@ -30,175 +30,201 @@
     <link rel="stylesheet" href="../assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        .ai-page {
-            padding: 4em 0 6em 0;
-            min-height: calc(100vh - 180px);
+        /* Claude / Cursor Inspired AI Chat System */
+        .chat-page {
+            padding: 3rem 0 5rem 0;
+            min-height: calc(100vh - 160px);
             display: flex;
             flex-direction: column;
         }
 
-        .ai-container {
-            max-width: 760px;
+        .chat-frame {
+            max-width: 44rem;
             margin: 0 auto;
             width: 100%;
             display: flex;
             flex-direction: column;
-            height: clamp(550px, 72vh, 800px);
+            height: clamp(560px, 74vh, 820px);
+            position: relative;
         }
 
-        .ai-body {
+        .chat-stream {
             flex: 1;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 2em;
-            padding-right: 0.5em;
+            gap: 2.2rem;
+            padding: 0.5rem 0.5rem 2rem 0.5rem;
             scroll-behavior: smooth;
         }
 
-        .ai-body::-webkit-scrollbar {
-            width: 4px;
+        .chat-stream::-webkit-scrollbar {
+            width: 5px;
         }
-        .ai-body::-webkit-scrollbar-thumb {
+        .chat-stream::-webkit-scrollbar-thumb {
             background: currentColor;
-            opacity: 0.2;
-            border-radius: 2px;
+            opacity: 0.15;
+            border-radius: 3px;
         }
 
-        .msg-row {
+        .chat-msg {
             display: flex;
             flex-direction: column;
-            gap: 0.4em;
-            max-width: 88%;
-            animation: fadeIn 0.25s ease forwards;
+            gap: 0.45rem;
+            max-width: 100%;
+            animation: msgFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+        @keyframes msgFade {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .msg-row--user {
+        .chat-msg--user {
             align-self: flex-end;
-            align-items: flex-end;
+            max-width: 82%;
         }
 
-        .msg-row--ai {
+        .chat-msg--assistant {
             align-self: flex-start;
-            align-items: flex-start;
+            width: 100%;
         }
 
-        .msg-label {
-            font-size: 0.72rem;
-            letter-spacing: 0.05em;
+        .chat-author {
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
             opacity: 0.45;
             color: inherit;
-            margin-bottom: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .msg-bubble {
-            font-size: 0.95rem;
-            line-height: 1.65;
+        .chat-msg--user .chat-author {
+            justify-content: flex-end;
+        }
+
+        .chat-content {
+            font-size: 0.98rem;
+            line-height: 1.7;
             color: inherit;
             word-break: break-word;
         }
 
-        .msg-row--user .msg-bubble {
-            background: rgba(17, 20, 20, 0.06);
-            border: 1px solid rgba(17, 20, 20, 0.12);
-            padding: 0.9em 1.2em;
-            border-radius: 12px;
-            color: inherit;
+        /* Cursor / Claude Style User Bubble */
+        .chat-msg--user .chat-content {
+            background: rgba(17, 20, 20, 0.05);
+            border: 1px solid rgba(17, 20, 20, 0.1);
+            padding: 0.9rem 1.25rem;
+            border-radius: 18px;
+            border-bottom-right-radius: 4px;
         }
 
-        .msg-row--ai .msg-bubble {
+        .dark-mode .chat-msg--user .chat-content {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Cursor / Claude Style Assistant Response */
+        .chat-msg--assistant .chat-content {
             background: transparent;
-            border-left: 2px solid rgba(17, 20, 20, 0.25);
-            padding: 0.3em 0 0.3em 1.1em;
-            color: inherit;
-            opacity: 0.92;
+            padding: 0.2rem 0;
+            opacity: 0.95;
         }
 
-        .dark-mode .msg-row--user .msg-bubble {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.14);
+        .chat-content p {
+            margin: 0 0 0.8rem 0;
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+        .chat-content p:last-child {
+            margin-bottom: 0;
         }
 
-        .dark-mode .msg-row--ai .msg-bubble {
-            border-left-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .msg-bubble a {
+        .chat-content a {
             color: inherit;
             font-weight: 600;
             text-decoration: underline;
             text-underline-offset: 3px;
         }
 
-        .msg-bubble strong {
+        .chat-content strong {
             color: inherit;
             font-weight: 600;
         }
 
-        .typing-dots {
-            display: inline-flex;
-            gap: 4px;
-            padding: 0.4em 0;
+        .chat-content ul {
+            margin: 0.6rem 0;
+            padding-left: 1.25rem;
         }
 
+        .chat-content li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* Typing Dots Animation */
+        .typing-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0.5rem 0;
+        }
         .typing-dot {
             width: 5px;
             height: 5px;
             border-radius: 50%;
             background: currentColor;
-            opacity: 0.4;
-            animation: pulseDot 1.4s infinite ease-in-out both;
+            opacity: 0.35;
+            animation: dotPulse 1.4s infinite ease-in-out both;
         }
-
         .typing-dot:nth-child(1) { animation-delay: 0s; }
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-        @keyframes pulseDot {
-            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-            40% { opacity: 1; transform: scale(1); }
+        @keyframes dotPulse {
+            0%, 80%, 100% { opacity: 0.25; transform: scale(0.8); }
+            40% { opacity: 0.9; transform: scale(1.1); }
         }
 
-        .ai-footer {
-            margin-top: 2em;
-            padding-top: 1.2em;
-            border-top: 1px solid rgba(17, 20, 20, 0.12);
+        /* Claude / Cursor Style Floating Input Dock */
+        .chat-dock {
+            margin-top: auto;
+            padding-top: 1rem;
+            position: relative;
         }
 
-        .dark-mode .ai-footer {
-            border-top-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .ai-input-form {
+        .chat-form {
             display: flex;
-            align-items: center;
-            gap: 1em;
-            background: transparent;
-            border: 1px solid rgba(17, 20, 20, 0.2);
-            border-radius: 8px;
-            padding: 0.4em 0.6em 0.4em 1em;
-            transition: border-color 0.2s ease;
+            align-items: flex-end;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(17, 20, 20, 0.12);
+            border-radius: 20px;
+            padding: 0.6rem 0.6rem 0.6rem 1.25rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(16px);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .dark-mode .ai-input-form {
-            border-color: rgba(255, 255, 255, 0.18);
+        .dark-mode .chat-form {
+            background: rgba(24, 24, 24, 0.85);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
         }
 
-        .ai-input-form:focus-within {
-            border-color: rgba(17, 20, 20, 0.5);
+        .chat-form:focus-within {
+            border-color: rgba(17, 20, 20, 0.35);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
         }
 
-        .dark-mode .ai-input-form:focus-within {
-            border-color: rgba(255, 255, 255, 0.45);
+        .dark-mode .chat-form:focus-within {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .ai-input-text {
+        .chat-input {
             flex: 1;
             background: transparent;
             border: none;
@@ -206,40 +232,60 @@
             color: inherit;
             font-size: 0.95rem;
             font-family: inherit;
-            padding: 0.5em 0;
+            padding: 0.4rem 0;
+            line-height: 1.5;
+            resize: none;
+            max-height: 140px;
+            min-height: 24px;
         }
 
-        .ai-input-text::placeholder {
+        .chat-input::placeholder {
             color: inherit;
             opacity: 0.45;
         }
 
-        .ai-send-btn {
-            background: transparent;
-            color: inherit;
-            opacity: 0.6;
+        .chat-submit {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: #111414;
+            color: #ffffff;
             border: none;
             cursor: pointer;
-            padding: 0.4em;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.2s ease, transform 0.15s ease;
+            flex-shrink: 0;
         }
 
-        .ai-send-btn:hover {
-            opacity: 1;
+        .dark-mode .chat-submit {
+            background: #ffffff;
+            color: #111414;
+        }
+
+        .chat-submit:hover {
+            opacity: 0.88;
+            transform: scale(1.04);
+        }
+
+        .chat-footnote {
+            font-size: 0.72rem;
+            color: inherit;
+            opacity: 0.4;
+            text-align: center;
+            margin-top: 0.65rem;
         }
 
         @media screen and (max-width: 768px) {
-            .ai-page {
-                padding: 2em 0 4em 0;
+            .chat-page {
+                padding: 1.5rem 0 3rem 0;
             }
-            .ai-container {
-                height: calc(100vh - 200px);
+            .chat-frame {
+                height: calc(100vh - 180px);
             }
-            .msg-row {
-                max-width: 95%;
+            .chat-msg--user {
+                max-width: 90%;
             }
         }
     </style>
@@ -275,30 +321,31 @@
                 </div>
             </header>
 
-            <main class="ai-page">
+            <main class="chat-page">
                 <div class="wrapper">
-                    <div class="ai-container">
-                        <!-- Chat Stream -->
-                        <div class="ai-body" id="chatBody">
-                            <div class="msg-row msg-row--ai">
-                                <span class="msg-label">Digital Emirhan</span>
-                                <div class="msg-bubble">
-                                    Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.
+                    <div class="chat-frame">
+                        <!-- Message Thread -->
+                        <div class="chat-stream" id="chatBody">
+                            <div class="chat-msg chat-msg--assistant">
+                                <span class="chat-author">Digital Emirhan</span>
+                                <div class="chat-content">
+                                    <p>Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Minimal Input -->
-                        <div class="ai-footer">
-                            <form class="ai-input-form" id="chatForm" onsubmit="handleChatSubmit(event)">
-                                <input type="text" id="chatInput" class="ai-input-text" placeholder="Type a message..." autocomplete="off">
-                                <button type="submit" class="ai-send-btn" aria-label="Send">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        <!-- Claude / Cursor Style Input Dock -->
+                        <div class="chat-dock">
+                            <form class="chat-form" id="chatForm" onsubmit="handleChatSubmit(event)">
+                                <input type="text" id="chatInput" class="chat-input" placeholder="Ask Digital Emirhan a question..." autocomplete="off">
+                                <button type="submit" class="chat-submit" aria-label="Send">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                                        <polyline points="5 12 12 5 19 12"></polyline>
                                     </svg>
                                 </button>
                             </form>
+                            <p class="chat-footnote">Digital Emirhan provides responses grounded in Emirhan Güngörmez's knowledge base.</p>
                         </div>
                     </div>
                 </div>
@@ -341,18 +388,18 @@
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
-            row.className = 'msg-row ' + (role === 'user' ? 'msg-row--user' : 'msg-row--ai');
+            row.className = 'chat-msg ' + (role === 'user' ? 'chat-msg--user' : 'chat-msg--assistant');
             
             var label = document.createElement('span');
-            label.className = 'msg-label';
+            label.className = 'chat-author';
             label.textContent = role === 'user' ? 'You' : 'Digital Emirhan';
 
-            var bubble = document.createElement('div');
-            bubble.className = 'msg-bubble';
-            bubble.innerHTML = text;
+            var content = document.createElement('div');
+            content.className = 'chat-content';
+            content.innerHTML = text;
 
             row.appendChild(label);
-            row.appendChild(bubble);
+            row.appendChild(content);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
@@ -361,18 +408,18 @@
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
             row.id = 'typingIndicatorRow';
-            row.className = 'msg-row msg-row--ai';
+            row.className = 'chat-msg chat-msg--assistant';
             
             var label = document.createElement('span');
-            label.className = 'msg-label';
+            label.className = 'chat-author';
             label.textContent = 'Digital Emirhan';
 
-            var bubble = document.createElement('div');
-            bubble.className = 'msg-bubble';
-            bubble.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            var content = document.createElement('div');
+            content.className = 'chat-content';
+            content.innerHTML = '<div class="typing-box"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
             row.appendChild(label);
-            row.appendChild(bubble);
+            row.appendChild(content);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
@@ -386,33 +433,37 @@
             var query = userText.toLowerCase();
 
             if (query.includes('tech') || query.includes('stack') || query.includes('skills') || query.includes('language') || query.includes('software')) {
-                return "Core technology stack and expertise:<br><br>" +
-                       "• <strong>Game Dev:</strong> Unreal Engine 5 (C++, Blueprint Architecture), Unity (C#)<br>" +
-                       "• <strong>Web & Systems:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers<br>" +
-                       "• <strong>AI & R&D:</strong> LLM Integrations, RAG Systems, Python, Computer Vision<br>" +
-                       "• <strong>Web3 & Cyber Security:</strong> Solidity, Smart Contracts, Network Security";
+                return "<p>Core technology stack and expertise:</p>" +
+                       "<ul>" +
+                       "<li><strong>Game Dev:</strong> Unreal Engine 5 (C++, Blueprint Architecture), Unity (C#)</li>" +
+                       "<li><strong>Web & Systems:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
+                       "<li><strong>AI & R&D:</strong> LLM Integrations, RAG Systems, Python, Computer Vision</li>" +
+                       "<li><strong>Web3 & Cyber Security:</strong> Solidity, Smart Contracts, Network Security</li>" +
+                       "</ul>";
             }
             else if (query.includes('game') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
-                return "Game projects:<br><br>" +
-                       "<strong>Barzakh: Star Gardener:</strong> TPS puzzle-action game built with Unreal Engine 5.5 (C++ & Blueprint). <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Page</a><br><br>" +
-                       "<strong>Truck Up:</strong> Co-op vehicle physics and team-based action game.";
+                return "<p>Game projects:</p>" +
+                       "<p><strong>Barzakh: Star Gardener:</strong> TPS puzzle-action game built with Unreal Engine 5.5 (C++ & Blueprint). <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Page</a></p>" +
+                       "<p><strong>Truck Up:</strong> Co-op vehicle physics and team-based action game.</p>";
             }
             else if (query.includes('kuran23') || query.includes('quran') || query.includes('hadith') || query.includes('platform')) {
-                return "<strong>Kuran23:</strong> Digital research platform unifying Quranic reading, translations, tafsir, 60,000+ hadiths, and Muallim AI.<br><br>" +
-                       "Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a>";
+                return "<p><strong>Kuran23:</strong> Digital research platform unifying Quranic reading, translations, tafsir, 60,000+ hadiths, and Muallim AI.</p>" +
+                       "<p>Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a></p>";
             }
             else if (query.includes('work') || query.includes('collaborate') || query.includes('hire') || query.includes('contact') || query.includes('email')) {
-                return "Direct contact channels for projects and inquiries:<br><br>" +
-                       "Email: <strong>han23studio@gmail.com</strong><br>" +
-                       "LinkedIn: <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>linkedin.com/in/emirhangungormez</a>";
+                return "<p>Direct contact channels for projects and inquiries:</p>" +
+                       "<ul>" +
+                       "<li>Email: <strong>han23studio@gmail.com</strong></li>" +
+                       "<li>LinkedIn: <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>linkedin.com/in/emirhangungormez</a></li>" +
+                       "</ul>";
             }
             else if (query.includes('who') || query.includes('about') || query.includes('emirhan')) {
-                return "<strong>Emirhan Güngörmez:</strong> Indie game developer, software engineer, and R&D manager with 8+ years of experience in game systems, web applications, and AI products.<br><br>" +
-                       "View full background on the <a href='cv.html'>CV page</a>.";
+                return "<p><strong>Emirhan Güngörmez:</strong> Indie game developer, software engineer, and R&D manager with 8+ years of experience in game systems, web applications, and AI products.</p>" +
+                       "<p>View full background on the <a href='cv.html'>CV page</a>.</p>";
             }
             else {
-                return "Digital assistant of Emirhan Güngörmez. You can inquire about game architecture, software engineering, AI R&D (Kuran23, Barzakh), and partnerships.<br><br>" +
-                       "Direct contact: <strong>han23studio@gmail.com</strong>";
+                return "<p>Digital assistant of Emirhan Güngörmez. You can inquire about game architecture, software engineering, AI R&D (Kuran23, Barzakh), and partnerships.</p>" +
+                       "<p>Direct contact: <strong>han23studio@gmail.com</strong></p>";
             }
         }
 
@@ -431,7 +482,7 @@
                 removeTypingIndicator();
                 var aiReply = generateAIResponse(text);
                 appendMessage('ai', aiReply);
-            }, 600);
+            }, 550);
         }
     </script>
 </body>
