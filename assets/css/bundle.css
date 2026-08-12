@@ -3043,6 +3043,93 @@ body:not(.dark-mode) .tp-input-box-card {
     font-family: monospace;
 }
 
+/* ==========================================================================
+   Mobile Responsive Fixes (Header & Sanal Emirhan Chat UI)
+   ========================================================================== */
+@media screen and (max-width: 767px) {
+  header .nav, header .nav.cc-project {
+    flex-wrap: nowrap !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+  }
+  
+  header .nav__logo {
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  header .nav__links {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 0.85rem !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 2px 0 !important;
+    max-width: calc(100vw - 120px) !important;
+  }
+
+  header .nav__links::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .tp-pure-page {
+    min-height: auto !important;
+    padding: 1rem 0.5rem !important;
+  }
+
+  .tp-pure-frame {
+    width: 100% !important;
+  }
+
+  .tp-headline-title {
+    font-size: 1.6rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .tp-stream-thread {
+    max-height: 52vh !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .tp-input-box-card {
+    padding: 0.75rem 0.85rem !important;
+    min-height: 72px !important;
+    border-radius: 16px !important;
+  }
+
+  .tp-input-group {
+    padding-right: 68px !important;
+  }
+
+  .tp-main-input {
+    font-size: 1.05rem !important;
+  }
+
+  .tp-exact-l-enter-btn {
+    width: 60px !important;
+    right: 6px !important;
+    top: 6px !important;
+    bottom: 6px !important;
+    height: calc(100% - 12px) !important;
+  }
+
+  .tp-exact-l-enter-btn svg {
+    width: 60px !important;
+  }
+}
+
+@media screen and (max-width: 439px) {
+  header .nav__links {
+    flex-direction: row !important;
+    gap: 0.75rem !important;
+  }
+}
+
+
 
 
 
