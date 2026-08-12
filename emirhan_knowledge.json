@@ -1,105 +1,211 @@
 {
+  "system_instruction": "Sen Sanal Emirhan'sın (Digital Emirhan). Emirhan Güngörmez'in dijital ikizi ve yapay zekâ temsilcisisin. Yanıt verirken her zaman kibar, mühendislik odaklı, entelektüel ve alçakgönüllü ol. Sorulan herhangi bir proje, oyun, eğitim, deneyim veya blog yazısından bahsettiğinde, yanıtın içine MUTLAKA doğrudan tıklanabilir HTML bağlantısını (<a href='URL' target='_blank'>Bağlantı Metni</a>) ekle!",
   "identity": {
     "name": "Emirhan Güngörmez",
-    "role_tr": "Bağımsız Oyun Geliştiricisi & Teknik Kurucu, Yapay Zekâ & Yazılım Mühendisi, Ar-Ge Yöneticisi",
-    "role_en": "Indie Game Developer & Technical Founder, AI & Software Engineer, R&D Manager",
+    "roles": [
+      "Bağımsız Oyun Geliştiricisi & Teknik Kurucu",
+      "Yapay Zekâ & Yazılım Mühendisi",
+      "Ar-Ge Yöneticisi",
+      "Yazar & Eğitmen"
+    ],
     "email": "han23studio@gmail.com",
-    "philosophy": "Multidisipliner dijital üretim, felsefi derinlik, bağımsız oyun mimarisi, öz-eğitim (self-education) ve diplomasız hakikat ekolojisi.",
-    "location": "Türkiye & Almanya / Küresel dijital ürün ekosistemi"
+    "phone": "+90 551 135 11 52",
+    "main_website": "https://emirhangungormez.com.tr/",
+    "cv_page": "https://emirhangungormez.com.tr/cv.html",
+    "cv_pdf": "https://emirhangungormez.com.tr/cv.pdf",
+    "location": "Türkiye & Almanya / Küresel Dijital Ürün Ekosistemi",
+    "summary": "Teknoloji, anlatı ve düşünce üretimi arasında çalışan; oyun geliştirme, web teknolojileri, siber güvenlik, blokzinciri, yazı ve eğitim alanlarını aynı üretim çizgisinde buluşturan multidisipliner bir geliştirici."
   },
-  "games": [
-    {
-      "name": "Barzakh: Star Gardener",
-      "engine": "Unreal Engine 5.5 (C++ & Blueprint Mimarisi)",
-      "concept": "Dede Korkut ve Küçük Prens anlatı eşiklerini, gaybî sembolizmi içeren TPS bulmaca-aksiyon oyunu.",
-      "steam_url": "https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/",
-      "page_url": "https://emirhangungormez.com.tr/barzakh.html",
-      "highlights": "Özel C++ eklentileri, dinamik gölgelendiriciler, felsefi anlatı tasarımı."
-    },
-    {
-      "name": "Truck Up: Catch Me If You Can",
-      "engine": "Unreal Engine / Unity Physics",
-      "concept": "Co-op araç fiziği ve takım tabanlı aksiyon oyunu.",
-      "steam_url": "https://store.steampowered.com/app/3411890/Truck_Up_Catch_Me_If_You_Can/",
-      "page_url": "https://emirhangungormez.com.tr/truckup.html"
-    },
-    {
-      "name": "Little Prince Project",
-      "concept": "Etkileşimli öğrenme ve anlatı araştırması projesi.",
-      "page_url": "https://emirhangungormez.com.tr/littleprince.html"
-    }
-  ],
-  "projects": [
-    {
-      "name": "Kuran23",
-      "url": "https://kuran23.emirhangungormez.com.tr/",
-      "github": "https://github.com/emirhangungormez/kuran23",
-      "description": "Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini sunan dijital araştırma kütüphanesi.",
-      "tech_stack": "Next.js, React, Cloudflare Edge Workers, LLM RAG, TailwindCSS/Vanilla CSS."
-    },
-    {
-      "name": "HAN Interactive Studio",
-      "url": "https://han.emirhangungormez.com.tr/",
-      "description": "Emirhan Güngörmez'in bağımsız oyun stüdyosu ve dijital deneyim üretim alanı."
-    },
-    {
-      "name": "Terkib23",
-      "url": "https://terkib23.emirhangungormez.com.tr/",
-      "description": "Almanya ve Avrupa pazarındaki firmalara yönelik web sitesi geliştirme, dijital varlık ve ajans danışmanlık alanı."
-    }
-  ],
-  "tech_stack": {
-    "game_dev": ["Unreal Engine 5", "C++", "Blueprint Architecture", "Unity", "C#", "Render Pipeline", "Vehicle Physics"],
-    "web_systems": ["React", "Next.js", "JavaScript", "TypeScript", "Cloudflare Edge Workers", "HTML5/CSS3", "Node.js"],
-    "ai_rnd": ["LLM Integration (Groq, OpenAI, Gemini)", "RAG Architecture", "Python", "Computer Vision", "AI Agent Workflows"],
-    "cybersecurity_web3": ["Solidity", "EVM Smart Contracts", "Network Security Research", "Web3 Prototypes", "Tokenomics"]
-  },
-  "articles_and_essays": [
-    {
-      "title": "Barzakh: Star Gardener ve etkileşimli kıssanın gaybî eşikleri",
-      "url": "https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html",
-      "topic": "Oyunlarda kıssa anlatımı, anlatı eşikleri ve felsefi oyun tasarımı."
-    },
-    {
-      "title": "Commentarius Perpetuus in Uniqus Martyrium Ad Recensionem",
-      "url": "https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html",
-      "topic": "Akademik ve felsefi yorum metni."
-    },
-    {
-      "title": "Kuran23 dijital kütüphane ve araştırma platformu",
-      "url": "https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html",
-      "topic": "Yapay zekâ destekli kütüphane mimarisi ve hadis/ayet arama altyapısı."
-    },
-    {
-      "title": "Unreal Engine ile bağımsız oyun geliştirme notları",
-      "url": "https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html",
-      "topic": "Indie game dev süreçleri, C++ eklenti yapısı ve optimizasyon."
-    },
-    {
-      "title": "Almanya’daki firmalar için web sitesi stratejisi",
-      "url": "https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html",
-      "topic": "Avrupa pazarı dijital kimlik ve web stratejileri."
-    },
-    {
-      "title": "Ünvansızlar Cemiyeti: Diplomasız bir hakikat ekolojisi",
-      "url": "https://medium.com/@emirhangungormez",
-      "topic": "Kendi kendini eğitme (self-education), zanaat ve felsefi denemeler."
-    }
-  ],
-  "social_links": {
-    "website": "https://emirhangungormez.com.tr",
+  "social_and_web_links": {
+    "main_site": "https://emirhangungormez.com.tr/",
     "github": "https://github.com/emirhangungormez",
     "linkedin": "https://www.linkedin.com/in/emirhangungormez",
     "medium": "https://medium.com/@emirhangungormez",
     "twitter": "https://twitter.com/emirhangngrmz",
     "youtube": "https://www.youtube.com/@han23studio",
-    "email": "han23studio@gmail.com"
+    "artstation": "https://www.artstation.com/han23studio",
+    "rss_feed": "https://emirhangungormez.com.tr/feed.xml"
   },
-  "persona_rules": [
-    "Sen Sanal Emirhan'sın (Digital Emirhan), Emirhan Güngörmez'in dijital ikizi ve yapay zekâ asistanısın.",
-    "Her zaman kibar, mühendislik odaklı, entelektüel ama alçakgönüllü bir dille yanıt verirsin.",
-    "Emirhan'ın oyunları (Barzakh, Truck Up), projeleri (Kuran23, Terkib23), yetkinlikleri ve yazıları hakkında detaylı ve doğru bilgiler sunarsın.",
-    "Biri seninle proje geliştirmek veya iletişim kurmak isterse han23studio@gmail.com e-postasını ve LinkedIn profilini verirsin.",
-    "Asla uydurma veya bilmediğin bir konuda yapmacık bilgi vermezsin. Emirhan'ın bilinen vizyonu doğrultusunda konuşursun."
-  ]
+  "subdomain_ecosystem": [
+    {
+      "name": "Kuran23 Platformu",
+      "url": "https://kuran23.emirhangungormez.com.tr/",
+      "github_repo": "https://github.com/emirhangungormez/kuran23",
+      "detail_page": "https://emirhangungormez.com.tr/kuran23.html",
+      "description": "Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini sunan dijital kütüphane ve araştırma altyapısı.",
+      "tech_stack": "React 19, Vite 7, React Router 7, Zustand, TanStack Query, Vanilla CSS, PHP Endpoints, Supabase, Prisma, PostgreSQL, Cloudflare Edge Workers, Wrangler."
+    },
+    {
+      "name": "HAN Interactive / Han Studio",
+      "url": "https://han.emirhangungormez.com.tr/",
+      "description": "Emirhan Güngörmez'in bağımsız oyun stüdyosu, dijital deneyimler ve video oyunları üretim alanı."
+    },
+    {
+      "name": "Terkib23",
+      "url": "https://terkib23.emirhangungormez.com.tr/",
+      "description": "Almanya ve Avrupa pazarındaki firmalara yönelik web sitesi geliştirme, dijital varlık ve ajans danışmanlık hizmetleri."
+    }
+  ],
+  "experience_history": [
+    {
+      "dates": "04.2025 - Güncel",
+      "role": "Kurucu — Han Interactive Entertainment / Han Studio",
+      "details": "Unreal Engine 5 tabanlı Barzakh: Star Gardener ve Truck Up: Catch Me If You Can projelerinde oyun tasarımı, teknik üretim, yayın hazırlığı ve stüdyo operasyonlarını yönetiyor.",
+      "links": [
+        "https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/",
+        "https://store.steampowered.com/app/3411890/Truck_Up_Catch_Me_If_You_Can/"
+      ]
+    },
+    {
+      "dates": "06.2022 - 07.2024",
+      "role": "Kurucu, Oyun Geliştirici — Lodom Creations / Spell Factory A.Ş.",
+      "details": "Spell Factory A.Ş. startup aşamasında Unreal Engine tabanlı prototip geliştirme, ekip organizasyonu ve Bilişim Vadisi Genel Müdürü Ahmet Serdar İbrahimcioğlu'na proje sunumu süreçlerinde bulundu."
+    },
+    {
+      "dates": "01.2024 - 10.2024",
+      "role": "Kurucu Ortak — The Astra Lmtd.",
+      "details": "Müşteri ihtiyaçlarına özel web sitesi, marka tasarımı ve dijital çözüm üretimi süreçleri yönetildi."
+    },
+    {
+      "dates": "07.2022 - 01.2023",
+      "role": "JavaScript Geliştirici — Motto Animate Stüdyo",
+      "details": "Digiage kurucularından Okan Özbay aracılığıyla Adobe Animate ve JavaScript kullanarak etkileşimli çocuk kitapları ve animasyon tabanlı dijital içerikler geliştirdi."
+    },
+    {
+      "dates": "06.2022 - 12.2022",
+      "role": "Blokzinciri Geliştirici ve Mimar — Cuberium / Siber Vatan",
+      "details": "Siber Vatan Antalya kampında Cuberium kurucu ekibinde yer aldı. Cumhurbaşkanlığı Dijital Dönüşüm Ofisi Başkanı Ali Taha Koç'a blokzinciri projesi sunuldu."
+    },
+    {
+      "dates": "02.2022 - 11.2023",
+      "role": "Kurucu — Anticverse Komünite",
+      "details": "5 üniversitede girişimcilik, teknoloji/felsefe yayıncılığı, bootcamp ve teknokent süreçlerini yürüten topluluk kuruculuğu."
+    },
+    {
+      "dates": "03.2022 - 01.2023",
+      "role": "Siber Güvenlik Araştırmacısı — Siber Vatan",
+      "details": "Cyrops ve BG-TEK kurucularının eğitimlerinde CTF, ağ güvenliği, sızma testi ve beyaz şapkalı hackerlık yetkinliği."
+    }
+  ],
+  "games_and_projects": [
+    {
+      "name": "Barzakh: Star Gardener",
+      "steam_url": "https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/",
+      "page_url": "https://emirhangungormez.com.tr/barzakh.html",
+      "details": "Yıldızların rehberliğinde ilerleyen, keşif, gaybî sembolizm, Dede Korkut ve Küçük Prens anlatı eşiklerini içeren bağımsız bulmaca/sanat hikaye oyunu.",
+      "tech_stack": "Unreal Engine 5.5, C++, Blueprint Architecture, Blender, Substance Painter, Figma, Nanite, Lumen."
+    },
+    {
+      "name": "Truck Up: Catch Me If You Can",
+      "steam_url": "https://store.steampowered.com/app/3411890/Truck_Up_Catch_Me_If_You_Can/",
+      "page_url": "https://emirhangungormez.com.tr/truckup.html",
+      "details": "Araç sürüşü, zombi dalgaları, kule savunma ve alan koruma mekaniklerini birleştiren çok oyunculu TPS aksiyon oyunu.",
+      "tech_stack": "Unreal Engine 5, Blueprint, Blender, Substance Painter, Motion Capture, MetaHuman."
+    },
+    {
+      "name": "Corpus Orphicum (Orpheus Üçlemesi)",
+      "details": "Orta Çağ'da geçen bilim kurgu temelli anlatı üzerine kurgulanan hikaye odaklı macera oyunu prototipi.",
+      "tech_stack": "Unreal Engine 5, C++, Blueprint, Blender, Figma."
+    },
+    {
+      "name": "Little Prince Projesi",
+      "page_url": "https://emirhangungormez.com.tr/littleprince.html",
+      "details": "Küçük Prens anlatısını temel alan atmosferik bulmaca/platform prototipi öğrenme projesi.",
+      "tech_stack": "Unreal Engine 5, Blueprint, Blender, Substance."
+    }
+  ],
+  "full_blog_posts": [
+    {
+      "title": "Barzakh: Star Gardener ve etkileşimli kıssanın gaybî eşikleri",
+      "url": "https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html",
+      "summary": "Oyunlarda kıssa anlatımı, anlatı eşikleri, gaybî sembolizm ve felsefi oyun tasarımı üzerine kapsamlı deneme."
+    },
+    {
+      "title": "Commentarius Perpetuus in Uniqus Martyrium Ad Recensionem",
+      "url": "https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html",
+      "summary": "Akademik, metin eleştirisi ve felsefi yorum metni."
+    },
+    {
+      "title": "Kuran23 dijital kütüphane ve araştırma platformu",
+      "url": "https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html",
+      "summary": "Yapay zekâ destekli Kuran23 kütüphane mimarisi, hadis/ayet arama altyapısı ve Muallim AI entegrasyonu."
+    },
+    {
+      "title": "Unreal Engine ile bağımsız oyun geliştirme notları",
+      "url": "https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html",
+      "summary": "Indie game dev süreçleri, C++ eklenti yapısı, performans optimizasyonu ve oyun motoru pratikleri."
+    },
+    {
+      "title": "Almanya’daki firmalar için web sitesi stratejisi",
+      "url": "https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html",
+      "summary": "Avrupa ve Almanya pazarındaki işletmeler için dijital kimlik, kurumsal web mimarisi ve ajans stratejileri."
+    },
+    {
+      "title": "Ünvansızlar Cemiyeti: Diplomasız bir hakikat ekolojisi",
+      "url": "https://medium.com/@emirhangungormez",
+      "summary": "Kendi kendini eğitme (self-education), oto-didakt öğrenim, zanaat ve felsefi denemeler."
+    }
+  ],
+  "education": [
+    {
+      "dates": "2023 - 2027",
+      "school": "Anadolu Üniversitesi — Yönetim Bilişim Sistemleri",
+      "status": "Lisans Eğitimi Devam Ediyor"
+    },
+    {
+      "dates": "2021 - 2023",
+      "school": "Kütahya Dumlupınar Üniversitesi — Bilgisayar Mühendisliği",
+      "status": "2. Sınıfta donduruldu. Siber Güvenlik Kulübü kuruculuğu ve TEKNOFEST süreçleri yürütüldü."
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Unreal Authorized Instructor (UAI)",
+      "issuer": "Unreal Authorized Partner",
+      "date": "04.2025",
+      "url": "https://credential.unrealengine.com/c92e72f2-b8c1-4831-9a73-ecd15c3a204b#acc.DnyUjxYq"
+    },
+    {
+      "name": "CS50's Introduction to Game Development",
+      "issuer": "Harvard University",
+      "date": "10.2023"
+    },
+    {
+      "name": "PCAP: Programming Essentials in Python",
+      "issuer": "Cisco Networking Academy",
+      "date": "06.2022",
+      "url": "https://drive.google.com/file/d/1lRt3JgUQ-cDDImyh1ErSbpC7MMw8VFsI/view"
+    },
+    {
+      "name": "TEKNOFEST Turizm Teknolojileri Finalisti (Meta Ancient City VR/AR)",
+      "issuer": "TEKNOFEST (Türkiye 16.sı)",
+      "date": "05.2022",
+      "url": "https://drive.google.com/file/d/1kac4XeFBvSLCouGokmiC52-8XxNI4SF2/view"
+    },
+    {
+      "name": "Introduction to Penetration Testing",
+      "issuer": "ODTÜ",
+      "date": "06.2022",
+      "url": "https://drive.google.com/file/d/1OsfYO8PGLQGJpS1TIWRt3NzydxYw_uj8/view"
+    },
+    {
+      "name": "White Hat Hacker Course Attendance Certificate",
+      "issuer": "Siber Vatan & Cyrops / BG-TEK",
+      "date": "04.2022 & 05.2022",
+      "url": "https://drive.google.com/file/d/1soO6W1q_KGGMaa9b2-ossEZSjS1f2hzV/view"
+    },
+    {
+      "name": "Matlab Onramp & Machine Learning",
+      "issuer": "MATLAB Academy",
+      "date": "03.2022",
+      "url": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=f0d2f30c-7680-4cab-ac41-c3f8788bd54d&"
+    }
+  ],
+  "skills_breakdown": {
+    "game_dev": "Unreal Engine 5, Unity, Blueprint, C++, C# for Unity, Behavior Trees, EQS, PCG AI, Render Pipeline, Vehicle Physics, C++ plugin geliştirme.",
+    "tools_3d": "Blender, Substance Painter, Quixel, MetaHuman, Nanite, Lumen, Figma, Illustrator.",
+    "web_frontend_backend": "HTML, CSS, JavaScript, TypeScript, React 19, Next.js, Node.js, PHP, SQL, Supabase, Prisma, PostgreSQL, Cloudflare Edge Workers, Three.js, Barba.js, GSAP.",
+    "cybersecurity_network": "Kali Linux, Nmap, Metasploit, Wireshark, Hashcat, Hydra, John the Ripper, Shell scripting, VDS/VPS sunucu yönetimi.",
+    "blockchain_web3": "Solidity, EVM, Avalanche, Hyperledger Fabric, Web3.js, ethers.js, OpenZeppelin, ERC-20, ERC-721, ERC-1155 tokenizasyonu."
+  }
 }
