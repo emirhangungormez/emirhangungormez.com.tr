@@ -389,6 +389,8 @@
     <script src="../assets/js/site.js?v=20260604-gallery1"></script>
     
     <script>
+        var chatHistory = [];
+
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
@@ -433,45 +435,7 @@
             if (el) el.remove();
         }
 
-        function generateAIResponse(userText) {
-            var query = userText.toLowerCase();
-
-            if (query.includes('tech') || query.includes('stack') || query.includes('skills') || query.includes('language') || query.includes('software')) {
-                return "<p>Core technology stack and expertise:</p>" +
-                       "<ul>" +
-                       "<li><strong>Game Dev:</strong> Unreal Engine 5 (C++, Blueprint Architecture), Unity (C#)</li>" +
-                       "<li><strong>Web & Systems:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
-                       "<li><strong>AI & R&D:</strong> LLM Integrations, RAG Systems, Python, Computer Vision</li>" +
-                       "<li><strong>Web3 & Siber Güvenlik:</strong> Solidity, Smart Contracts, Network Security</li>" +
-                       "</ul>";
-            }
-            else if (query.includes('game') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
-                return "<p>Game projects:</p>" +
-                       "<p><strong>Barzakh: Star Gardener:</strong> TPS puzzle-action game built with Unreal Engine 5.5 (C++ & Blueprint). <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Page</a></p>" +
-                       "<p><strong>Truck Up:</strong> Co-op vehicle physics and team-based action game.</p>";
-            }
-            else if (query.includes('kuran23') || query.includes('quran') || query.includes('hadith') || query.includes('platform')) {
-                return "<p><strong>Kuran23:</strong> Digital research platform unifying Quranic reading, translations, tafsir, 60,000+ hadiths, and Muallim AI.</p>" +
-                       "<p>Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a></p>";
-            }
-            else if (query.includes('work') || query.includes('collaborate') || query.includes('hire') || query.includes('contact') || query.includes('email')) {
-                return "<p>Direct contact channels for projects and inquiries:</p>" +
-                       "<ul>" +
-                       "<li>Email: <strong>han23studio@gmail.com</strong></li>" +
-                       "<li>LinkedIn: <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>linkedin.com/in/emirhangungormez</a></li>" +
-                       "</ul>";
-            }
-            else if (query.includes('who') || query.includes('about') || query.includes('emirhan')) {
-                return "<p><strong>Emirhan Güngörmez:</strong> Indie game developer, software engineer, and R&D manager with 8+ years of experience in game systems, web applications, and AI products.</p>" +
-                       "<p>View full background on the <a href='cv.html'>CV page</a>.</p>";
-            }
-            else {
-                return "<p>Digital assistant of Emirhan Güngörmez. You can inquire about game architecture, software engineering, AI R&D (Kuran23, Barzakh), and partnerships.</p>" +
-                       "<p>Direct contact: <strong>han23studio@gmail.com</strong></p>";
-            }
-        }
-
-        function handleChatSubmit(e) {
+        async function handleChatSubmit(e) {
             e.preventDefault();
             var input = document.getElementById('chatInput');
             var text = input.value.trim();
@@ -482,11 +446,44 @@
 
             showTypingIndicator();
 
-            setTimeout(function() {
+            try {
+                var response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        history: chatHistory.slice(-6)
+                    })
+                });
+
                 removeTypingIndicator();
-                var aiReply = generateAIResponse(text);
-                appendMessage('ai', aiReply);
-            }, 550);
+
+                if (response.ok) {
+                    var data = await response.json();
+                    var reply = data.reply || "No response received.";
+                    
+                    // Convert Markdown to basic HTML
+                    reply = reply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                 .replace(/\n\n/g, '</p><p>')
+                                 .replace(/\n/g, '<br>');
+                    if (!reply.startsWith('<p>')) reply = '<p>' + reply + '</p>';
+
+                    appendMessage('ai', reply);
+
+                    chatHistory.push({ role: 'user', text: text });
+                    chatHistory.push({ role: 'ai', text: data.reply });
+                } else {
+                    var errData = await response.json().catch(function() { return {}; });
+                    if (errData.error && (errData.error.includes("GEMINI_API_KEY") || errData.error.includes("GROQ_API_KEY"))) {
+                        appendMessage('ai', "<p>⚠️ <strong>Digital Emirhan Initializing:</strong> <code>GROQ_API_KEY</code> or <code>GEMINI_API_KEY</code> is not configured in Cloudflare Pages. Please add your API key in the Cloudflare dashboard.</p>");
+                    } else {
+                        appendMessage('ai', "<p>Temporary connection error. Please try again later or reach out at <a href='mailto:han23studio@gmail.com'>han23studio@gmail.com</a>.</p>");
+                    }
+                }
+            } catch (err) {
+                removeTypingIndicator();
+                appendMessage('ai', "<p>Could not connect. Direct contact: <strong>han23studio@gmail.com</strong></p>");
+            }
         }
     </script>
 </body>

@@ -389,6 +389,8 @@
     <script src="assets/js/site.js?v=20260604-gallery1"></script>
     
     <script>
+        var chatHistory = [];
+
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
@@ -433,45 +435,7 @@
             if (el) el.remove();
         }
 
-        function generateAIResponse(userText) {
-            var query = userText.toLowerCase();
-
-            if (query.includes('uzman') || query.includes('teknoloji') || query.includes('yetkinlik') || query.includes('dil') || query.includes('yazılım')) {
-                return "<p>Uzmanlık alanları ve kullanılan teknolojiler:</p>" +
-                       "<ul>" +
-                       "<li><strong>Oyun Geliştirme:</strong> Unreal Engine 5 (C++, Blueprint Mimarisi), Unity (C#)</li>" +
-                       "<li><strong>Web & Sistem Mimarisi:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
-                       "<li><strong>Yapay Zekâ & Ar-Ge:</strong> LLM Entegrasyonları, RAG Sistemleri, Python, Görüntü İşleme</li>" +
-                       "<li><strong>Web3 & Siber Güvenlik:</strong> Solidity, Akıllı Sözleşmeler, Ağ Güvenliği</li>" +
-                       "</ul>";
-            }
-            else if (query.includes('oyun') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
-                return "<p>Geliştirilen oyun projeleri:</p>" +
-                       "<p><strong>Barzakh: Star Gardener:</strong> Unreal Engine 5.5 ile C++ ve Blueprint tabanlı geliştirilen, Dede Korkut ve Küçük Prens anlatı eşiklerini içeren bulmaca-aksiyon oyunu. <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Sayfası</a></p>" +
-                       "<p><strong>Truck Up:</strong> Co-op araç fiziği ve takım tabanlı aksiyon oyunu.</p>";
-            }
-            else if (query.includes('kuran23') || query.includes('ayet') || query.includes('tefsir') || query.includes('din')) {
-                return "<p><strong>Kuran23:</strong> Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini sunan dijital kütüphane projesi.</p>" +
-                       "<p>Canlı Uygulama: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a></p>";
-            }
-            else if (query.includes('çalış') || query.includes('iş') || query.includes('iletişim') || query.includes('teklif') || query.includes('proje') || query.includes('mail')) {
-                return "<p>İş birliği ve teknik danışmanlık süreçleri için doğrudan iletişim kanalları:</p>" +
-                       "<ul>" +
-                       "<li>E-posta: <strong>han23studio@gmail.com</strong></li>" +
-                       "<li>LinkedIn: <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>linkedin.com/in/emirhangungormez</a></li>" +
-                       "</ul>";
-            }
-            else if (query.includes('kimdir') || query.includes('hakkında') || query.includes('emirhan kim') || query.includes('sen kimsin')) {
-                return "<p><strong>Emirhan Güngörmez:</strong> Bağımsız oyun geliştiricisi, yazılım mühendisi ve Ar-Ge yöneticisi. 8 yıldan fazla süredir oyun teknolojileri, yapay zekâ ve dijital ürünler geliştiriyor.</p>" +
-                       "<p>Detaylı özgeçmiş için <a href='cv.html'>CV sayfasını</a> inceleyebilirsiniz.</p>";
-            }
-            else {
-                return "<p>Emirhan Güngörmez dijital asistanı. Oyun teknolojileri, yazılım mimarisi, yapay zekâ projeleri (Kuran23, Barzakh) ve iş birliği süreçleri hakkında bilgi alabilirsiniz.</p>" +
-                       "<p>Doğrudan iletişim için: <strong>han23studio@gmail.com</strong></p>";
-            }
-        }
-
-        function handleChatSubmit(e) {
+        async function handleChatSubmit(e) {
             e.preventDefault();
             var input = document.getElementById('chatInput');
             var text = input.value.trim();
@@ -482,11 +446,44 @@
 
             showTypingIndicator();
 
-            setTimeout(function() {
+            try {
+                var response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        history: chatHistory.slice(-6)
+                    })
+                });
+
                 removeTypingIndicator();
-                var aiReply = generateAIResponse(text);
-                appendMessage('ai', aiReply);
-            }, 550);
+
+                if (response.ok) {
+                    var data = await response.json();
+                    var reply = data.reply || "Yanıt alınamadı.";
+                    
+                    // Markdown formatlamasını basit HTML'e çevir
+                    reply = reply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                 .replace(/\n\n/g, '</p><p>')
+                                 .replace(/\n/g, '<br>');
+                    if (!reply.startsWith('<p>')) reply = '<p>' + reply + '</p>';
+
+                    appendMessage('ai', reply);
+
+                    chatHistory.push({ role: 'user', text: text });
+                    chatHistory.push({ role: 'ai', text: data.reply });
+                } else {
+                    var errData = await response.json().catch(function() { return {}; });
+                    if (errData.error && (errData.error.includes("GEMINI_API_KEY") || errData.error.includes("GROQ_API_KEY"))) {
+                        appendMessage('ai', "<p>⚠️ <strong>Sanal Emirhan hazırlanıyor:</strong> Cloudflare Pages ayarlarında <code>GROQ_API_KEY</code> veya <code>GEMINI_API_KEY</code> henüz tanımlanmadı. Lütfen Cloudflare panelinden API anahtarını ekleyin.</p>");
+                    } else {
+                        appendMessage('ai', "<p>Şu an bir bağlantı sorunu var. Lütfen daha sonra tekrar deneyin veya <a href='mailto:han23studio@gmail.com'>han23studio@gmail.com</a> adresi üzerinden ulaşın.</p>");
+                    }
+                }
+            } catch (err) {
+                removeTypingIndicator();
+                appendMessage('ai', "<p>Bağlantı kurulamadı. Doğrudan iletişim için: <strong>han23studio@gmail.com</strong></p>");
+            }
         }
     </script>
 </body>

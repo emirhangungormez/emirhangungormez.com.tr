@@ -1,0 +1,40 @@
+name: Otomatik Hafıza Güncelleme (Self-Updating Memory)
+
+on:
+  schedule:
+    # Her gece saat 00:00 UTC'de çalışır
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Manual tetikleme butonu
+  push:
+    branches:
+      - main
+    paths:
+      - '**.html'
+      - 'scripts/**'
+
+jobs:
+  update-memory:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repositiory'yi klonla
+        uses: actions/checkout@v4
+
+      - name: Node.js Ortamını Kur
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Hafıza Güncelleme Betiğini Çalıştır
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/update-knowledge.js
+
+      - name: Değişiklikleri Commit Et ve Push'la
+        run: |
+          git config --global user.name "Sanal Emirhan Auto-Updater"
+          git config --global user.email "bot@emirhangungormez.com.tr"
+          git add emirhan_knowledge.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "auto: hafıza dosyası güncellendi [skip ci]" && git push)
