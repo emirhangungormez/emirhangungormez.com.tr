@@ -46,11 +46,11 @@
             flex-direction: column;
         }
 
-        /* Headline: Welcome to TakeProfit style */
+        /* Headline: PP Mori Site Font Only */
         .tp-headline-title {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: "PP Mori", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-size: 2.4rem;
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: -0.02em;
             color: inherit;
             margin: 0 0 1.8rem 0;
@@ -67,6 +67,11 @@
             margin-bottom: 1.6rem;
             padding-right: 0.4rem;
             scroll-behavior: smooth;
+        }
+
+        .tp-stream-thread:empty {
+            display: none;
+            margin-bottom: 0;
         }
 
         .tp-stream-thread::-webkit-scrollbar {
@@ -101,6 +106,7 @@
         }
 
         .tp-role-label {
+            font-family: "PP Mori", sans-serif;
             font-size: 0.72rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
@@ -113,6 +119,7 @@
         }
 
         .tp-bubble-body {
+            font-family: "PP Mori", sans-serif;
             font-size: 0.98rem;
             line-height: 1.65;
             color: inherit;
@@ -214,6 +221,7 @@
         }
 
         .tp-field-label {
+            font-family: "PP Mori", sans-serif;
             font-size: 0.82rem;
             font-weight: 500;
             color: inherit;
@@ -227,7 +235,7 @@
             border: none;
             outline: none;
             font-size: 1.45rem;
-            font-family: inherit;
+            font-family: "PP Mori", sans-serif;
             color: inherit;
             caret-color: #8b5cf6;
             padding: 0.1rem 0;
@@ -238,7 +246,7 @@
             opacity: 0.38;
         }
 
-        /* Exact Replica ISO L-Shaped Purple Enter Button Button Container */
+        /* Exact Replica ISO L-Shaped Purple Enter Button Container */
         .tp-exact-l-enter-btn {
             position: absolute;
             right: 8px;
@@ -321,18 +329,11 @@
             <main class="tp-pure-page">
                 <div class="tp-pure-frame">
                     
-                    <!-- Welcome to TakeProfit Headline -->
-                    <h1 class="tp-headline-title">Ask Digital Emirhan</h1>
+                    <!-- Only Main Title in PP Mori font -->
+                    <h1 class="tp-headline-title">Digital Emirhan</h1>
 
-                    <!-- Message Stream -->
-                    <div class="tp-stream-thread" id="chatBody">
-                        <div class="tp-row tp-row--ai">
-                            <span class="tp-role-label">DIGITAL EMIRHAN</span>
-                            <div class="tp-bubble-body">
-                                Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Message Stream (Initially empty until user types a question) -->
+                    <div class="tp-stream-thread" id="chatBody"></div>
 
                     <!-- Pure TakeProfit Input Component -->
                     <form class="tp-input-box-card" id="chatForm" onsubmit="handleChatSubmit(event)">
@@ -441,7 +442,7 @@
                        "<li><strong>Game Dev:</strong> Unreal Engine 5 (C++, Blueprint Architecture), Unity (C#)</li>" +
                        "<li><strong>Web & Systems:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
                        "<li><strong>AI & R&D:</strong> LLM Integrations, RAG Systems, Python, Computer Vision</li>" +
-                       "<li><strong>Web3 & Cyber Security:</strong> Solidity, Smart Contracts, Network Security</li>" +
+                       "<li><strong>Web3 & Siber Güvenlik:</strong> Solidity, Smart Contracts, Network Security</li>" +
                        "</ul>";
             }
             else if (query.includes('game') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
