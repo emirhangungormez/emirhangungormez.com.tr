@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Talk to Digital Emirhan (AI Twin) | Emirhan Güngörmez</title>
-    <meta name="description" content="Interactive AI Digital Twin of Emirhan Güngörmez. Ask questions about game development, software architecture, AI R&D, and collaboration opportunities.">
+    <title>Digital Emirhan | Emirhan Güngörmez</title>
+    <meta name="description" content="Digital assistant of Emirhan Güngörmez. Ask questions about game development, software architecture, AI R&D, and partnership opportunities.">
     <meta name="author" content="Emirhan Güngörmez">
     <meta name="robots" content="index, follow">
     <meta name="language" content="en">
@@ -18,9 +18,7 @@
     <meta property="og:site_name" content="Emirhan Güngörmez">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://emirhangungormez.com.tr/en/ai.html">
-    <meta property="og:title" content="Talk to Digital Emirhan (AI Twin) | Emirhan Güngörmez">
-    <meta property="og:description" content="Chat with Digital Emirhan AI Assistant about projects, skills, and partnerships.">
-    <meta property="og:image" content="https://emirhangungormez.com.tr/assets/images/og-min.jpg">
+    <meta property="og:title" content="Digital Emirhan | Emirhan Güngörmez">
     
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
@@ -32,198 +30,97 @@
     <link rel="stylesheet" href="../assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        .ai-chat-section {
-            padding: 2.5em 0 5em 0;
-            min-height: calc(100vh - 160px);
+        .ai-page {
+            padding: 4em 0 6em 0;
+            min-height: calc(100vh - 180px);
             display: flex;
             flex-direction: column;
         }
 
-        .ai-card {
-            background-color: #181818;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-            display: flex;
-            flex-direction: column;
-            height: clamp(600px, 75vh, 850px);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ai-header {
-            padding: 1.8em 2.2em;
-            background: rgba(24, 24, 24, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            gap: 1.25em;
-            backdrop-filter: blur(12px);
-            z-index: 10;
-        }
-
-        .ai-avatar-box {
-            position: relative;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            overflow: visible;
-        }
-
-        .ai-avatar-img {
+        .ai-container {
+            max-width: 760px;
+            margin: 0 auto;
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: 82% 15%;
-            display: block;
-        }
-
-        .ai-status-dot {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            width: 13px;
-            height: 13px;
-            background-color: #10b981;
-            border: 2.5px solid #181818;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
-        }
-
-        .ai-header__text h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 0 0 0.2em 0;
             display: flex;
-            align-items: center;
-            gap: 0.6em;
-        }
-
-        .ai-badge {
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 3px 8px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .ai-header__text p {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin: 0;
-            line-height: 1.35;
+            flex-direction: column;
+            height: clamp(550px, 72vh, 800px);
         }
 
         .ai-body {
             flex: 1;
-            padding: 2em;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 1.5em;
+            gap: 2em;
+            padding-right: 0.5em;
             scroll-behavior: smooth;
         }
 
         .ai-body::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
         .ai-body::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-        }
-
-        .ai-prompts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.65em;
-            margin-bottom: 0.5em;
-        }
-
-        .ai-prompt-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.85);
-            padding: 0.55em 1.1em;
-            border-radius: 30px;
-            font-size: 0.83rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-
-        .ai-prompt-btn:hover {
             background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-            transform: translateY(-1px);
+            border-radius: 2px;
         }
 
         .msg-row {
             display: flex;
-            gap: 1em;
-            max-width: 85%;
-            animation: fadeInMsg 0.3s ease forwards;
+            flex-direction: column;
+            gap: 0.4em;
+            max-width: 88%;
+            animation: fadeIn 0.25s ease forwards;
         }
 
-        @keyframes fadeInMsg {
-            from { opacity: 0; transform: translateY(8px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .msg-row--user {
             align-self: flex-end;
-            flex-direction: row-reverse;
+            align-items: flex-end;
         }
 
         .msg-row--ai {
             align-self: flex-start;
+            align-items: flex-start;
         }
 
-        .msg-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .msg-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.1em;
         }
 
         .msg-bubble {
-            padding: 1.1em 1.35em;
-            border-radius: 18px;
-            font-size: 0.93rem;
-            line-height: 1.6;
-            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.9);
             word-break: break-word;
         }
 
         .msg-row--user .msg-bubble {
-            background: #262626;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-bottom-right-radius: 4px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.9em 1.2em;
+            border-radius: 12px;
+            color: #ffffff;
         }
 
         .msg-row--ai .msg-bubble {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom-left-radius: 4px;
-            color: rgba(255, 255, 255, 0.92);
+            background: transparent;
+            border-left: 2px solid rgba(255, 255, 255, 0.25);
+            padding: 0.3em 0 0.3em 1.1em;
+            color: rgba(255, 255, 255, 0.88);
         }
 
         .msg-bubble a {
-            color: #60a5fa;
+            color: #ffffff;
             text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
         .msg-bubble strong {
@@ -231,53 +128,48 @@
             font-weight: 600;
         }
 
-        .typing-indicator {
+        .typing-dots {
             display: inline-flex;
-            align-items: center;
             gap: 4px;
-            padding: 0.8em 1.2em;
+            padding: 0.4em 0;
         }
 
         .typing-dot {
-            width: 7px;
-            height: 7px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            animation: typingBounce 1.4s infinite ease-in-out both;
+            background: rgba(255, 255, 255, 0.4);
+            animation: pulseDot 1.4s infinite ease-in-out both;
         }
 
         .typing-dot:nth-child(1) { animation-delay: 0s; }
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-        @keyframes typingBounce {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-            40% { transform: scale(1.1); opacity: 1; }
+        @keyframes pulseDot {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1); }
         }
 
         .ai-footer {
-            padding: 1.2em 1.8em;
-            background: rgba(24, 24, 24, 0.95);
+            margin-top: 2em;
+            padding-top: 1.2em;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            flex-direction: column;
-            gap: 0.6em;
         }
 
         .ai-input-form {
             display: flex;
             align-items: center;
-            gap: 0.75em;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 0.4em 0.6em 0.4em 1.2em;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            gap: 1em;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.4em 0.6em 0.4em 1em;
+            transition: border-color 0.2s ease;
         }
 
         .ai-input-form:focus-within {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .ai-input-text {
@@ -288,55 +180,38 @@
             color: #ffffff;
             font-size: 0.95rem;
             font-family: inherit;
-            padding: 0.6em 0;
-            resize: none;
-            max-height: 120px;
+            padding: 0.5em 0;
         }
 
         .ai-input-text::placeholder {
-            color: rgba(255, 255, 255, 0.38);
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .ai-send-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #ffffff;
-            color: #111414;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
             border: none;
             cursor: pointer;
+            padding: 0.4em;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            flex-shrink: 0;
+            transition: color 0.2s ease;
         }
 
         .ai-send-btn:hover {
-            opacity: 0.9;
-            transform: scale(1.03);
-        }
-
-        .ai-disclaimer {
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.35);
-            text-align: center;
-            margin: 0;
+            color: #ffffff;
         }
 
         @media screen and (max-width: 768px) {
-            .ai-card {
-                height: calc(100vh - 180px);
-                border-radius: 16px;
+            .ai-page {
+                padding: 2em 0 4em 0;
             }
-            .ai-header {
-                padding: 1.2em 1.5em;
-            }
-            .ai-body {
-                padding: 1.2em;
+            .ai-container {
+                height: calc(100vh - 200px);
             }
             .msg-row {
-                max-width: 92%;
+                max-width: 95%;
             }
         }
     </style>
@@ -356,7 +231,7 @@
                             <a href="index.html#work" class="nav__link header__item text-link">Work</a>
                             <a href="blog.html" class="nav__link header__item text-link">Blog</a>
                             <a href="cv.html" class="nav__link header__item text-link">CV</a>
-                            <a href="ai.html" class="nav__link header__item text-link is-active" style="color: #ffffff; font-weight: 600;">✨ Digital Twin (AI)</a>
+                            <a href="ai.html" class="nav__link header__item text-link is-active" style="color: #ffffff; font-weight: 600;">Digital Emirhan</a>
                             <a href="contact.html" class="nav__link header__item text-link">Contact</a>
                         </div>
                         
@@ -372,61 +247,33 @@
                 </div>
             </header>
 
-            <main>
-                <section class="ai-chat-section">
-                    <div class="wrapper">
-                        <div class="ai-card">
-                            <!-- Header Bar -->
-                            <div class="ai-header">
-                                <div class="ai-avatar-box">
-                                    <img src="../assets/images/emirhan-portrait.jpg?v=2" alt="Emirhan AI Avatar" class="ai-avatar-img">
-                                    <span class="ai-status-dot" title="Online"></span>
+            <main class="ai-page">
+                <div class="wrapper">
+                    <div class="ai-container">
+                        <!-- Chat Stream -->
+                        <div class="ai-body" id="chatBody">
+                            <div class="msg-row msg-row--ai">
+                                <span class="msg-label">Digital Emirhan</span>
+                                <div class="msg-bubble">
+                                    Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.
                                 </div>
-                                <div class="ai-header__text">
-                                    <h2>Digital Emirhan <span class="ai-badge">AI Twin</span></h2>
-                                    <p>Ready to answer your questions on game development, software architecture, AI R&D, and partnership opportunities.</p>
-                                </div>
-                            </div>
-
-                            <!-- Chat Messages Body -->
-                            <div class="ai-body" id="chatBody">
-                                <!-- Suggested Prompts -->
-                                <div class="ai-prompts" id="aiPrompts">
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('What technologies do you specialize in?')">💡 What's your tech stack?</button>
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('Tell me about your Unreal Engine game projects')">🎮 Tell me about your games</button>
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('What is the Kuran23 platform project?')">📖 What is Kuran23?</button>
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('How can we collaborate on a project?')">💼 How can we work together?</button>
-                                </div>
-
-                                <!-- Initial AI Message -->
-                                <div class="msg-row msg-row--ai">
-                                    <img src="../assets/images/emirhan-portrait.jpg?v=2" alt="Emirhan AI" class="msg-avatar">
-                                    <div class="msg-bubble">
-                                        Hi! I'm Emirhan Güngörmez's AI Digital Twin. 🚀
-                                        <br><br>
-                                        Feel free to ask me anything about game development (Unreal Engine / Unity), software engineering, AI R&D, <strong>Kuran23</strong>, <strong>Barzakh</strong>, or potential partnership opportunities.
-                                        <br><br>
-                                        How can I help you today?
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Footer Input Bar -->
-                            <div class="ai-footer">
-                                <form class="ai-input-form" id="chatForm" onsubmit="handleChatSubmit(event)">
-                                    <textarea id="chatInput" class="ai-input-text" rows="1" placeholder="Ask Digital Emirhan a question..." onkeydown="handleKeyDown(event)"></textarea>
-                                    <button type="submit" class="ai-send-btn" title="Send">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                        </svg>
-                                    </button>
-                                </form>
-                                <p class="ai-disclaimer">Digital Emirhan provides responses grounded in Emirhan Güngörmez's knowledge base and vision.</p>
                             </div>
                         </div>
+
+                        <!-- Minimal Input -->
+                        <div class="ai-footer">
+                            <form class="ai-input-form" id="chatForm" onsubmit="handleChatSubmit(event)">
+                                <input type="text" id="chatInput" class="ai-input-text" placeholder="Type a message..." autocomplete="off">
+                                <button type="submit" class="ai-send-btn" aria-label="Send">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </section>
+                </div>
             </main>
 
             <!-- Footer -->
@@ -462,36 +309,21 @@
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/site.js?v=20260604-gallery1"></script>
     
-    <!-- AI Digital Twin Engine Script -->
     <script>
-        function sendQuickPrompt(promptText) {
-            var input = document.getElementById('chatInput');
-            input.value = promptText;
-            document.getElementById('chatForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-        }
-
-        function handleKeyDown(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('chatForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-            }
-        }
-
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
             row.className = 'msg-row ' + (role === 'user' ? 'msg-row--user' : 'msg-row--ai');
             
-            var avatar = document.createElement('img');
-            avatar.className = 'msg-avatar';
-            avatar.src = role === 'user' ? '../assets/images/emirhangungormez.webp' : '../assets/images/emirhan-portrait.jpg?v=2';
-            avatar.alt = role === 'user' ? 'Visitor' : 'Digital Emirhan';
+            var label = document.createElement('span');
+            label.className = 'msg-label';
+            label.textContent = role === 'user' ? 'You' : 'Digital Emirhan';
 
             var bubble = document.createElement('div');
             bubble.className = 'msg-bubble';
             bubble.innerHTML = text;
 
-            row.appendChild(avatar);
+            row.appendChild(label);
             row.appendChild(bubble);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -503,16 +335,15 @@
             row.id = 'typingIndicatorRow';
             row.className = 'msg-row msg-row--ai';
             
-            var avatar = document.createElement('img');
-            avatar.className = 'msg-avatar';
-            avatar.src = '../assets/images/emirhan-portrait.jpg?v=2';
-            avatar.alt = 'Digital Emirhan';
+            var label = document.createElement('span');
+            label.className = 'msg-label';
+            label.textContent = 'Digital Emirhan';
 
             var bubble = document.createElement('div');
-            bubble.className = 'msg-bubble typing-indicator';
-            bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            bubble.className = 'msg-bubble';
+            bubble.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
-            row.appendChild(avatar);
+            row.appendChild(label);
             row.appendChild(bubble);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -527,39 +358,33 @@
             var query = userText.toLowerCase();
 
             if (query.includes('tech') || query.includes('stack') || query.includes('skills') || query.includes('language') || query.includes('software')) {
-                return "Here is my core technical stack and areas of expertise:<br><br>" +
+                return "Core technology stack and expertise:<br><br>" +
                        "• <strong>Game Dev:</strong> Unreal Engine 5 (C++, Blueprint Architecture), Unity (C#)<br>" +
                        "• <strong>Web & Systems:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers<br>" +
                        "• <strong>AI & R&D:</strong> LLM Integrations, RAG Systems, Python, Computer Vision<br>" +
-                       "• <strong>Web3 & Cyber Security:</strong> Solidity, Smart Contracts, Network Security<br><br>" +
-                       "Which tech stack would you like to evaluate for your project?";
+                       "• <strong>Web3 & Cyber Security:</strong> Solidity, Smart Contracts, Network Security";
             }
             else if (query.includes('game') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
-                return "In game development, I prioritize both high technical architecture and deep narrative storytelling:<br><br>" +
-                       "🎮 <strong>Barzakh: Star Gardener:</strong> A TPS puzzle-action game built with Unreal Engine 5.5 (C++ & Blueprint), exploring symbolic thresholds. <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>View on Steam</a><br><br>" +
-                       "🚛 <strong>Truck Up:</strong> Co-op vehicle physics and team-based action game.<br><br>" +
-                       "Let me know if you'd like to dive deeper into game architecture or Unreal Engine 5!";
+                return "Game projects:<br><br>" +
+                       "<strong>Barzakh: Star Gardener:</strong> TPS puzzle-action game built with Unreal Engine 5.5 (C++ & Blueprint). <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Page</a><br><br>" +
+                       "<strong>Truck Up:</strong> Co-op vehicle physics and team-based action game.";
             }
             else if (query.includes('kuran23') || query.includes('quran') || query.includes('hadith') || query.includes('platform')) {
-                return "<strong>Kuran23</strong> is a digital research platform unifying Quranic reading, translations, tafsir, 60,000+ hadiths, and the Muallim AI guide.<br><br>" +
-                       "Powered by Cloudflare Edge architecture and a semantic search engine.<br>" +
-                       "👉 Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a>";
+                return "<strong>Kuran23:</strong> Digital research platform unifying Quranic reading, translations, tafsir, 60,000+ hadiths, and Muallim AI.<br><br>" +
+                       "Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a>";
             }
             else if (query.includes('work') || query.includes('collaborate') || query.includes('hire') || query.includes('contact') || query.includes('email')) {
-                return "I'm always open to high-impact collaborations and technical projects! 🤝<br><br>" +
-                       "• Indie game development (Unreal Engine C++ / Blueprint)<br>" +
-                       "• Custom web & AI software engineering<br>" +
-                       "• Technical R&D and consultancy<br><br>" +
-                       "Feel free to email me directly at <strong>han23studio@gmail.com</strong> or connect on <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>LinkedIn</a>.";
+                return "Direct contact channels for projects and inquiries:<br><br>" +
+                       "Email: <strong>han23studio@gmail.com</strong><br>" +
+                       "LinkedIn: <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>linkedin.com/in/emirhangungormez</a>";
             }
             else if (query.includes('who') || query.includes('about') || query.includes('emirhan')) {
-                return "I'm <strong>Emirhan Güngörmez</strong> — an indie game developer, software engineer, and R&D manager.<br><br>" +
-                       "With over 8 years of experience building game systems, web applications, and AI products, I focus on work that pushes technical and aesthetic boundaries.<br><br>" +
-                       "Check out my full background on my <a href='cv.html'>CV page</a>.";
+                return "<strong>Emirhan Güngörmez:</strong> Indie game developer, software engineer, and R&D manager with 8+ years of experience in game systems, web applications, and AI products.<br><br>" +
+                       "View full background on the <a href='cv.html'>CV page</a>.";
             }
             else {
-                return "Great question! As Digital Emirhan, I can share insights on game architecture, software engineering, AI R&D projects (Kuran23, Barzakh), and partnership opportunities.<br><br>" +
-                       "For formal project proposals, feel free to reach out to Emirhan at <strong>han23studio@gmail.com</strong>. Is there anything specific you'd like to explore?";
+                return "Digital assistant of Emirhan Güngörmez. You can inquire about game architecture, software engineering, AI R&D (Kuran23, Barzakh), and partnerships.<br><br>" +
+                       "Direct contact: <strong>han23studio@gmail.com</strong>";
             }
         }
 
@@ -568,9 +393,6 @@
             var input = document.getElementById('chatInput');
             var text = input.value.trim();
             if (!text) return;
-
-            var promptsEl = document.getElementById('aiPrompts');
-            if (promptsEl) promptsEl.style.display = 'none';
 
             appendMessage('user', text);
             input.value = '';
@@ -581,7 +403,7 @@
                 removeTypingIndicator();
                 var aiReply = generateAIResponse(text);
                 appendMessage('ai', aiReply);
-            }, 900);
+            }, 600);
         }
     </script>
 </body>

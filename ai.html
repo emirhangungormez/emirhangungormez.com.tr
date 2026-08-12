@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sanal Emirhan (AI Digital Twin) | Emirhan Güngörmez</title>
-    <meta name="description" content="Emirhan Güngörmez'in dijital ikizi ile sohbet edin. Oyun geliştirme, yazılım mimarisi, yapay zekâ Ar-Ge projeleri ve iş birliği hakkında sorularınızı sorun.">
+    <title>Sanal Emirhan | Emirhan Güngörmez</title>
+    <meta name="description" content="Emirhan Güngörmez dijital asistanı. Oyun geliştirme, yazılım mimarisi, yapay zekâ çalışmaları ve iş birliği hakkında sorularınızı sorun.">
     <meta name="author" content="Emirhan Güngörmez">
     <meta name="robots" content="index, follow">
     <meta name="language" content="tr">
@@ -18,9 +18,7 @@
     <meta property="og:site_name" content="Emirhan Güngörmez">
     <meta property="og:locale" content="tr_TR">
     <meta property="og:url" content="https://emirhangungormez.com.tr/ai.html">
-    <meta property="og:title" content="Sanal Emirhan (AI Digital Twin) | Emirhan Güngörmez">
-    <meta property="og:description" content="Emirhan Güngörmez'in dijital ikizi ile etkileşimli sohbet edin.">
-    <meta property="og:image" content="https://emirhangungormez.com.tr/assets/images/og-min.jpg">
+    <meta property="og:title" content="Sanal Emirhan | Emirhan Güngörmez">
     
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -32,198 +30,97 @@
     <link rel="stylesheet" href="assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        .ai-chat-section {
-            padding: 2.5em 0 5em 0;
-            min-height: calc(100vh - 160px);
+        .ai-page {
+            padding: 4em 0 6em 0;
+            min-height: calc(100vh - 180px);
             display: flex;
             flex-direction: column;
         }
 
-        .ai-card {
-            background-color: #181818;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-            display: flex;
-            flex-direction: column;
-            height: clamp(600px, 75vh, 850px);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .ai-header {
-            padding: 1.8em 2.2em;
-            background: rgba(24, 24, 24, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            gap: 1.25em;
-            backdrop-filter: blur(12px);
-            z-index: 10;
-        }
-
-        .ai-avatar-box {
-            position: relative;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            overflow: visible;
-        }
-
-        .ai-avatar-img {
+        .ai-container {
+            max-width: 760px;
+            margin: 0 auto;
             width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: 82% 15%;
-            display: block;
-        }
-
-        .ai-status-dot {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            width: 13px;
-            height: 13px;
-            background-color: #10b981;
-            border: 2.5px solid #181818;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
-        }
-
-        .ai-header__text h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 0 0 0.2em 0;
             display: flex;
-            align-items: center;
-            gap: 0.6em;
-        }
-
-        .ai-badge {
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 3px 8px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .ai-header__text p {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin: 0;
-            line-height: 1.35;
+            flex-direction: column;
+            height: clamp(550px, 72vh, 800px);
         }
 
         .ai-body {
             flex: 1;
-            padding: 2em;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 1.5em;
+            gap: 2em;
+            padding-right: 0.5em;
             scroll-behavior: smooth;
         }
 
         .ai-body::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
         .ai-body::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 4px;
-        }
-
-        .ai-prompts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.65em;
-            margin-bottom: 0.5em;
-        }
-
-        .ai-prompt-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.85);
-            padding: 0.55em 1.1em;
-            border-radius: 30px;
-            font-size: 0.83rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-
-        .ai-prompt-btn:hover {
             background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            color: #ffffff;
-            transform: translateY(-1px);
+            border-radius: 2px;
         }
 
         .msg-row {
             display: flex;
-            gap: 1em;
-            max-width: 85%;
-            animation: fadeInMsg 0.3s ease forwards;
+            flex-direction: column;
+            gap: 0.4em;
+            max-width: 88%;
+            animation: fadeIn 0.25s ease forwards;
         }
 
-        @keyframes fadeInMsg {
-            from { opacity: 0; transform: translateY(8px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .msg-row--user {
             align-self: flex-end;
-            flex-direction: row-reverse;
+            align-items: flex-end;
         }
 
         .msg-row--ai {
             align-self: flex-start;
+            align-items: flex-start;
         }
 
-        .msg-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .msg-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.1em;
         }
 
         .msg-bubble {
-            padding: 1.1em 1.35em;
-            border-radius: 18px;
-            font-size: 0.93rem;
-            line-height: 1.6;
-            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.9);
             word-break: break-word;
         }
 
         .msg-row--user .msg-bubble {
-            background: #262626;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-bottom-right-radius: 4px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.9em 1.2em;
+            border-radius: 12px;
+            color: #ffffff;
         }
 
         .msg-row--ai .msg-bubble {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom-left-radius: 4px;
-            color: rgba(255, 255, 255, 0.92);
+            background: transparent;
+            border-left: 2px solid rgba(255, 255, 255, 0.25);
+            padding: 0.3em 0 0.3em 1.1em;
+            color: rgba(255, 255, 255, 0.88);
         }
 
         .msg-bubble a {
-            color: #60a5fa;
+            color: #ffffff;
             text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
         .msg-bubble strong {
@@ -231,62 +128,48 @@
             font-weight: 600;
         }
 
-        .msg-bubble ul {
-            margin: 0.5em 0;
-            padding-left: 1.2em;
-        }
-
-        .msg-bubble li {
-            margin-bottom: 0.3em;
-        }
-
-        .typing-indicator {
+        .typing-dots {
             display: inline-flex;
-            align-items: center;
             gap: 4px;
-            padding: 0.8em 1.2em;
+            padding: 0.4em 0;
         }
 
         .typing-dot {
-            width: 7px;
-            height: 7px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            animation: typingBounce 1.4s infinite ease-in-out both;
+            background: rgba(255, 255, 255, 0.4);
+            animation: pulseDot 1.4s infinite ease-in-out both;
         }
 
         .typing-dot:nth-child(1) { animation-delay: 0s; }
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-        @keyframes typingBounce {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-            40% { transform: scale(1.1); opacity: 1; }
+        @keyframes pulseDot {
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1); }
         }
 
         .ai-footer {
-            padding: 1.2em 1.8em;
-            background: rgba(24, 24, 24, 0.95);
+            margin-top: 2em;
+            padding-top: 1.2em;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            flex-direction: column;
-            gap: 0.6em;
         }
 
         .ai-input-form {
             display: flex;
             align-items: center;
-            gap: 0.75em;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 0.4em 0.6em 0.4em 1.2em;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            gap: 1em;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.4em 0.6em 0.4em 1em;
+            transition: border-color 0.2s ease;
         }
 
         .ai-input-form:focus-within {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .ai-input-text {
@@ -297,55 +180,38 @@
             color: #ffffff;
             font-size: 0.95rem;
             font-family: inherit;
-            padding: 0.6em 0;
-            resize: none;
-            max-height: 120px;
+            padding: 0.5em 0;
         }
 
         .ai-input-text::placeholder {
-            color: rgba(255, 255, 255, 0.38);
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .ai-send-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #ffffff;
-            color: #111414;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.7);
             border: none;
             cursor: pointer;
+            padding: 0.4em;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            flex-shrink: 0;
+            transition: color 0.2s ease;
         }
 
         .ai-send-btn:hover {
-            opacity: 0.9;
-            transform: scale(1.03);
-        }
-
-        .ai-disclaimer {
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.35);
-            text-align: center;
-            margin: 0;
+            color: #ffffff;
         }
 
         @media screen and (max-width: 768px) {
-            .ai-card {
-                height: calc(100vh - 180px);
-                border-radius: 16px;
+            .ai-page {
+                padding: 2em 0 4em 0;
             }
-            .ai-header {
-                padding: 1.2em 1.5em;
-            }
-            .ai-body {
-                padding: 1.2em;
+            .ai-container {
+                height: calc(100vh - 200px);
             }
             .msg-row {
-                max-width: 92%;
+                max-width: 95%;
             }
         }
     </style>
@@ -364,8 +230,8 @@
                             <a href="index.html#about" class="nav__link header__item text-link">Hakkımda</a>
                             <a href="index.html#work" class="nav__link header__item text-link">Projeler</a>
                             <a href="blog.html" class="nav__link header__item text-link">Blog</a>
-                            <a href="cv.html" class="nav__link header__item text-link">CV</a>
-                            <a href="ai.html" class="nav__link header__item text-link is-active" style="color: #ffffff; font-weight: 600;">✨ Sanal Emirhan (AI)</a>
+                            <a href="cv.html" class="nav__link header__item text-link">Özgeçmiş</a>
+                            <a href="ai.html" class="nav__link header__item text-link is-active" style="color: #ffffff; font-weight: 600;">Sanal Emirhan</a>
                             <a href="iletisim.html" class="nav__link header__item text-link">İletişim</a>
                         </div>
                         
@@ -381,61 +247,33 @@
                 </div>
             </header>
 
-            <main>
-                <section class="ai-chat-section">
-                    <div class="wrapper">
-                        <div class="ai-card">
-                            <!-- Header Bar -->
-                            <div class="ai-header">
-                                <div class="ai-avatar-box">
-                                    <img src="assets/images/emirhan-portrait.jpg?v=2" alt="Emirhan AI Avatar" class="ai-avatar-img">
-                                    <span class="ai-status-dot" title="Çevrimiçi"></span>
+            <main class="ai-page">
+                <div class="wrapper">
+                    <div class="ai-container">
+                        <!-- Chat Stream -->
+                        <div class="ai-body" id="chatBody">
+                            <div class="msg-row msg-row--ai">
+                                <span class="msg-label">Sanal Emirhan</span>
+                                <div class="msg-bubble">
+                                    Emirhan Güngörmez dijital asistanı. Oyun geliştirme (Unreal Engine / Unity), yazılım mimarisi, yapay zekâ çalışmaları, Kuran23 projesi veya olası iş birlikleri hakkında soru sorabilirsiniz.
                                 </div>
-                                <div class="ai-header__text">
-                                    <h2>Sanal Emirhan <span class="ai-badge">AI İkiz</span></h2>
-                                    <p>Oyun geliştirme, yazılım mimarisi, yapay zekâ Ar-Ge projeleri veya iş birliği hakkında sorularınızı yanıtlamak için hazır.</p>
-                                </div>
-                            </div>
-
-                            <!-- Chat Messages Body -->
-                            <div class="ai-body" id="chatBody">
-                                <!-- Suggested Prompts -->
-                                <div class="ai-prompts" id="aiPrompts">
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('Emirhan hangi teknolojilerde uzman?')">💡 Hangi teknolojilerde uzmansın?</button>
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('Unreal Engine ve oyun projelerinden bahset')">🎮 Oyun projelerin neler?</button>
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('Kuran23 projesinin detayları nedir?')">📖 Kuran23 projesi nedir?</button>
-                                    <button class="ai-prompt-btn" onclick="sendQuickPrompt('Bir projede birlikte nasıl çalışabiliriz?')">💼 Birlikte nasıl çalışabiliriz?</button>
-                                </div>
-
-                                <!-- Initial AI Message -->
-                                <div class="msg-row msg-row--ai">
-                                    <img src="assets/images/emirhan-portrait.jpg?v=2" alt="Emirhan AI" class="msg-avatar">
-                                    <div class="msg-bubble">
-                                        Selam! Ben Emirhan Güngörmez'in dijital ikiziyim. 🚀
-                                        <br><br>
-                                        Oyun geliştirme (Unreal Engine / Unity), yazılım mimarisi, yapay zekâ Ar-Ge çalışmaları, <strong>Kuran23</strong>, <strong>Barzakh</strong> veya olası iş birliği ve danışmanlık fırsatları hakkında dilediğin soruyu sorabilirsin.
-                                        <br><br>
-                                        Sana bugün nasıl yardımcı olabilirim?
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Footer Input Bar -->
-                            <div class="ai-footer">
-                                <form class="ai-input-form" id="chatForm" onsubmit="handleChatSubmit(event)">
-                                    <textarea id="chatInput" class="ai-input-text" rows="1" placeholder="Sanal Emirhan'a bir soru sor..." onkeydown="handleKeyDown(event)"></textarea>
-                                    <button type="submit" class="ai-send-btn" title="Gönder">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                        </svg>
-                                    </button>
-                                </form>
-                                <p class="ai-disclaimer">Sanal Emirhan, Emirhan Güngörmez'in bilgi birikimi ve vizyonu doğrultusında yanıt üretir.</p>
                             </div>
                         </div>
+
+                        <!-- Minimal Input -->
+                        <div class="ai-footer">
+                            <form class="ai-input-form" id="chatForm" onsubmit="handleChatSubmit(event)">
+                                <input type="text" id="chatInput" class="ai-input-text" placeholder="Bir soru yazın..." autocomplete="off">
+                                <button type="submit" class="ai-send-btn" aria-label="Gönder">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </section>
+                </div>
             </main>
 
             <!-- Footer -->
@@ -471,36 +309,21 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/site.js?v=20260604-gallery1"></script>
     
-    <!-- AI Digital Twin Engine Script -->
     <script>
-        function sendQuickPrompt(promptText) {
-            var input = document.getElementById('chatInput');
-            input.value = promptText;
-            document.getElementById('chatForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-        }
-
-        function handleKeyDown(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('chatForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-            }
-        }
-
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
             row.className = 'msg-row ' + (role === 'user' ? 'msg-row--user' : 'msg-row--ai');
             
-            var avatar = document.createElement('img');
-            avatar.className = 'msg-avatar';
-            avatar.src = role === 'user' ? 'assets/images/emirhangungormez.webp' : 'assets/images/emirhan-portrait.jpg?v=2';
-            avatar.alt = role === 'user' ? 'Ziyaretçi' : 'Emirhan AI';
+            var label = document.createElement('span');
+            label.className = 'msg-label';
+            label.textContent = role === 'user' ? 'Siz' : 'Sanal Emirhan';
 
             var bubble = document.createElement('div');
             bubble.className = 'msg-bubble';
             bubble.innerHTML = text;
 
-            row.appendChild(avatar);
+            row.appendChild(label);
             row.appendChild(bubble);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -512,16 +335,15 @@
             row.id = 'typingIndicatorRow';
             row.className = 'msg-row msg-row--ai';
             
-            var avatar = document.createElement('img');
-            avatar.className = 'msg-avatar';
-            avatar.src = 'assets/images/emirhan-portrait.jpg?v=2';
-            avatar.alt = 'Emirhan AI';
+            var label = document.createElement('span');
+            label.className = 'msg-label';
+            label.textContent = 'Sanal Emirhan';
 
             var bubble = document.createElement('div');
-            bubble.className = 'msg-bubble typing-indicator';
-            bubble.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            bubble.className = 'msg-bubble';
+            bubble.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
-            row.appendChild(avatar);
+            row.appendChild(label);
             row.appendChild(bubble);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
@@ -536,39 +358,33 @@
             var query = userText.toLowerCase();
 
             if (query.includes('uzman') || query.includes('teknoloji') || query.includes('yetkinlik') || query.includes('dil') || query.includes('yazılım')) {
-                return "Uzmanlık alanlarım ve projelerimde en sık kullandığım teknolojiler şunlardır:<br><br>" +
+                return "Temel teknoloji yığını ve uzmanlık alanları:<br><br>" +
                        "• <strong>Oyun Geliştirme:</strong> Unreal Engine 5 (C++, Blueprint Mimarisi), Unity (C#)<br>" +
                        "• <strong>Web & Sistem Mimarisi:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers<br>" +
                        "• <strong>Yapay Zekâ & Ar-Ge:</strong> LLM Entegrasyonları, RAG Sistemleri, Python, Görüntü İşleme<br>" +
-                       "• <strong>Web3 & Siber Güvenlik:</strong> Solidity, Akıllı Sözleşmeler, Ağ Güvenliği<br><br>" +
-                       "Aklındaki proje veya fikir için hangi teknolojiyi değerlendirmek istersin?";
+                       "• <strong>Web3 & Siber Güvenlik:</strong> Solidity, Akıllı Sözleşmeler, Ağ Güvenliği";
             }
             else if (query.includes('oyun') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
-                return "Oyun geliştirme süreçlerimde hem yüksek teknik mimariyi hem de derin hikaye anlatımını ön planda tutuyorum:<br><br>" +
-                       "🎮 <strong>Barzakh: Star Gardener:</strong> Unreal Engine 5.5 ile C++ ve Blueprint tabanlı geliştirdiğim, Dede Korkut ve Küçük Prens anlatı eşiklerini içeren bulmaca-aksiyon oyunum. <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam'de İnceleyin</a><br><br>" +
-                       "🚛 <strong>Truck Up:</strong> Co-op araç fiziği ve takım tabanlı aksiyon oyunu.<br><br>" +
-                       "Oyun projelerim veya Unreal Engine mimarisi üzerine konuşmak istersen seve seve detaylandırabilirim!";
+                return "Oyun projeleri:<br><br>" +
+                       "<strong>Barzakh: Star Gardener:</strong> Unreal Engine 5.5 ile C++ ve Blueprint tabanlı geliştirilen, Dede Korkut ve Küçük Prens anlatı eşiklerini içeren bulmaca-aksiyon oyunu. <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Sayfası</a><br><br>" +
+                       "<strong>Truck Up:</strong> Co-op araç fiziği ve takım tabanlı aksiyon oyunu.";
             }
             else if (query.includes('kuran23') || query.includes('ayet') || query.includes('tefsir') || query.includes('din')) {
-                return "<strong>Kuran23</strong>, Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini tek bir hızlı arayüzde sunan dijital araştırma platformumdur.<br><br>" +
-                       "Cloudflare Edge altyapısı ve semantik arama motoru ile saniyeler içinde arama yapabilirsiniz.<br>" +
-                       "👉 Canlı Platform: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a>";
+                return "<strong>Kuran23:</strong> Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini sunan dijital kütüphane projesi.<br><br>" +
+                       "Canlı Platform: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a>";
             }
             else if (query.includes('çalış') || query.includes('iş') || query.includes('iletişim') || query.includes('teklif') || query.includes('proje') || query.includes('mail')) {
-                return "İş birliği ve proje geliştirme süreçlerine son derece açığım! 🤝<br><br>" +
-                       "• Oyun geliştirme (Unreal Engine C++ / Blueprint)<br>" +
-                       "• Özel web & yapay zekâ yazılımları<br>" +
-                       "• Ar-Ge ve teknik danışmanlık<br><br>" +
-                       "Benimle doğrudan iletişime geçmek için <strong>han23studio@gmail.com</strong> adresine e-posta gönderebilir veya <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>LinkedIn hesabım</a> üzerinden yazabilirsiniz.";
+                return "İş birliği ve proje süreçleri için doğrudan iletişim kanalları:<br><br>" +
+                       "E-posta: <strong>han23studio@gmail.com</strong><br>" +
+                       "LinkedIn: <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>linkedin.com/in/emirhangungormez</a>";
             }
             else if (query.includes('kimdir') || query.includes('hakkında') || query.includes('emirhan kim') || query.includes('sen kimsin')) {
-                return "Ben <strong>Emirhan Güngörmez</strong>; bağımsız oyun geliştiricisi, yazılım mühendisi ve Ar-Ge yöneticisiyim.<br><br>" +
-                       "8 yıldan fazla süredir oyun teknolojileri, yapay zekâ sistemleri ve dijital ürünler geliştiriyorum. Bilginin ve yaratıcılığın sınırlarını genişleten projelere odaklanıyorum.<br><br>" +
-                       "CV ve deneyim detaylarımı <a href='cv.html'>CV sayfamdan</a> inceleyebilirsiniz.";
+                return "<strong>Emirhan Güngörmez:</strong> Bağımsız oyun geliştiricisi, yazılım mühendisi ve Ar-Ge yöneticisi. 8 yıldan fazla süredir oyun teknolojileri, yapay zekâ ve dijital ürünler geliştiriyor.<br><br>" +
+                       "Detaylı özgeçmiş için <a href='cv.html'>CV sayfasını</a> inceleyebilirsiniz.";
             }
             else {
-                return "Harika bir soru! Emirhan Güngörmez'in dijital ikizi olarak oyun teknolojileri, yazılım mimarisi, yapay zekâ Ar-Ge projeleri (Kuran23, Barzakh) ve iş birliği süreçleri hakkında detaylı bilgi verebilirim.<br><br>" +
-                       "Detaylı bir proje teklifi veya özel soru için doğrudan <strong>han23studio@gmail.com</strong> adresinden Emirhan'a ulaşabilirsiniz. Başka merak ettiğiniz bir konu var mı?";
+                return "Emirhan Güngörmez dijital asistanı. Oyun teknolojileri, yazılım mimarisi, yapay zekâ projeleri (Kuran23, Barzakh) ve iş birliği süreçleri hakkında bilgi alabilirsiniz.<br><br>" +
+                       "Doğrudan iletişim için: <strong>han23studio@gmail.com</strong>";
             }
         }
 
@@ -577,9 +393,6 @@
             var input = document.getElementById('chatInput');
             var text = input.value.trim();
             if (!text) return;
-
-            var promptsEl = document.getElementById('aiPrompts');
-            if (promptsEl) promptsEl.style.display = 'none';
 
             appendMessage('user', text);
             input.value = '';
@@ -590,7 +403,7 @@
                 removeTypingIndicator();
                 var aiReply = generateAIResponse(text);
                 appendMessage('ai', aiReply);
-            }, 900);
+            }, 600);
         }
     </script>
 </body>
