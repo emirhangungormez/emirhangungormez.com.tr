@@ -114,11 +114,21 @@
       "tech_stack": "Unreal Engine 5, Blueprint, Blender, Substance."
     }
   ],
-  "full_blog_posts": [
+  "all_blog_posts": [
     {
       "title": "Barzakh: Star Gardener ve etkileşimli kıssanın gaybî eşikleri",
       "url": "https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html",
       "summary": "Oyunlarda kıssa anlatımı, anlatı eşikleri, gaybî sembolizm ve felsefi oyun tasarımı üzerine kapsamlı deneme."
+    },
+    {
+      "title": "Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İdealizmi",
+      "url": "https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html",
+      "summary": "Putperestlerin tanrıtanımaz eğilimleri, algısal estetik ve George Berkeley'in varoluş ilkesi (Esse est percipi) üzerine felsefi sorgulama."
+    },
+    {
+      "title": "Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi",
+      "url": "https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html",
+      "summary": "Farabi, İbn Sina ve Gazali'nin terbiye anlayışından hareketle; günümüz akademisine, unvansızlık ve bütüncül hakikat anlayışına dair felsefi deneme."
     },
     {
       "title": "Commentarius Perpetuus in Uniqus Martyrium Ad Recensionem",
@@ -141,9 +151,9 @@
       "summary": "Avrupa ve Almanya pazarındaki işletmeler için dijital kimlik, kurumsal web mimarisi ve ajans stratejileri."
     },
     {
-      "title": "Ünvansızlar Cemiyeti: Diplomasız bir hakikat ekolojisi",
+      "title": "Medium Profil Yazıları",
       "url": "https://medium.com/@emirhangungormez",
-      "summary": "Kendi kendini eğitme (self-education), oto-didakt öğrenim, zanaat ve felsefi denemeler."
+      "summary": "Teknoloji, felsefe, zanaat ve oto-didakt öğrenim denemeleri."
     }
   ],
   "education": [
