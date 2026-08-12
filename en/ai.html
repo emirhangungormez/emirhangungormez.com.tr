@@ -30,15 +30,15 @@
     <link rel="stylesheet" href="../assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        .tp-section {
+        .tp-pure-page {
             min-height: calc(100vh - 180px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3rem 1.5rem;
+            padding: 2.5rem 1.5rem;
         }
 
-        .tp-container {
+        .tp-pure-frame {
             max-width: 42rem;
             width: 100%;
             margin: 0 auto;
@@ -46,71 +46,33 @@
             flex-direction: column;
         }
 
-        /* Top Bar Controls (< and X) */
-        .tp-header-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 2rem;
-        }
-
-        .tp-nav-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(17, 20, 20, 0.06);
-            border: 1px solid rgba(17, 20, 20, 0.12);
-            color: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-
-        .dark-mode .tp-nav-circle {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.14);
-        }
-
-        .tp-nav-circle:hover {
-            transform: scale(1.05);
-            background: rgba(17, 20, 20, 0.12);
-        }
-
-        .dark-mode .tp-nav-circle:hover {
-            background: rgba(255, 255, 255, 0.16);
-        }
-
         /* Headline: Welcome to TakeProfit style */
-        .tp-title {
+        .tp-headline-title {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 2.3rem;
+            font-size: 2.4rem;
             font-weight: 400;
             letter-spacing: -0.02em;
             color: inherit;
-            margin: 0 0 1.6rem 0;
-            line-height: 1.2;
+            margin: 0 0 1.8rem 0;
+            line-height: 1.15;
         }
 
         /* Thread Messages Stream */
-        .tp-stream-box {
+        .tp-stream-thread {
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-            max-height: 320px;
+            max-height: 340px;
             overflow-y: auto;
             margin-bottom: 1.6rem;
             padding-right: 0.4rem;
             scroll-behavior: smooth;
         }
 
-        .tp-stream-box::-webkit-scrollbar {
+        .tp-stream-thread::-webkit-scrollbar {
             width: 4px;
         }
-        .tp-stream-box::-webkit-scrollbar-thumb {
+        .tp-stream-thread::-webkit-scrollbar-thumb {
             background: currentColor;
             opacity: 0.15;
             border-radius: 2px;
@@ -138,7 +100,7 @@
             width: 100%;
         }
 
-        .tp-role {
+        .tp-role-label {
             font-size: 0.72rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
@@ -146,18 +108,18 @@
             color: inherit;
         }
 
-        .tp-row--user .tp-role {
+        .tp-row--user .tp-role-label {
             text-align: right;
         }
 
-        .tp-text {
+        .tp-bubble-body {
             font-size: 0.98rem;
             line-height: 1.65;
             color: inherit;
             word-break: break-word;
         }
 
-        .tp-row--user .tp-text {
+        .tp-row--user .tp-bubble-body {
             background: rgba(17, 20, 20, 0.05);
             border: 1px solid rgba(17, 20, 20, 0.1);
             padding: 0.85rem 1.15rem;
@@ -165,28 +127,28 @@
             border-bottom-right-radius: 4px;
         }
 
-        .dark-mode .tp-row--user .tp-text {
+        .dark-mode .tp-row--user .tp-bubble-body {
             background: rgba(255, 255, 255, 0.07);
             border-color: rgba(255, 255, 255, 0.12);
         }
 
-        .tp-row--ai .tp-text {
+        .tp-row--ai .tp-bubble-body {
             background: transparent;
             border-left: 2px solid rgba(17, 20, 20, 0.25);
             padding: 0.2rem 0 0.2rem 1.0rem;
         }
 
-        .dark-mode .tp-row--ai .tp-text {
+        .dark-mode .tp-row--ai .tp-bubble-body {
             border-left-color: rgba(255, 255, 255, 0.3);
         }
 
-        .tp-text a {
+        .tp-bubble-body a {
             color: inherit;
             font-weight: 600;
             text-decoration: underline;
         }
 
-        .tp-text strong {
+        .tp-bubble-body strong {
             color: inherit;
             font-weight: 600;
         }
@@ -216,11 +178,11 @@
         }
 
         /* TakeProfit Card Component */
-        .tp-card {
+        .tp-input-box-card {
             position: relative;
             background: #2b2b2e;
-            border-radius: 22px;
-            padding: 1.25rem 1.4rem 1.25rem 1.6rem;
+            border-radius: 20px;
+            padding: 1.2rem 1.4rem 1.2rem 1.6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -230,29 +192,30 @@
             min-height: 104px;
         }
 
-        .light-mode .tp-card,
-        body:not(.dark-mode) .tp-card {
+        .light-mode .tp-input-box-card,
+        body:not(.dark-mode) .tp-input-box-card {
             background: #e1e1e5;
             color: #111414;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
         }
 
-        .dark-mode .tp-card {
+        .dark-mode .tp-input-box-card {
             background: #27272a;
             color: #ffffff;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
         }
 
-        .tp-card-body {
+        .tp-input-group {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             gap: 0.4rem;
             z-index: 2;
+            padding-right: 90px;
         }
 
-        .tp-label {
+        .tp-field-label {
             font-size: 0.82rem;
             font-weight: 500;
             color: inherit;
@@ -260,7 +223,7 @@
             letter-spacing: 0.01em;
         }
 
-        .tp-input {
+        .tp-main-input {
             width: 100%;
             background: transparent;
             border: none;
@@ -272,64 +235,56 @@
             padding: 0.1rem 0;
         }
 
-        .tp-input::placeholder {
+        .tp-main-input::placeholder {
             color: inherit;
             opacity: 0.38;
         }
 
-        /* Pixel-Perfect ISO L-Shaped Purple Enter Button SVG */
-        .tp-l-button-wrap {
+        /* Sharp Crisp ISO L-Shaped Purple Enter Button */
+        .tp-crisp-enter-btn {
             position: absolute;
             right: 0;
             top: 0;
             bottom: 0;
-            height: 100%;
-            width: 95px;
-            display: flex;
-            align-items: stretch;
-            justify-content: flex-end;
+            width: 86px;
+            height: 104px;
             background: transparent;
             border: none;
             cursor: pointer;
             padding: 0;
             z-index: 3;
             transition: transform 0.15s ease, filter 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .tp-l-button-wrap:hover {
-            transform: scale(1.02);
+        .tp-crisp-enter-btn:hover {
+            transform: scale(1.03);
             filter: brightness(1.08);
         }
 
-        .tp-l-button-wrap svg {
-            width: 100%;
-            height: 100%;
+        .tp-crisp-enter-btn svg {
+            width: 86px;
+            height: 104px;
             display: block;
         }
 
-        .tp-policy-note {
-            font-size: 0.78rem;
-            color: inherit;
-            opacity: 0.5;
-            margin-top: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .tp-policy-note strong {
-            color: inherit;
-            font-weight: 600;
-            opacity: 1;
-        }
-
         @media screen and (max-width: 640px) {
-            .tp-title {
+            .tp-headline-title {
                 font-size: 1.8rem;
             }
-            .tp-input {
+            .tp-main-input {
                 font-size: 1.15rem;
             }
-            .tp-l-button-wrap {
-                width: 80px;
+            .tp-crisp-enter-btn {
+                width: 74px;
+            }
+            .tp-crisp-enter-btn svg {
+                width: 74px;
+            }
+            .tp-input-group {
+                padding-right: 76px;
             }
         }
     </style>
@@ -365,58 +320,39 @@
                 </div>
             </header>
 
-            <main class="tp-section">
-                <div class="tp-container">
+            <main class="tp-pure-page">
+                <div class="tp-pure-frame">
                     
-                    <!-- Top Navigation Controls (< and X) -->
-                    <div class="tp-header-nav">
-                        <a href="index.html" class="tp-nav-circle" title="Go Back">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </a>
-                        <a href="index.html" class="tp-nav-circle" title="Close">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="18" y1="6" x2="6" y2="18"></line>
-                                <line x1="6" y1="6" x2="18" y2="18"></line>
-                            </svg>
-                        </a>
-                    </div>
-
                     <!-- Welcome to TakeProfit Headline -->
-                    <h1 class="tp-title">Welcome to Digital Emirhan</h1>
+                    <h1 class="tp-headline-title">Ask Digital Emirhan</h1>
 
                     <!-- Message Stream -->
-                    <div class="tp-stream-box" id="chatBody">
+                    <div class="tp-stream-thread" id="chatBody">
                         <div class="tp-row tp-row--ai">
-                            <span class="tp-role">DIGITAL EMIRHAN</span>
-                            <div class="tp-text">
+                            <span class="tp-role-label">DIGITAL EMIRHAN</span>
+                            <div class="tp-bubble-body">
                                 Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.
                             </div>
                         </div>
                     </div>
 
-                    <!-- Exact TakeProfit Input Component -->
-                    <form class="tp-card" id="chatForm" onsubmit="handleChatSubmit(event)">
-                        <div class="tp-card-body">
-                            <span class="tp-label">Question</span>
-                            <input type="text" id="chatInput" class="tp-input" placeholder="Ask Digital Emirhan..." autocomplete="off">
+                    <!-- Pure TakeProfit Input Component -->
+                    <form class="tp-input-box-card" id="chatForm" onsubmit="handleChatSubmit(event)">
+                        <div class="tp-input-group">
+                            <span class="tp-field-label">Question</span>
+                            <input type="text" id="chatInput" class="tp-main-input" placeholder="Ask Digital Emirhan..." autocomplete="off">
                         </div>
 
-                        <!-- Pixel-Perfect ISO L-Shaped Purple Enter Key Button -->
-                        <button type="submit" class="tp-l-button-wrap" title="Send (Enter)">
-                            <svg viewBox="0 0 95 104" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                                <!-- ISO Enter L-Key Path: Top narrow, extends LEFT at bottom -->
-                                <path d="M 40 0 H 75 C 86.046 0 95 8.954 95 20 V 84 C 95 95.046 86.046 104 75 104 H 20 C 8.954 104 0 95.046 0 84 V 62 C 0 50.954 8.954 42 20 42 H 40 V 0 Z" fill="#8b5cf6"/>
-                                <!-- Return Arrow ↵ -->
-                                <path d="M 64 74 L 50 74 M 50 74 L 57 67 M 50 74 L 57 81 M 72 52 V 64 C 72 69.523 67.523 74 62 74 H 50" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Sharp Crisp ISO L-Shaped Purple Enter Button SVG -->
+                        <button type="submit" class="tp-crisp-enter-btn" title="Send (Enter)">
+                            <svg width="86" height="104" viewBox="0 0 86 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Crisp ISO Enter Key Path: Top narrow, bottom extending left -->
+                                <path d="M 32 0 H 66 C 77.046 0 86 8.954 86 20 V 84 C 86 95.046 77.046 104 66 104 H 20 C 8.954 104 0 95.046 0 84 V 62 C 0 50.954 8.954 42 20 42 H 32 V 0 Z" fill="#8b5cf6"/>
+                                <!-- Crisp Return Arrow ↵ -->
+                                <path d="M 58 74 L 44 74 M 44 74 L 51 67 M 44 74 L 51 81 M 66 52 V 64 C 66 69.523 61.523 74 56 74 H 44" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
                     </form>
-
-                    <p class="tp-policy-note">
-                        By clicking Continue, you agree to our <strong>User Agreement</strong> and <strong>Privacy Policy</strong>.
-                    </p>
                 </div>
             </main>
 
@@ -460,11 +396,11 @@
             row.className = 'tp-row ' + (role === 'user' ? 'tp-row--user' : 'tp-row--ai');
             
             var label = document.createElement('span');
-            label.className = 'tp-role';
+            label.className = 'tp-role-label';
             label.textContent = role === 'user' ? 'YOU' : 'DIGITAL EMIRHAN';
 
             var body = document.createElement('div');
-            body.className = 'tp-text';
+            body.className = 'tp-bubble-body';
             body.innerHTML = text;
 
             row.appendChild(label);
@@ -480,11 +416,11 @@
             row.className = 'tp-row tp-row--ai';
             
             var label = document.createElement('span');
-            label.className = 'tp-role';
+            label.className = 'tp-role-label';
             label.textContent = 'DIGITAL EMIRHAN';
 
             var body = document.createElement('div');
-            body.className = 'tp-text';
+            body.className = 'tp-bubble-body';
             body.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
             row.appendChild(label);
