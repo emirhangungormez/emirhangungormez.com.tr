@@ -31,7 +31,7 @@
     
     <style>
         .tp-pure-page {
-            min-height: calc(100vh - 160px);
+            min-height: calc(100vh - 180px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@
             font-weight: 500;
             letter-spacing: -0.02em;
             color: inherit;
-            margin: 0 0 1.6rem 0;
+            margin: 0 0 1.8rem 0;
             line-height: 1.15;
         }
 
@@ -62,11 +62,16 @@
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-            max-height: 380px;
+            max-height: 340px;
             overflow-y: auto;
             margin-bottom: 1.6rem;
             padding-right: 0.4rem;
             scroll-behavior: smooth;
+        }
+
+        .tp-stream-thread:empty {
+            display: none;
+            margin-bottom: 0;
         }
 
         .tp-stream-thread::-webkit-scrollbar {
@@ -324,18 +329,11 @@
             <main class="tp-pure-page">
                 <div class="tp-pure-frame">
                     
-                    <!-- Title in PP Mori font -->
+                    <!-- Only Main Title in PP Mori font -->
                     <h1 class="tp-headline-title">Digital Emirhan</h1>
 
-                    <!-- Message Stream -->
-                    <div class="tp-stream-thread" id="chatBody">
-                        <div class="tp-row tp-row--ai">
-                            <span class="tp-role-label">DIGITAL EMIRHAN</span>
-                            <div class="tp-bubble-body">
-                                Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, blog & Medium essays, or collaboration opportunities.
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Message Stream (Initially empty until user types a question) -->
+                    <div class="tp-stream-thread" id="chatBody"></div>
 
                     <!-- Pure TakeProfit Input Component -->
                     <form class="tp-input-box-card" id="chatForm" onsubmit="handleChatSubmit(event)">
@@ -438,51 +436,23 @@
         function generateAIResponse(userText) {
             var query = userText.toLowerCase();
 
-            if (query.includes('medium') || query.includes('article') || query.includes('essay') || query.includes('bitcoin') || query.includes('ethereum') || query.includes('ipfs') || query.includes('berkeley')) {
-                return "<p>Featured technical essays & publications by Emirhan Güngörmez:</p>" +
-                       "<ul>" +
-                       "<li><strong>Barzakh & Narrative Thresholds:</strong> Interactive parable philosophy through Dede Korkut, Little Prince & Dante. <a href='../blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html' target='_blank'>Read Essay</a></li>" +
-                       "<li><strong>Unvansızlar Cemiyeti:</strong> Titleless practice & holistic truth ecology. <a href='../blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html' target='_blank'>Read Essay</a></li>" +
-                       "<li><strong>Immaterialism & Berkeley:</strong> Existence principle (Esse est percipi) & perceptual aesthetics. <a href='../blog/immateryalizm-ve-berkeleyin-idealizmi.html' target='_blank'>Read Essay</a></li>" +
-                       "<li><strong>Medium Tech Series:</strong> Bitcoin (UTXO/PoW), Ethereum (EVM/Solidity), Avalanche Subnets, IPFS, Stable Diffusion. <a href='https://medium.com/@emirhangungormez' target='_blank'>Medium Profile</a></li>" +
-                       "</ul>";
-            }
-            else if (query.includes('social') || query.includes('artstation') || query.includes('linkedin') || query.includes('youtube') || query.includes('instagram') || query.includes('twitter') || query.includes('x')) {
-                return "<p>Social media content distribution:</p>" +
-                       "<ul>" +
-                       "<li><strong>ArtStation:</strong> Game concept art, 3D renders & trailer shots. <a href='https://www.artstation.com/han23studio' target='_blank'>ArtStation</a></li>" +
-                       "<li><strong>LinkedIn:</strong> Attended events, certifications & studio updates. <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>LinkedIn</a></li>" +
-                       "<li><strong>YouTube & Instagram:</strong> Game dev tutorials (UE5/Unity) & devlogs. <a href='https://www.youtube.com/@han23studio' target='_blank'>YouTube</a></li>" +
-                       "<li><strong>X (Twitter):</strong> Daily devlog progress & WIP notes. <a href='https://twitter.com/emirhangngrmz' target='_blank'>X (Twitter)</a></li>" +
-                       "</ul>";
-            }
-            else if (query.includes('certif') || query.includes('harvard') || query.includes('unreal authorized') || query.includes('cisco') || query.includes('teknofest')) {
-                return "<p>Featured verified credentials:</p>" +
-                       "<ul>" +
-                       "<li><strong>Unreal Authorized Instructor (UAI):</strong> <a href='https://credential.unrealengine.com/c92e72f2-b8c1-4831-9a73-ecd15c3a204b#acc.DnyUjxYq' target='_blank'>Unreal Certificate</a></li>" +
-                       "<li><strong>Harvard CS50:</strong> Introduction to Game Development</li>" +
-                       "<li><strong>Cisco Python (PCAP):</strong> <a href='https://drive.google.com/file/d/1lRt3JgUQ-cDDImyh1ErSbpC7MMw8VFsI/view' target='_blank'>Cisco Certificate</a></li>" +
-                       "<li><strong>TEKNOFEST Tourism Tech Finalist:</strong> Meta Ancient City VR/AR <a href='https://drive.google.com/file/d/1kac4XeFBvSLCouGokmiC52-8XxNI4SF2/view' target='_blank'>Document</a></li>" +
-                       "</ul>" +
-                       "<p>Full CV: <a href='cv.html'>CV Page</a></p>";
-            }
-            else if (query.includes('tech') || query.includes('stack') || query.includes('skills') || query.includes('language') || query.includes('software')) {
+            if (query.includes('tech') || query.includes('stack') || query.includes('skills') || query.includes('language') || query.includes('software')) {
                 return "<p>Core technology stack and expertise:</p>" +
                        "<ul>" +
                        "<li><strong>Game Dev:</strong> Unreal Engine 5 (C++, Blueprint Architecture), Unity (C#)</li>" +
                        "<li><strong>Web & Systems:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
                        "<li><strong>AI & R&D:</strong> LLM Integrations, RAG Systems, Python, Computer Vision</li>" +
-                       "<li><strong>Web3 & Cybersecurity:</strong> Solidity, Smart Contracts, Network Security</li>" +
+                       "<li><strong>Web3 & Siber Güvenlik:</strong> Solidity, Smart Contracts, Network Security</li>" +
                        "</ul>";
             }
             else if (query.includes('game') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
                 return "<p>Game projects:</p>" +
                        "<p><strong>Barzakh: Star Gardener:</strong> TPS puzzle-action game built with Unreal Engine 5.5 (C++ & Blueprint). <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Page</a></p>" +
-                       "<p><strong>Truck Up:</strong> Co-op vehicle physics and team-based action game. <a href='https://store.steampowered.com/app/3411890/Truck_Up_Catch_Me_If_You_Can/' target='_blank'>Steam Page</a></p>";
+                       "<p><strong>Truck Up:</strong> Co-op vehicle physics and team-based action game.</p>";
             }
             else if (query.includes('kuran23') || query.includes('quran') || query.includes('hadith') || query.includes('platform')) {
                 return "<p><strong>Kuran23:</strong> Digital research platform unifying Quranic reading, translations, tafsir, 60,000+ hadiths, and Muallim AI.</p>" +
-                       "<p>Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a> | <a href='kuran23.html'>Details</a></p>";
+                       "<p>Live Application: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a></p>";
             }
             else if (query.includes('work') || query.includes('collaborate') || query.includes('hire') || query.includes('contact') || query.includes('email')) {
                 return "<p>Direct contact channels for projects and inquiries:</p>" +
@@ -496,7 +466,7 @@
                        "<p>View full background on the <a href='cv.html'>CV page</a>.</p>";
             }
             else {
-                return "<p>Digital assistant of Emirhan Güngörmez. You can inquire about game architecture, software engineering, AI R&D (Kuran23, Barzakh), blog & Medium essays, and partnerships.</p>" +
+                return "<p>Digital assistant of Emirhan Güngörmez. You can inquire about game architecture, software engineering, AI R&D (Kuran23, Barzakh), and partnerships.</p>" +
                        "<p>Direct contact: <strong>han23studio@gmail.com</strong></p>";
             }
         }

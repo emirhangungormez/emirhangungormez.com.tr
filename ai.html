@@ -31,7 +31,7 @@
     
     <style>
         .tp-pure-page {
-            min-height: calc(100vh - 160px);
+            min-height: calc(100vh - 180px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -53,7 +53,7 @@
             font-weight: 500;
             letter-spacing: -0.02em;
             color: inherit;
-            margin: 0 0 1.6rem 0;
+            margin: 0 0 1.8rem 0;
             line-height: 1.15;
         }
 
@@ -62,11 +62,16 @@
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-            max-height: 380px;
+            max-height: 340px;
             overflow-y: auto;
             margin-bottom: 1.6rem;
             padding-right: 0.4rem;
             scroll-behavior: smooth;
+        }
+
+        .tp-stream-thread:empty {
+            display: none;
+            margin-bottom: 0;
         }
 
         .tp-stream-thread::-webkit-scrollbar {
@@ -324,18 +329,11 @@
             <main class="tp-pure-page">
                 <div class="tp-pure-frame">
                     
-                    <!-- Title in PP Mori font -->
+                    <!-- Only Main Title in PP Mori font -->
                     <h1 class="tp-headline-title">Sanal Emirhan</h1>
 
-                    <!-- Message Stream -->
-                    <div class="tp-stream-thread" id="chatBody">
-                        <div class="tp-row tp-row--ai">
-                            <span class="tp-role-label">SANAL EMİRHAN</span>
-                            <div class="tp-bubble-body">
-                                Merhaba! Ben Emirhan Güngörmez'in dijital ikiziyim. Oyun geliştirme (Unreal Engine / Unity), Kuran23, blog ve Medium yazılarım, siber güvenlik, özgeçmişim veya iş birliği hakkında dilediğinizi sorabilirsiniz.
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Message Stream (Initially empty until user types a question) -->
+                    <div class="tp-stream-thread" id="chatBody"></div>
 
                     <!-- Pure TakeProfit Input Component -->
                     <form class="tp-input-box-card" id="chatForm" onsubmit="handleChatSubmit(event)">
@@ -438,35 +436,7 @@
         function generateAIResponse(userText) {
             var query = userText.toLowerCase();
 
-            if (query.includes('medium') || query.includes('makale') || query.includes('yazı') || query.includes('bitcoin') || query.includes('ethereum') || query.includes('ipfs') || query.includes('berkeley') || query.includes('unvansız')) {
-                return "<p>Emirhan Güngörmez'in kaleme aldığı felsefi ve teknik yazılardan öne çıkanlar:</p>" +
-                       "<ul>" +
-                       "<li><strong>Barzakh & Gaybî Eşikler:</strong> Dede Korkut, Küçük Prens ve Dante üzerinden anlatı felsefesi. <a href='blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html' target='_blank'>Yazıyı Oku</a></li>" +
-                       "<li><strong>Unvansızlar Cemiyeti:</strong> Diplomasız hakikat ekolojisi ve oto-didakt öğrenim. <a href='blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html' target='_blank'>Yazıyı Oku</a></li>" +
-                       "<li><strong>İmmateryalizm & Berkeley:</strong> George Berkeley'in varoluş ilkesi (Esse est percipi) ve algısal estetik. <a href='blog/immateryalizm-ve-berkeleyin-idealizmi.html' target='_blank'>Yazıyı Oku</a></li>" +
-                       "<li><strong>Medium Teknik Serisi:</strong> Bitcoin (UTXO/PoW), Ethereum (EVM/Solidity), Avalanche Subnets, IPFS ve Stable Diffusion rehberleri. <a href='https://medium.com/@emirhangungormez' target='_blank'>Medium Profili</a></li>" +
-                       "</ul>";
-            }
-            else if (query.includes('sosyal') || query.includes('artstation') || query.includes('linkedin') || query.includes('youtube') || query.includes('instagram') || query.includes('twitter') || query.includes('x')) {
-                return "<p>Sosyal medya kanallarında yayınlanan içerikler:</p>" +
-                       "<ul>" +
-                       "<li><strong>ArtStation:</strong> Oyun görselleri, 3D konseptler ve fragman kareleri. <a href='https://www.artstation.com/han23studio' target='_blank'>ArtStation</a></li>" +
-                       "<li><strong>LinkedIn:</strong> Katılınan konferanslar, sertifikalar ve iş birliği duyuruları. <a href='https://www.linkedin.com/in/emirhangungormez' target='_blank'>LinkedIn</a></li>" +
-                       "<li><strong>YouTube & Instagram:</strong> Oyun geliştirme eğitimleri (UE5/Unity) ve devlog videoları. <a href='https://www.youtube.com/@han23studio' target='_blank'>YouTube</a></li>" +
-                       "<li><strong>X (Twitter):</strong> Günlük devlog ilerlemeleri ve anlık geliştirme notları. <a href='https://twitter.com/emirhangngrmz' target='_blank'>X (Twitter)</a></li>" +
-                       "</ul>";
-            }
-            else if (query.includes('sertifika') || query.includes('harvard') || query.includes('unreal authorized') || query.includes('cisco') || query.includes('teknofest')) {
-                return "<p>Öne çıkan doğrulanmış sertifikalar ve dereceler:</p>" +
-                       "<ul>" +
-                       "<li><strong>Unreal Authorized Instructor (UAI):</strong> <a href='https://credential.unrealengine.com/c92e72f2-b8c1-4831-9a73-ecd15c3a204b#acc.DnyUjxYq' target='_blank'>Unreal Engine Sertifikası</a></li>" +
-                       "<li><strong>Harvard CS50:</strong> Introduction to Game Development</li>" +
-                       "<li><strong>Cisco Python (PCAP):</strong> <a href='https://drive.google.com/file/d/1lRt3JgUQ-cDDImyh1ErSbpC7MMw8VFsI/view' target='_blank'>Cisco Sertifikası</a></li>" +
-                       "<li><strong>TEKNOFEST Turizm Teknolojileri:</strong> Türkiye 16.lığı (Meta Ancient City VR/AR) <a href='https://drive.google.com/file/d/1kac4XeFBvSLCouGokmiC52-8XxNI4SF2/view' target='_blank'>Belge</a></li>" +
-                       "</ul>" +
-                       "<p>Detaylı özgeçmiş için: <a href='cv.html'>CV Sayfası</a></p>";
-            }
-            else if (query.includes('uzman') || query.includes('teknoloji') || query.includes('yetkinlik') || query.includes('dil') || query.includes('yazılım')) {
+            if (query.includes('uzman') || query.includes('teknoloji') || query.includes('yetkinlik') || query.includes('dil') || query.includes('yazılım')) {
                 return "<p>Uzmanlık alanları ve kullanılan teknolojiler:</p>" +
                        "<ul>" +
                        "<li><strong>Oyun Geliştirme:</strong> Unreal Engine 5 (C++, Blueprint Mimarisi), Unity (C#)</li>" +
@@ -478,11 +448,11 @@
             else if (query.includes('oyun') || query.includes('barzakh') || query.includes('truck') || query.includes('unreal')) {
                 return "<p>Geliştirilen oyun projeleri:</p>" +
                        "<p><strong>Barzakh: Star Gardener:</strong> Unreal Engine 5.5 ile C++ ve Blueprint tabanlı geliştirilen, Dede Korkut ve Küçük Prens anlatı eşiklerini içeren bulmaca-aksiyon oyunu. <a href='https://store.steampowered.com/app/3849950/Barzakh_Star_Gardener/' target='_blank'>Steam Sayfası</a></p>" +
-                       "<p><strong>Truck Up:</strong> Co-op araç fiziği ve takım tabanlı aksiyon oyunu. <a href='https://store.steampowered.com/app/3411890/Truck_Up_Catch_Me_If_You_Can/' target='_blank'>Steam Sayfası</a></p>";
+                       "<p><strong>Truck Up:</strong> Co-op araç fiziği ve takım tabanlı aksiyon oyunu.</p>";
             }
-            else if (query.includes('kuran23') || query.includes('ayet') || query.includes('tefsir') || query.includes('hadis') || query.includes('muallim')) {
+            else if (query.includes('kuran23') || query.includes('ayet') || query.includes('tefsir') || query.includes('din')) {
                 return "<p><strong>Kuran23:</strong> Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini sunan dijital kütüphane projesi.</p>" +
-                       "<p>Canlı Uygulama: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a> | <a href='kuran23.html'>Detaylar</a></p>";
+                       "<p>Canlı Uygulama: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a></p>";
             }
             else if (query.includes('çalış') || query.includes('iş') || query.includes('iletişim') || query.includes('teklif') || query.includes('proje') || query.includes('mail')) {
                 return "<p>İş birliği ve teknik danışmanlık süreçleri için doğrudan iletişim kanalları:</p>" +
@@ -496,7 +466,7 @@
                        "<p>Detaylı özgeçmiş için <a href='cv.html'>CV sayfasını</a> inceleyebilirsiniz.</p>";
             }
             else {
-                return "<p>Emirhan Güngörmez dijital asistanı. Oyun teknolojileri, yazılım mimarisi, yapay zekâ projeleri (Kuran23, Barzakh), blog/Medium yazıları ve iş birliği süreçleri hakkında bilgi alabilirsiniz.</p>" +
+                return "<p>Emirhan Güngörmez dijital asistanı. Oyun teknolojileri, yazılım mimarisi, yapay zekâ projeleri (Kuran23, Barzakh) ve iş birliği süreçleri hakkında bilgi alabilirsiniz.</p>" +
                        "<p>Doğrudan iletişim için: <strong>han23studio@gmail.com</strong></p>";
             }
         }
