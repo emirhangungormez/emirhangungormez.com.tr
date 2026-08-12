@@ -24,173 +24,151 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="../assets/favicon/site.webmanifest">
-    <meta name="theme-color" content="#111414">
+    <meta name="theme-color" content="#0d0d0f">
     
     <link rel="preload" href="../assets/fonts/PPMori-Regular.woff" as="font" type="font/woff" crossorigin>
     <link rel="stylesheet" href="../assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        /* TakeProfit Design System Integration */
-        .takeprofit-page {
+        /* Exact TakeProfit UI Replica System */
+        .tp-wrapper {
             min-height: calc(100vh - 120px);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 3rem 1.5rem;
+            background: #09090b;
+            color: #ffffff;
         }
 
-        .takeprofit-frame {
-            max-width: 46rem;
+        .tp-card-frame {
+            max-width: 36rem;
             width: 100%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
         }
 
-        /* Top Action Controls */
-        .takeprofit-nav {
+        /* Nav Buttons (< and X) */
+        .tp-nav-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .takeprofit-nav-btn {
-            width: 42px;
-            height: 42px;
+        .tp-circle-btn {
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: rgba(17, 20, 20, 0.06);
-            border: 1px solid rgba(17, 20, 20, 0.1);
-            color: inherit;
+            background: #1f1f23;
+            border: none;
+            color: #a1a1aa;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.15s ease;
             text-decoration: none;
         }
 
-        .dark-mode .takeprofit-nav-btn {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .takeprofit-nav-btn:hover {
+        .tp-circle-btn:hover {
+            background: #27272a;
+            color: #ffffff;
             transform: scale(1.05);
-            background: rgba(17, 20, 20, 0.12);
         }
 
-        .dark-mode .takeprofit-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.16);
-        }
-
-        /* TakeProfit Title */
-        .takeprofit-title {
-            font-size: 2.2rem;
+        /* Headline: Welcome to TakeProfit style */
+        .tp-headline {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2.5rem;
             font-weight: 400;
             letter-spacing: -0.02em;
-            color: inherit;
-            margin: 0 0 1.5rem 0;
-            line-height: 1.2;
+            color: #ffffff;
+            margin: 0 0 1.8rem 0;
+            line-height: 1.15;
         }
 
-        /* Message Thread */
-        .takeprofit-thread {
+        /* Messages Thread Container */
+        .tp-thread-box {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            max-height: 380px;
+            gap: 1.2rem;
+            max-height: 320px;
             overflow-y: auto;
+            margin-bottom: 1.8rem;
             padding-right: 0.4rem;
-            margin-bottom: 1.5rem;
             scroll-behavior: smooth;
         }
 
-        .takeprofit-thread::-webkit-scrollbar {
+        .tp-thread-box::-webkit-scrollbar {
             width: 4px;
         }
-        .takeprofit-thread::-webkit-scrollbar-thumb {
-            background: currentColor;
-            opacity: 0.15;
+        .tp-thread-box::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 2px;
         }
 
-        .msg-row {
+        .tp-msg-row {
             display: flex;
             flex-direction: column;
-            gap: 0.35rem;
-            animation: fadeIn 0.25s ease forwards;
+            gap: 0.3rem;
+            animation: tpFade 0.2s ease forwards;
         }
 
-        @keyframes fadeIn {
+        @keyframes tpFade {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .msg-row--user {
+        .tp-msg-row--user {
             align-self: flex-end;
-            max-width: 82%;
+            max-width: 85%;
         }
 
-        .msg-row--ai {
+        .tp-msg-row--ai {
             align-self: flex-start;
             width: 100%;
         }
 
-        .msg-label {
+        .tp-msg-author {
             font-size: 0.72rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            opacity: 0.45;
-            color: inherit;
+            color: #71717a;
         }
 
-        .msg-row--user .msg-label {
+        .tp-msg-row--user .tp-msg-author {
             text-align: right;
         }
 
-        .msg-bubble {
+        .tp-msg-body {
             font-size: 0.98rem;
-            line-height: 1.65;
-            color: inherit;
-            word-break: break-word;
+            line-height: 1.6;
+            color: #e4e4e7;
         }
 
-        .msg-row--user .msg-bubble {
-            background: rgba(17, 20, 20, 0.05);
-            border: 1px solid rgba(17, 20, 20, 0.1);
-            padding: 0.85rem 1.2rem;
+        .tp-msg-row--user .tp-msg-body {
+            background: #27272a;
+            padding: 0.8rem 1.1rem;
             border-radius: 16px;
             border-bottom-right-radius: 4px;
         }
 
-        .dark-mode .msg-row--user .msg-bubble {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .msg-row--ai .msg-bubble {
+        .tp-msg-row--ai .tp-msg-body {
             background: transparent;
-            border-left: 2px solid rgba(17, 20, 20, 0.25);
-            padding: 0.3rem 0 0.3rem 1.1rem;
-            opacity: 0.92;
+            border-left: 2px solid #3f3f46;
+            padding: 0.2rem 0 0.2rem 1rem;
         }
 
-        .dark-mode .msg-row--ai .msg-bubble {
-            border-left-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .msg-bubble a {
-            color: inherit;
-            font-weight: 600;
+        .tp-msg-body a {
+            color: #a855f7;
             text-decoration: underline;
         }
 
-        .msg-bubble strong {
-            color: inherit;
-            font-weight: 600;
+        .tp-msg-body strong {
+            color: #ffffff;
         }
 
         .typing-dots {
@@ -203,8 +181,7 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: currentColor;
-            opacity: 0.4;
+            background: #a1a1aa;
             animation: pulseDot 1.4s infinite ease-in-out both;
         }
 
@@ -217,220 +194,205 @@
             40% { opacity: 1; transform: scale(1); }
         }
 
-        /* Iconic TakeProfit Input Box */
-        .takeprofit-box {
+        /* The Exact TakeProfit Input Component */
+        .tp-input-card {
             position: relative;
-            background: #28282b;
-            border-radius: 24px;
-            padding: 1.3rem 1.4rem 1.3rem 1.6rem;
+            background: #38383d;
+            border-radius: 20px;
+            padding: 1.2rem 1.4rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
-            transition: box-shadow 0.25s ease, background-color 0.25s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            min-height: 110px;
         }
 
-        .light-mode .takeprofit-box,
-        body:not(.dark-mode) .takeprofit-box {
-            background: #e2e2e6;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-            color: #111414;
-        }
-
-        .dark-mode .takeprofit-box {
-            background: #262629;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            color: #ffffff;
-        }
-
-        .takeprofit-field-group {
+        .tp-input-content {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .takeprofit-label {
-            font-size: 0.82rem;
+        .tp-input-label {
+            font-size: 0.85rem;
             font-weight: 500;
-            letter-spacing: 0.02em;
-            color: inherit;
-            opacity: 0.55;
+            color: #a1a1aa;
+            letter-spacing: 0.01em;
         }
 
-        .takeprofit-input {
+        .tp-input-field-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tp-input-field {
             width: 100%;
             background: transparent;
             border: none;
             outline: none;
-            font-size: 1.35rem;
+            font-size: 1.55rem;
             font-family: inherit;
-            color: inherit;
-            caret-color: #8b5cf6;
-            padding: 0.2rem 0;
-        }
-
-        .takeprofit-input::placeholder {
-            color: inherit;
-            opacity: 0.35;
-        }
-
-        /* Iconic Purple Enter Key Button */
-        .takeprofit-enter-btn {
-            width: 62px;
-            height: 62px;
-            border-radius: 18px;
-            background: #8b5cf6;
             color: #ffffff;
+            caret-color: #ffffff;
+        }
+
+        .tp-input-field::placeholder {
+            color: #71717a;
+        }
+
+        /* Pixel Perfect L-Shaped Purple Enter Button */
+        .tp-l-enter-btn {
+            position: relative;
+            width: 82px;
+            height: 94px;
+            margin-right: -0.4rem;
+            margin-top: -0.4rem;
+            margin-bottom: -0.4rem;
+            background: transparent;
             border: none;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
-            transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
             flex-shrink: 0;
+            transition: transform 0.15s ease, filter 0.2s ease;
         }
 
-        .takeprofit-enter-btn:hover {
-            background: #7c3aed;
-            transform: scale(1.04);
-            box-shadow: 0 10px 28px rgba(139, 92, 246, 0.55);
+        .tp-l-enter-btn:hover {
+            transform: scale(1.03);
+            filter: brightness(1.1);
         }
 
-        .takeprofit-policy {
-            font-size: 0.78rem;
-            color: inherit;
-            opacity: 0.45;
-            margin-top: 1rem;
+        .tp-l-enter-btn svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Footer Policy Text */
+        .tp-footer-policy {
+            font-size: 0.82rem;
+            color: #a1a1aa;
+            margin-top: 1.2rem;
             line-height: 1.4;
         }
 
-        .takeprofit-policy a {
-            color: inherit;
+        .tp-footer-policy strong {
+            color: #ffffff;
             font-weight: 600;
-            text-decoration: underline;
         }
 
-        @media screen and (max-width: 768px) {
-            .takeprofit-title {
-                font-size: 1.8rem;
+        @media screen and (max-width: 640px) {
+            .tp-headline {
+                font-size: 1.9rem;
             }
-            .takeprofit-input {
-                font-size: 1.1rem;
+            .tp-input-field {
+                font-size: 1.2rem;
             }
-            .takeprofit-enter-btn {
-                width: 52px;
-                height: 52px;
-                border-radius: 14px;
-            }
-            .takeprofit-box {
-                padding: 1rem 1.1rem;
-                border-radius: 20px;
+            .tp-l-enter-btn {
+                width: 68px;
+                height: 80px;
             }
         }
     </style>
 </head>
-<body data-barba="wrapper">
+<body data-barba="wrapper" style="background: #09090b;">
     <div id="viewport">
         <div data-barba="container" data-barba-namespace="ai">
 
             <!-- Header -->
-            <header id="header" class="header">
+            <header id="header" class="header" style="background: transparent;">
                 <div class="wrapper">
                     <nav class="nav">
-                        <a href="index.html" class="nav__logo header__item">Emirhan Güngörmez</a>
+                        <a href="index.html" class="nav__logo header__item" style="color: #ffffff;">Emirhan Güngörmez</a>
                         <div class="nav__links">
-                            <a href="index.html" class="nav__link header__item text-link">Home</a>
-                            <a href="index.html#about" class="nav__link header__item text-link">About</a>
-                            <a href="index.html#work" class="nav__link header__item text-link">Work</a>
-                            <a href="blog.html" class="nav__link header__item text-link">Blog</a>
-                            <a href="cv.html" class="nav__link header__item text-link">CV</a>
-                            <a href="ai.html" class="nav__link header__item text-link is-active" style="font-weight: 600;">Digital Emirhan</a>
-                            <a href="contact.html" class="nav__link header__item text-link">Contact</a>
+                            <a href="index.html" class="nav__link header__item text-link" style="color: #ffffff;">Home</a>
+                            <a href="index.html#about" class="nav__link header__item text-link" style="color: #ffffff;">About</a>
+                            <a href="index.html#work" class="nav__link header__item text-link" style="color: #ffffff;">Work</a>
+                            <a href="blog.html" class="nav__link header__item text-link" style="color: #ffffff;">Blog</a>
+                            <a href="cv.html" class="nav__link header__item text-link" style="color: #ffffff;">CV</a>
+                            <a href="ai.html" class="nav__link header__item text-link is-active" style="font-weight: 600; color: #ffffff;">Digital Emirhan</a>
+                            <a href="contact.html" class="nav__link header__item text-link" style="color: #ffffff;">Contact</a>
                         </div>
-                        
-                        <label class="nav__theme header__item" role="button" tabindex="0">
-                            <div class="nav__theme__icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 12 12" class="cc-moon"><path fill="none" d="M0 0h12v12H0z"></path><path fill="currentColor" d="M6.315 10.617q-.223 0-.448-.02a4.93 4.93 0 0 1-.876-9.66.394.394 0 0 1 .486.486 4.142 4.142 0 0 0 5.1 5.1.394.394 0 0 1 .486.486 4.943 4.943 0 0 1-4.748 3.608Zm-1.741-8.69a4.142 4.142 0 1 0 5.5 5.5 4.931 4.931 0 0 1-5.5-5.5Z"></path></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 11.997 11.999" class="cc-sun"><path fill="currentColor" d="M5.599 11.601v-1a.4.4 0 0 1 .4-.4.4.4 0 0 1 .4.4v1a.4.4 0 0 1-.4.4.4.4 0 0 1-.4-.4Zm4.075-1.356-.708-.707a.4.4 0 0 1 0-.565.4.4 0 0 1 .567 0l.705.707a.4.4 0 0 1 0 .565.391.391 0 0 1-.282.117.4.4 0 0 1-.28-.12Zm-7.919 0a.4.4 0 0 1 0-.565l.707-.707a.4.4 0 0 1 .565 0 .4.4 0 0 1 0 .565l-.707.707a.39.39 0 0 1-.283.117.393.393 0 0 1-.28-.12Zm.493-4.533a3.463 3.463 0 0 1 3.457-3.46 3.463 3.463 0 0 1 3.457 3.46 3.46 3.46 0 0 1-3.457 3.456A3.46 3.46 0 0 1 2.25 5.709Zm.813 0a2.648 2.648 0 0 0 2.645 2.642 2.646 2.646 0 0 0 2.645-2.642 2.647 2.647 0 0 0-2.645-2.645 2.649 2.649 0 0 0-2.644 2.642Zm7.537.689a.4.4 0 0 1-.4-.4.4.4 0 0 1 .4-.4h1a.4.4 0 0 1 .4.4.4.4 0 0 1-.4.4Zm-10.2 0a.4.4 0 0 1-.4-.4.4.4 0 0 1 .4-.4h1a.4.4 0 0 1 .4.4.4.4 0 0 1-.4.4Zm8.568-3.367a.4.4 0 0 1 0-.568l.708-.705a.4.4 0 0 1 .564 0 .4.4 0 0 1 0 .565l-.705.708a.407.407 0 0 1-.284.114.406.406 0 0 1-.281-.117Zm-6.5 0-.707-.708a.4.4 0 0 1 0-.565.4.4 0 0 1 .565 0l.707.705a.4.4 0 0 1 0 .568.406.406 0 0 1-.282.114.4.4 0 0 1-.285-.117Zm3.137-1.632v-1a.4.4 0 0 1 .4-.4.4.4 0 0 1 .4.4v1a.4.4 0 0 1-.4.4.4.4 0 0 1-.404-.401Z"></path></svg>
-                            </div>
-                            <input id="toggleTheme" type="checkbox" name="theme" class="nav__theme__toggle">
-                            <div id="toggleThemeText" class="nav__theme__text">Light</div>
-                        </label>
                     </nav>
                 </div>
             </header>
 
-            <main class="takeprofit-page">
-                <div class="wrapper" style="width: 100%;">
-                    <div class="takeprofit-frame">
-                        
-                        <!-- Top Nav Actions (< and X) -->
-                        <div class="takeprofit-nav">
-                            <a href="index.html" class="takeprofit-nav-btn" title="Go Back">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="15 18 9 12 15 6"></polyline>
-                                </svg>
-                            </a>
-                            <a href="index.html" class="takeprofit-nav-btn" title="Close">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </a>
-                        </div>
-
-                        <!-- TakeProfit Headline -->
-                        <h1 class="takeprofit-title">Ask Digital Emirhan</h1>
-
-                        <!-- Message Thread Stream -->
-                        <div class="takeprofit-thread" id="chatBody">
-                            <div class="msg-row msg-row--ai">
-                                <span class="msg-label">Digital Emirhan</span>
-                                <div class="msg-bubble">
-                                    Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- TakeProfit Input Component -->
-                        <form class="takeprofit-box" id="chatForm" onsubmit="handleChatSubmit(event)">
-                            <div class="takeprofit-field-group">
-                                <span class="takeprofit-label">Question</span>
-                                <input type="text" id="chatInput" class="takeprofit-input" placeholder="Ask Digital Emirhan a question..." autocomplete="off">
-                            </div>
-                            <button type="submit" class="takeprofit-enter-btn" title="Send (Enter)">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="9 10 4 15 9 20"></polyline>
-                                    <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
-                                </svg>
-                            </button>
-                        </form>
-
-                        <p class="takeprofit-policy">By submitting a question, you agree to our <a href="privacy.html">Privacy Policy</a> and terms of use.</p>
+            <main class="tp-wrapper">
+                <div class="tp-card-frame">
+                    
+                    <!-- Top Navigation Controls (< and X) -->
+                    <div class="tp-nav-header">
+                        <a href="index.html" class="tp-circle-btn" title="Go Back">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </a>
+                        <a href="index.html" class="tp-circle-btn" title="Close">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </a>
                     </div>
+
+                    <!-- Welcome to TakeProfit Headline -->
+                    <h1 class="tp-headline">Welcome to Digital Emirhan</h1>
+
+                    <!-- Message Stream -->
+                    <div class="tp-thread-box" id="chatBody">
+                        <div class="tp-msg-row tp-msg-row--ai">
+                            <span class="tp-msg-author">DIGITAL EMIRHAN</span>
+                            <div class="tp-msg-body">
+                                Digital assistant of Emirhan Güngörmez. Feel free to ask about game development (Unreal Engine / Unity), software engineering, AI R&D, Kuran23, or collaboration opportunities.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exact TakeProfit Input Component -->
+                    <form class="tp-input-card" id="chatForm" onsubmit="handleChatSubmit(event)">
+                        <div class="tp-input-content">
+                            <span class="tp-input-label">Question</span>
+                            <div class="tp-input-field-group">
+                                <input type="text" id="chatInput" class="tp-input-field" placeholder="Ask Digital Emirhan..." autocomplete="off">
+                            </div>
+                        </div>
+
+                        <!-- Iconic L-Shaped Purple Enter Button SVG -->
+                        <button type="submit" class="tp-l-enter-btn" title="Send (Enter)">
+                            <svg viewBox="0 0 84 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- L-Shaped Polygon with rounded corners -->
+                                <path d="M 28 0 H 66 C 75.941 0 84 8.059 84 18 V 78 C 84 87.941 75.941 96 66 96 H 18 C 8.059 96 0 87.941 0 78 V 46 C 0 36.059 8.059 28 18 28 H 28 V 0 Z" fill="#9333ea"/>
+                                <!-- Enter Arrow Icon ↵ -->
+                                <path d="M 54 62 L 42 62 M 42 62 L 48 56 M 42 62 L 48 68 M 60 44 V 54 C 60 58.418 56.418 62 52 62 H 42" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <p class="tp-footer-policy">
+                        By clicking Continue, you agree to our <strong>User Agreement</strong> and <strong>Privacy Policy</strong>.
+                    </p>
                 </div>
             </main>
 
             <!-- Footer -->
-            <footer class="footer">
+            <footer class="footer" style="background: transparent; border-top: 1px solid #1f1f23;">
                 <div class="wrapper">
                     <div class="footer__grid">
-                        <div class="footer__copy">
+                        <div class="footer__copy" style="color: #71717a;">
                             <span>©</span>
                             <span id="footerYear">2026</span>
                             <span>All Rights Reserved.</span>
                         </div>
                         <ul class="footer__links">
-                            <li><a href="https://github.com/emirhangungormez" target="_blank" class="text-link">Github</a></li>
-                            <li><a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link">Linkedin</a></li>
-                            <li><a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link">X (Twitter)</a></li>
-                            <li><a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link">Medium</a></li>
-                            <li><a href="https://www.youtube.com/@han23studio" target="_blank" class="text-link">YouTube</a></li>
-                            <li><a href="../ai.html" class="text-link" hreflang="tr">Türkçe</a></li>
-                            <li><a href="privacy.html" class="text-link">Privacy &amp; Cookies</a></li>
+                            <li><a href="https://github.com/emirhangungormez" target="_blank" class="text-link" style="color: #a1a1aa;">Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link" style="color: #a1a1aa;">Linkedin</a></li>
+                            <li><a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link" style="color: #a1a1aa;">X (Twitter)</a></li>
+                            <li><a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link" style="color: #a1a1aa;">Medium</a></li>
+                            <li><a href="https://www.youtube.com/@han23studio" target="_blank" class="text-link" style="color: #a1a1aa;">YouTube</a></li>
+                            <li><a href="../ai.html" class="text-link" hreflang="tr" style="color: #a1a1aa;">Türkçe</a></li>
+                            <li><a href="privacy.html" class="text-link" style="color: #a1a1aa;">Privacy &amp; Cookies</a></li>
                         </ul>
                         <div class="footer__legal">
                             <a href="https://han13.emirhangungormez.com.tr" target="_blank" aria-label="Han13 Studio">
@@ -451,18 +413,18 @@
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
-            row.className = 'msg-row ' + (role === 'user' ? 'msg-row--user' : 'msg-row--ai');
+            row.className = 'tp-msg-row ' + (role === 'user' ? 'tp-msg-row--user' : 'tp-msg-row--ai');
             
             var label = document.createElement('span');
-            label.className = 'msg-label';
-            label.textContent = role === 'user' ? 'You' : 'Digital Emirhan';
+            label.className = 'tp-msg-author';
+            label.textContent = role === 'user' ? 'YOU' : 'DIGITAL EMIRHAN';
 
-            var bubble = document.createElement('div');
-            bubble.className = 'msg-bubble';
-            bubble.innerHTML = text;
+            var body = document.createElement('div');
+            body.className = 'tp-msg-body';
+            body.innerHTML = text;
 
             row.appendChild(label);
-            row.appendChild(bubble);
+            row.appendChild(body);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
@@ -471,18 +433,18 @@
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
             row.id = 'typingIndicatorRow';
-            row.className = 'msg-row msg-row--ai';
+            row.className = 'tp-msg-row tp-msg-row--ai';
             
             var label = document.createElement('span');
-            label.className = 'msg-label';
-            label.textContent = 'Digital Emirhan';
+            label.className = 'tp-msg-author';
+            label.textContent = 'DIGITAL EMIRHAN';
 
-            var bubble = document.createElement('div');
-            bubble.className = 'msg-bubble';
-            bubble.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            var body = document.createElement('div');
+            body.className = 'tp-msg-body';
+            body.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
             row.appendChild(label);
-            row.appendChild(bubble);
+            row.appendChild(body);
             chatBody.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
