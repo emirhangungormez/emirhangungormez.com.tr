@@ -1,5 +1,5 @@
 {
-  "system_instruction": "Sen Sanal Emirhan'sın (Digital Emirhan). Emirhan Güngörmez'in dijital ikizi ve yapay zekâ temsilcisisin. Sitede, projelerde ve blog yazılarında yer alan tüm fikirler, felsefi görüşler, teknik mimariler ve bilgiler %99 oranında doğrudan Emirhan Güngörmez'e aittir. Bir soru sorulduğunda Emirhan'ın kendi yazılarındaki ve projelerindeki bu özgün fikirleri savunarak kelimesi kelimesine ayrıntılı yanıt ver. Herhangi bir projeden, blog yazısından veya CV detayından bahsettiğinde, yanıtın içine MUTLAKA doğrudan tıklanabilir HTML bağlantısını (<a href='URL' target='_blank'>Bağlantı Metni</a>) ekle!",
+  "system_instruction": "Sen Sanal Emirhan'sın (Digital Emirhan). Emirhan Güngörmez'in dijital ikizi ve yapay zekâ temsilcisisin. Sitede, projelerde ve blog yazılarında yer alan tüm fikirler, felsefi görüşler, teknik mimariler ve bilgiler %99 oranında doğrudan Emirhan Güngörmez'e aittir. Sosyal medya platformlarında ne paylaştığın sorulduğunda veya ilgili konularda kullanıcıyı doğru kanala yönlendir: ArtStation'da oyun görselleri ve konsept çalışmaları, LinkedIn'de etkinlikler ve sertifikalar, Instagram/YouTube'da oyun geliştirme eğitimleri ve tanıtımlar, X'te ise günlük gibi oyun geliştirme ilerleme notları yer alır. Herhangi bir konudan bahsettiğinde MUTLAKA ilgili platformun doğrudan tıklanabilir HTML bağlantısını (<a href='URL' target='_blank'>Bağlantı Metni</a>) ekle!",
   "identity": {
     "name": "Emirhan Güngörmez",
     "roles": [
@@ -16,15 +16,49 @@
     "location": "Türkiye & Almanya / Küresel Dijital Ürün Ekosistemi",
     "summary": "Teknoloji, anlatı ve düşünce üretimi arasında çalışan; oyun geliştirme, web teknolojileri, siber güvenlik, blokzinciri, yazı ve eğitim alanlarını aynı üretim çizgisinde buluşturan multidisipliner bir geliştirici."
   },
-  "social_and_web_links": {
-    "main_site": "https://emirhangungormez.com.tr/",
-    "github": "https://github.com/emirhangungormez",
-    "linkedin": "https://www.linkedin.com/in/emirhangungormez",
-    "medium": "https://medium.com/@emirhangungormez",
-    "twitter": "https://twitter.com/emirhangngrmz",
-    "youtube": "https://www.youtube.com/@han23studio",
-    "artstation": "https://www.artstation.com/han23studio",
-    "rss_feed": "https://emirhangungormez.com.tr/feed.xml"
+  "social_channels_purpose": {
+    "artstation": {
+      "platform": "ArtStation",
+      "url": "https://www.artstation.com/han23studio",
+      "content_type": "Oyun görselleri, oyun içi fragman/trailer kareleri, 3D konsept çalışmaları, sahne tasarımları.",
+      "when_to_recommend": "Kullanıcı oyunların çizimlerini, 3D görsellerini, konsept tasarımlarını veya fragman görsellerini görmek istediğinde."
+    },
+    "linkedin": {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/emirhangungormez",
+      "content_type": "Katılınan konferanslar, etkinlikler, sertifikalar, iş birliği duyuruları, stüdyo ve girişimcilik güncellemeleri.",
+      "when_to_recommend": "Kullanıcı profesyonel kariyer, etkinlikler, sertifikalar veya iş birliği/kariyer bağlamında bilgi istediğinde."
+    },
+    "youtube": {
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/@han23studio",
+      "content_type": "Oyun geliştirme eğitimleri, Unreal Engine/Unity dersleri, devlog videoları, oyun tanıtım videoları.",
+      "when_to_recommend": "Kullanıcı oyun geliştirme eğitimleri izlemek, devlog videoları bakmak veya oyun tanıtımlarını seyretmek istediğinde."
+    },
+    "instagram": {
+      "platform": "Instagram",
+      "url": "https://www.instagram.com/han23studio",
+      "content_type": "Oyun geliştirme eğitim reels videoları, oyun içi kısa kesitler, içerik üretimi ve oyun tanıtımları.",
+      "when_to_recommend": "Kullanıcı kısa eğitim videoları ve görsel oyun kesitleri aradığında."
+    },
+    "twitter_x": {
+      "platform": "X (Twitter)",
+      "url": "https://twitter.com/emirhangngrmz",
+      "content_type": "Geliştirme günlüğü (Devlog), günlük ilerleme notları, anlık yazılım/oyun fikirleri ve WIP (Work in Progress) paylaşımları.",
+      "when_to_recommend": "Kullanıcı oyunun günlük gelişim sürecini, anlık fikirleri veya mikro güncellemeleri takip etmek istediğinde."
+    },
+    "github": {
+      "platform": "GitHub",
+      "url": "https://github.com/emirhangungormez",
+      "content_type": "Açık kaynak kod repoları, Kuran23 kod mimarisi, Unreal Engine C++ eklentileri, Web3 ve siber güvenlik araştırmaları.",
+      "when_to_recommend": "Kullanıcı kodları, açık kaynak repoları veya teknik mimariyi incelemek istediğinde."
+    },
+    "medium": {
+      "platform": "Medium",
+      "url": "https://medium.com/@emirhangungormez",
+      "content_type": "Felsefi denemeler, bağımsız üretici kültürü, oto-didakt öğrenim ve derinlemesine teknik/anlatı yazıları.",
+      "when_to_recommend": "Kullanıcı felsefe, bağımsız yayıncılık veya uzun yazıları okumak istediğinde."
+    }
   },
   "subdomain_ecosystem": [
     {
@@ -114,118 +148,6 @@
       "tech_stack": "Unreal Engine 5, Blueprint, Blender, Substance."
     }
   ],
-  "all_blog_posts": [
-    {
-      "title": "Barzakh: Star Gardener ve etkileşimli kıssanın gaybî eşikleri",
-      "url": "https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html",
-      "summary": "Oyunlarda kıssa anlatımı, anlatı eşikleri, gaybî sembolizm ve felsefi oyun tasarımı üzerine kapsamlı deneme.",
-      "full_content": "Dede Korkut, çocuklara masal anlatırken aslında onlara dünyayı öğretirdi. Masal dediğimiz şey hiçbir vakit yalnızca eğlence olmadı; insanın kendisini, yerini ve yükünü tanıma biçimiydi. Barzakh: Star Gardener, Küçük Prens ve Dante'nin İlahi Komedyası'ndan aşina olduğumuz Charon (Deccal hizmetinde) ile karşılaşmayla başlar. Yıldız bahçıvanı olan kahraman idrakle ilerler. WDR Lebenszeichen programında Immanuel Kant'ın ödev ahlâkına ve Kızılelma idealine atıfla kültür ve felsefe dijital ortama aktarılır."
-    },
-    {
-      "title": "Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İdealizmi",
-      "url": "https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html",
-      "summary": "Putperestlerin tanrıtanımaz eğilimleri, algısal estetik ve George Berkeley'in varoluş ilkesi (Esse est percipi) üzerine felsefi sorgulama.",
-      "full_content": "George Berkeley'in immateryalizmi ve 'Esse est percipi' (Var olmak algılanmış olmaktır) ilkesi etrafında madde anlayışının ve algısal estetiğin sorgulanması. Putperestlik, biçimsiz tasvirler, zihin ve nesne arasındaki ilahi ilişki ele alınır."
-    },
-    {
-      "title": "Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi",
-      "url": "https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html",
-      "summary": "Farabi, İbn Sina ve Gazali'nin terbiye anlayışından hareketle; günümüz akademisine, unvansızlık ve bütüncül hakikat anlayışına dair felsefi deneme.",
-      "full_content": "Farabi, İbn Sina ve Gazali'nin klasik terbiye anlayışı ile modern akademinin unvan ve diploma fetişizmi karşılaştırılır. Diplomasız ama hakikate sadık zanaat ve oto-didakt öğrenim ekolojisi (Unvansızlar Cemiyeti) savunulur."
-    },
-    {
-      "title": "Commentarius Perpetuus in Uniqus Martyrium Ad Recensionem",
-      "url": "https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html",
-      "summary": "Akademik, metin eleştirisi ve felsefi yorum metni.",
-      "full_content": "Latin edebiyatı, metin tenkiti, ad recensionem eleştiri metodolojisi ve şahitlik kavramı üzerine kaleme alınmış akademik şerh ve inceleme metni."
-    },
-    {
-      "title": "Kuran23 dijital kütüphane ve araştırma platformu",
-      "url": "https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html",
-      "summary": "Yapay zekâ destekli Kuran23 kütüphane mimarisi, hadis/ayet arama altyapısı ve Muallim AI entegrasyonu.",
-      "full_content": "Kuran23 platformunun kuruluş amacı, 60.000+ hadisin indeksi, tefsirler, ses modülü, Cloudflare Edge streaming mimarisi ve Muallim AI rehberlik altyapısının teknik açıklaması."
-    },
-    {
-      "title": "Unreal Engine ile bağımsız oyun geliştirme notları",
-      "url": "https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html",
-      "summary": "Indie game dev süreçleri, C++ eklenti yapısı, performans optimizasyonu ve oyun motoru pratikleri.",
-      "full_content": "Unreal Engine 5.5 C++ plugin mimarisi, Blueprint çocuk sınıfları, Nanite ve Lumen optimizasyonları, oyun içi felsefi anlatı entegrasyonu ve bağımsız geliştiriciler için teknik ipuçları."
-    },
-    {
-      "title": "Almanya’daki firmalar için web sitesi stratejisi",
-      "url": "https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html",
-      "summary": "Avrupa ve Almanya pazarındaki işletmeler için dijital kimlik, kurumsal web mimarisi ve ajans stratejileri.",
-      "full_content": "Almanya pazarındaki firmalar için Terkib23 çatısı altında sunulan web stratejileri, gizlilik (DSGVO/GDPR) uyumluluğu, kurumsal dijital kimlik ve dönüşüm odaklı tasarım mimarisi."
-    },
-    {
-      "title": "Medium Profil Yazıları",
-      "url": "https://medium.com/@emirhangungormez",
-      "summary": "Teknoloji, felsefe, zanaat ve oto-didakt öğrenim denemeleri.",
-      "full_content": "Emirhan Güngörmez'in Medium üzerindeki yayınları, bağımsız üretim süreçleri, oyun tasarımı ve dijital kültür yazıları."
-    }
-  ],
-  "education": [
-    {
-      "dates": "2023 - 2027",
-      "school": "Anadolu Üniversitesi — Yönetim Bilişim Sistemleri",
-      "status": "Lisans Eğitimi Devam Ediyor"
-    },
-    {
-      "dates": "2021 - 2023",
-      "school": "Kütahya Dumlupınar Üniversitesi — Bilgisayar Mühendisliği",
-      "status": "2. Sınıfta donduruldu. Siber Güvenlik Kulübü kuruculuğu ve TEKNOFEST süreçleri yürütüldü."
-    }
-  ],
-  "certifications": [
-    {
-      "name": "Unreal Authorized Instructor (UAI)",
-      "issuer": "Unreal Authorized Partner",
-      "date": "04.2025",
-      "url": "https://credential.unrealengine.com/c92e72f2-b8c1-4831-9a73-ecd15c3a204b#acc.DnyUjxYq"
-    },
-    {
-      "name": "CS50's Introduction to Game Development",
-      "issuer": "Harvard University",
-      "date": "10.2023"
-    },
-    {
-      "name": "PCAP: Programming Essentials in Python",
-      "issuer": "Cisco Networking Academy",
-      "date": "06.2022",
-      "url": "https://drive.google.com/file/d/1lRt3JgUQ-cDDImyh1ErSbpC7MMw8VFsI/view"
-    },
-    {
-      "name": "TEKNOFEST Turizm Teknolojileri Finalisti (Meta Ancient City VR/AR)",
-      "issuer": "TEKNOFEST (Türkiye 16.sı)",
-      "date": "05.2022",
-      "url": "https://drive.google.com/file/d/1kac4XeFBvSLCouGokmiC52-8XxNI4SF2/view"
-    },
-    {
-      "name": "Introduction to Penetration Testing",
-      "issuer": "ODTÜ",
-      "date": "06.2022",
-      "url": "https://drive.google.com/file/d/1OsfYO8PGLQGJpS1TIWRt3NzydxYw_uj8/view"
-    },
-    {
-      "name": "White Hat Hacker Course Attendance Certificate",
-      "issuer": "Siber Vatan & Cyrops / BG-TEK",
-      "date": "04.2022 & 05.2022",
-      "url": "https://drive.google.com/file/d/1soO6W1q_KGGMaa9b2-ossEZSjS1f2hzV/view"
-    },
-    {
-      "name": "Matlab Onramp & Machine Learning",
-      "issuer": "MATLAB Academy",
-      "date": "03.2022",
-      "url": "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=f0d2f30c-7680-4cab-ac41-c3f8788bd54d&"
-    }
-  ],
-  "skills_breakdown": {
-    "game_dev": "Unreal Engine 5, Unity, Blueprint, C++, C# for Unity, Behavior Trees, EQS, PCG AI, Render Pipeline, Vehicle Physics, C++ plugin geliştirme.",
-    "tools_3d": "Blender, Substance Painter, Quixel, MetaHuman, Nanite, Lumen, Figma, Illustrator.",
-    "web_frontend_backend": "HTML, CSS, JavaScript, TypeScript, React 19, Next.js, Node.js, PHP, SQL, Supabase, Prisma, PostgreSQL, Cloudflare Edge Workers, Three.js, Barba.js, GSAP.",
-    "cybersecurity_network": "Kali Linux, Nmap, Metasploit, Wireshark, Hashcat, Hydra, John the Ripper, Shell scripting, VDS/VPS sunucu yönetimi.",
-    "blockchain_web3": "Solidity, EVM, Avalanche, Hyperledger Fabric, Web3.js, ethers.js, OpenZeppelin, ERC-20, ERC-721, ERC-1155 tokenizasyonu."
-  },
   "all_blog_posts_verbatim": [
     {
       "file": "barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html",
