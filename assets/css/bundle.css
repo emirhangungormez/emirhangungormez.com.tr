@@ -2722,6 +2722,270 @@ body.dark-mode .tag-pill--featured {
   gap: 0.35em !important;
 }
 
+/* ==========================================================================
+   Sanal Emirhan AI Chat Component Styles (Barba.js Compatible)
+   ========================================================================== */
+.tp-pure-page {
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+}
+
+.tp-pure-frame {
+    max-width: 42rem;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.tp-headline-title {
+    font-family: "PP Mori", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 2.4rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: inherit;
+    margin: 0 0 1.8rem 0;
+    line-height: 1.15;
+}
+
+.tp-stream-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-height: 340px;
+    overflow-y: auto;
+    margin-bottom: 1.6rem;
+    padding-right: 0.4rem;
+    scroll-behavior: smooth;
+}
+
+.tp-stream-thread:empty {
+    display: none;
+    margin-bottom: 0;
+}
+
+.tp-stream-thread::-webkit-scrollbar {
+    width: 4px;
+}
+.tp-stream-thread::-webkit-scrollbar-thumb {
+    background: currentColor;
+    opacity: 0.15;
+    border-radius: 2px;
+}
+
+.tp-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    animation: tpFadeIn 0.2s ease forwards;
+}
+
+@keyframes tpFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tp-row--user {
+    align-self: flex-end;
+    max-width: 85%;
+}
+
+.tp-row--ai {
+    align-self: flex-start;
+    width: 100%;
+}
+
+.tp-role-label {
+    font-family: "PP Mori", sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    color: inherit;
+}
+
+.tp-row--user .tp-role-label {
+    text-align: right;
+}
+
+.tp-bubble-body {
+    font-family: "PP Mori", sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: inherit;
+    word-break: break-word;
+}
+
+.tp-row--user .tp-bubble-body {
+    background: rgba(17, 20, 20, 0.05);
+    border: 1px solid rgba(17, 20, 20, 0.1);
+    padding: 0.85rem 1.15rem;
+    border-radius: 16px;
+    border-bottom-right-radius: 4px;
+}
+
+.dark-mode .tp-row--user .tp-bubble-body {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.tp-row--ai .tp-bubble-body {
+    background: transparent;
+    border-left: 2px solid rgba(17, 20, 20, 0.25);
+    padding: 0.2rem 0 0.2rem 1.0rem;
+}
+
+.dark-mode .tp-row--ai .tp-bubble-body {
+    border-left-color: rgba(255, 255, 255, 0.3);
+}
+
+.tp-bubble-body a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.tp-bubble-body strong {
+    color: inherit;
+    font-weight: 600;
+}
+
+.typing-dots {
+    display: inline-flex;
+    gap: 4px;
+    padding: 0.4rem 0;
+}
+
+.typing-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.4;
+    animation: pulseDot 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulseDot {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+}
+
+.tp-input-box-card {
+    position: relative;
+    background: #2b2b2e;
+    border-radius: 20px;
+    padding: 1.1rem 1.2rem 1.1rem 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+    min-height: 104px;
+}
+
+.light-mode .tp-input-box-card,
+body:not(.dark-mode) .tp-input-box-card {
+    background: #e1e1e5;
+    color: #111414;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+}
+
+.dark-mode .tp-input-box-card {
+    background: #27272a;
+    color: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.tp-input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    padding-right: 96px;
+}
+
+.tp-field-label {
+    font-family: "PP Mori", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: inherit;
+    opacity: 0.6;
+    letter-spacing: 0.01em;
+}
+
+.tp-main-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.45rem;
+    font-family: "PP Mori", sans-serif;
+    color: inherit;
+    caret-color: #8b5cf6;
+    padding: 0.1rem 0;
+}
+
+.tp-main-input::placeholder {
+    color: inherit;
+    opacity: 0.38;
+}
+
+.tp-exact-l-enter-btn {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 88px;
+    height: calc(100% - 16px);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 3;
+    transition: transform 0.15s ease, filter 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tp-exact-l-enter-btn:hover {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+}
+
+.tp-exact-l-enter-btn svg {
+    width: 88px;
+    height: 100%;
+    display: block;
+}
+
+@media screen and (max-width: 640px) {
+    .tp-headline-title {
+        font-size: 1.8rem;
+    }
+    .tp-main-input {
+        font-size: 1.15rem;
+    }
+    .tp-exact-l-enter-btn {
+        width: 76px;
+    }
+    .tp-exact-l-enter-btn svg {
+        width: 76px;
+    }
+    .tp-input-group {
+        padding-right: 82px;
+    }
+}
+
+
 
 
 
