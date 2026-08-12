@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Blog | Emirhan Gungormez</title>
+    <meta name="description" content="Articles and notes by Emirhan Gungormez on game development, Kuran23, web technologies, digital products, philosophy, entrepreneurship and production discipline.">
+    <meta name="author" content="Emirhan Gungormez">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="language" content="en">
+    <meta name="google-site-verification" content="rF6N3rqucGY_uSPT6Yio5i6GYN_tTQz0Ls2wnTablQw">
+    <link rel="canonical" href="https://emirhangungormez.com.tr/en/blog.html">
+    <link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog.html">
+    <link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog.html">
+    <link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog.html">
+    <link rel="alternate" type="application/rss+xml" title="Emirhan Gungormez Blog" href="https://emirhangungormez.com.tr/en/feed.xml">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Emirhan Gungormez">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://emirhangungormez.com.tr/en/blog.html">
+    <meta property="og:title" content="Blog | Emirhan Gungormez">
+    <meta property="og:description" content="Articles and notes by Emirhan Gungormez on game development, Kuran23, web technologies, digital products, philosophy, entrepreneurship and production discipline.">
+    <meta property="og:image" content="https://emirhangungormez.com.tr/assets/images/og-min.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog | Emirhan Gungormez">
+    <meta name="twitter:description" content="Articles and notes by Emirhan Gungormez on game development, Kuran23, web technologies, digital products, philosophy, entrepreneurship and production discipline.">
+    <meta name="twitter:image" content="https://emirhangungormez.com.tr/assets/images/og-min.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://emirhangungormez.com.tr/assets/favicon/site.webmanifest">
+    <meta name="theme-color" content="#efefef">
+    <link rel="preload" href="../../assets/fonts/PPMori-Regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="../../assets/css/bundle.css?v=20260604-cookie1">
+    <style>
+        .blog-list .wrapper {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+            gap: 1.5em !important;
+        }
+
+        .blog-card {
+            position: relative !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            grid-template-columns: none !important;
+            column-gap: 0 !important;
+            min-height: 240px !important;
+            padding: 2.2em 1.8em !important;
+            background-color: #181818 !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, box-shadow 0.35s ease !important;
+            text-decoration: none !important;
+        }
+
+        .blog-card > span {
+            display: none !important;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px) !important;
+            border-color: rgba(255, 255, 255, 0.28) !important;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
+        }
+
+        .card-dots {
+            display: block;
+            margin-bottom: 1.8em;
+            color: #ffffff;
+            opacity: 0.7;
+        }
+
+        .blog-card h2 {
+            color: #ffffff !important;
+            font-size: 1.25rem !important;
+            font-weight: 500 !important;
+            line-height: 1.35 !important;
+            letter-spacing: -0.01em !important;
+            margin-bottom: 0.6em !important;
+            max-width: 100% !important;
+        }
+
+        .blog-card p {
+            color: rgba(255, 255, 255, 0.68) !important;
+            font-size: 0.88rem !important;
+            line-height: 1.5 !important;
+            margin-bottom: 1.2em !important;
+        }
+
+        .blog-card small {
+            color: rgba(255, 255, 255, 0.55) !important;
+            font-size: 0.76rem !important;
+            letter-spacing: 0.05em !important;
+            text-transform: uppercase !important;
+            display: block;
+            margin-bottom: 0.6em;
+        }
+    </style>
+</head>
+<body data-barba="wrapper" class="blog-page">
+    <div id="viewport">
+        <div data-barba="container" data-barba-namespace="blog">
+            <header id="header" class="header">
+                <div class="wrapper">
+                    <nav class="nav">
+                        <a href="../index.html" class="nav__logo header__item">Emirhan Gungormez</a>
+                        <div class="nav__links">
+                            <a href="../index.html" class="nav__link header__item text-link">Home</a>
+                            <a href="../index.html#about" class="nav__link header__item text-link">About</a>
+                            <a href="../index.html#work" class="nav__link header__item text-link">Work</a>
+                            <a href="../blog.html" class="nav__link header__item text-link is-active">Blog</a>
+                            <a href="../cv.html" class="nav__link header__item text-link">CV</a>
+                            <a href="../ai.html" class="nav__link header__item text-link">Digital Emirhan</a>
+                            <a href="../contact.html" class="nav__link header__item text-link">Contact</a>
+                        </div>
+                        
+                        <label class="nav__theme header__item" role="button" tabindex="0">
+                            <div class="nav__theme__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 12 12" class="cc-moon"><path fill="none" d="M0 0h12v12H0z"></path><path fill="currentColor" d="M6.315 10.617q-.223 0-.448-.02a4.93 4.93 0 0 1-.876-9.66.394.394 0 0 1 .486.486 4.142 4.142 0 0 0 5.1 5.1.394.394 0 0 1 .486.486 4.943 4.943 0 0 1-4.748 3.608Zm-1.741-8.69a4.142 4.142 0 1 0 5.5 5.5 4.931 4.931 0 0 1-5.5-5.5Z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 11.997 11.999" class="cc-sun"><path fill="currentColor" d="M5.599 11.601v-1a.4.4 0 0 1 .4-.4.4.4 0 0 1 .4.4v1a.4.4 0 0 1-.4.4.4.4 0 0 1-.4-.4Zm4.075-1.356-.708-.707a.4.4 0 0 1 0-.565.4.4 0 0 1 .567 0l.705.707a.4.4 0 0 1 0 .565.391.391 0 0 1-.282.117.4.4 0 0 1-.28-.12Zm-7.919 0a.4.4 0 0 1 0-.565l.707-.707a.4.4 0 0 1 .565 0 .4.4 0 0 1 0 .565l-.707.707a.39.39 0 0 1-.283.117.393.393 0 0 1-.28-.12Zm.493-4.533a3.463 3.463 0 0 1 3.457-3.46 3.463 3.463 0 0 1 3.457 3.46 3.46 3.46 0 0 1-3.457 3.456A3.46 3.46 0 0 1 2.25 5.709Zm.813 0a2.648 2.648 0 0 0 2.645 2.642 2.646 2.646 0 0 0 2.645-2.642 2.647 2.647 0 0 0-2.645-2.645 2.649 2.649 0 0 0-2.644 2.642Zm7.537.689a.4.4 0 0 1-.4-.4.4.4 0 0 1 .4-.4h1a.4.4 0 0 1 .4.4.4.4 0 0 1-.4.4Zm-10.2 0a.4.4 0 0 1-.4-.4.4.4 0 0 1 .4-.4h1a.4.4 0 0 1 .4.4.4.4 0 0 1-.4.4Zm8.568-3.367a.4.4 0 0 1 0-.568l.708-.705a.4.4 0 0 1 .564 0 .4.4 0 0 1 0 .565l-.705.708a.407.407 0 0 1-.284.114.406.406 0 0 1-.281-.117Zm-6.5 0-.707-.708a.4.4 0 0 1 0-.565.4.4 0 0 1 .565 0l.707.705a.4.4 0 0 1 0 .568.406.406 0 0 1-.282.114.4.4 0 0 1-.285-.117Zm3.137-1.632v-1a.4.4 0 0 1 .4-.4.4.4 0 0 1 .4.4v1a.4.4 0 0 1-.4.4.4.4 0 0 1-.404-.401Z"></path></svg>
+                            </div>
+                            <input id="toggleTheme" type="checkbox" name="theme" class="nav__theme__toggle">
+                            <div id="toggleThemeText" class="nav__theme__text">Light</div>
+                        </label>
+                    </nav>
+                </div>
+            </header>
+            <main>
+                <section class="blog-hero"><div class="wrapper"><span>/ Blog</span><h1>Essays, notes & production records</h1><p>Regular essays on game development, web technologies, Kuran23, digital products, philosophy and production discipline.</p></div></section>
+                <section class="blog-list"><div class="wrapper">
+                    <a href="../blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Philosophy & Ecology &bull; 2026-08-10 &bull; 7 min</small><h2>Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi</h2><p>A philosophical inquiry into modern academia, titleless practice and holistic truth from Farabi, Avicenna and Ghazali.</p></div></a>
+                    <a href="../blog/immateryalizm-ve-berkeleyin-idealizmi.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Philosophy & Theology &bull; 2026-08-02 &bull; 6 min</small><h2>Immaterialism & Berkeley's Idealism</h2><p>A philosophical critique of idolization, perceptual aesthetics and George Berkeley's principle of existence.</p></div></a>
+                    <a href="../blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Game & Narrative &bull; 2026-06-02 &bull; 9 min</small><h2>Barzakh: Star Gardener & Interactive Parable Thresholds</h2><p>A long essay on Barzakh: Star Gardener through Book of Dede Korkut, The Little Prince, Dante and spiritual thresholds.</p></div></a>
+                    <a href="../blog/commentarius-perpetuus-uniqus-martyrium.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Philosophical Essay &bull; 2026-06-02 &bull; 12 min</small><h2>Commentarius Perpetuus in "Uniqus Martyrium"</h2><p>A commentary on grief, realization, solitude and the dissolution of modern thought.</p></div></a>
+                </div></section>
+            </main>
+            <footer class="footer">
+                <div class="wrapper">
+                    <div class="footer__grid">
+                        <div class="footer__copy">
+                            <span>©</span>
+                            <span id="footerYear">2026</span>
+                            <span>All Rights Reserved.</span>
+                        </div>
+                        <ul class="footer__links">
+                            <li><a href="https://github.com/emirhangungormez" target="_blank" class="text-link">Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link">Linkedin</a></li>
+                            <li><a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link">X (Twitter)</a></li>
+                            <li><a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link">Medium</a></li>
+                            <li><a href="https://www.youtube.com/@han23studio" target="_blank" class="text-link">YouTube</a></li>
+                            <li><a href="../../blog.html" class="text-link" hreflang="tr">Türkçe</a></li>
+                            <li><a href="../privacy.html" class="text-link">Privacy &amp; Cookies</a></li>
+                        </ul>
+                        <div class="footer__legal">
+                            <a href="https://han13.emirhangungormez.com.tr" target="_blank" aria-label="Han13 Studio">
+                                <img src="../../assets/images/logos/han13.svg" alt="Han13 Logo" class="footer__logo-img" width="250" height="36">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="../../assets/js/bundle.js"></script>
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/site.js?v=20260604-gallery1"></script>
+</body>
+</html>

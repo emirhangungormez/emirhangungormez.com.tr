@@ -1,3 +1,7 @@
 /cv.pdf /cv.html 301
+/blog /blog.html 200
+/blog/ /blog.html 200
+/en/blog /en/blog.html 200
+/en/blog/ /en/blog.html 200
 /en /en/index.html 200
 /en/ /en/index.html 200
