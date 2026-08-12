@@ -60,7 +60,8 @@
             width: 4px;
         }
         .ai-body::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.12);
+            background: currentColor;
+            opacity: 0.2;
             border-radius: 2px;
         }
 
@@ -91,40 +92,52 @@
             font-size: 0.72rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
+            opacity: 0.45;
+            color: inherit;
             margin-bottom: 0.1em;
         }
 
         .msg-bubble {
             font-size: 0.95rem;
             line-height: 1.65;
-            color: rgba(255, 255, 255, 0.9);
+            color: inherit;
             word-break: break-word;
         }
 
         .msg-row--user .msg-bubble {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(17, 20, 20, 0.06);
+            border: 1px solid rgba(17, 20, 20, 0.12);
             padding: 0.9em 1.2em;
             border-radius: 12px;
-            color: #ffffff;
+            color: inherit;
         }
 
         .msg-row--ai .msg-bubble {
             background: transparent;
-            border-left: 2px solid rgba(255, 255, 255, 0.25);
+            border-left: 2px solid rgba(17, 20, 20, 0.25);
             padding: 0.3em 0 0.3em 1.1em;
-            color: rgba(255, 255, 255, 0.88);
+            color: inherit;
+            opacity: 0.92;
+        }
+
+        .dark-mode .msg-row--user .msg-bubble {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        .dark-mode .msg-row--ai .msg-bubble {
+            border-left-color: rgba(255, 255, 255, 0.3);
         }
 
         .msg-bubble a {
-            color: #ffffff;
+            color: inherit;
+            font-weight: 600;
             text-decoration: underline;
             text-underline-offset: 3px;
         }
 
         .msg-bubble strong {
-            color: #ffffff;
+            color: inherit;
             font-weight: 600;
         }
 
@@ -138,7 +151,8 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
+            background: currentColor;
+            opacity: 0.4;
             animation: pulseDot 1.4s infinite ease-in-out both;
         }
 
@@ -154,7 +168,11 @@
         .ai-footer {
             margin-top: 2em;
             padding-top: 1.2em;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(17, 20, 20, 0.12);
+        }
+
+        .dark-mode .ai-footer {
+            border-top-color: rgba(255, 255, 255, 0.1);
         }
 
         .ai-input-form {
@@ -162,14 +180,22 @@
             align-items: center;
             gap: 1em;
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(17, 20, 20, 0.2);
             border-radius: 8px;
             padding: 0.4em 0.6em 0.4em 1em;
             transition: border-color 0.2s ease;
         }
 
+        .dark-mode .ai-input-form {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
         .ai-input-form:focus-within {
-            border-color: rgba(255, 255, 255, 0.4);
+            border-color: rgba(17, 20, 20, 0.5);
+        }
+
+        .dark-mode .ai-input-form:focus-within {
+            border-color: rgba(255, 255, 255, 0.45);
         }
 
         .ai-input-text {
@@ -177,30 +203,32 @@
             background: transparent;
             border: none;
             outline: none;
-            color: #ffffff;
+            color: inherit;
             font-size: 0.95rem;
             font-family: inherit;
             padding: 0.5em 0;
         }
 
         .ai-input-text::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            color: inherit;
+            opacity: 0.45;
         }
 
         .ai-send-btn {
             background: transparent;
-            color: rgba(255, 255, 255, 0.7);
+            color: inherit;
+            opacity: 0.6;
             border: none;
             cursor: pointer;
             padding: 0.4em;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.2s ease;
+            transition: opacity 0.2s ease;
         }
 
         .ai-send-btn:hover {
-            color: #ffffff;
+            opacity: 1;
         }
 
         @media screen and (max-width: 768px) {
@@ -231,7 +259,7 @@
                             <a href="index.html#work" class="nav__link header__item text-link">Projeler</a>
                             <a href="blog.html" class="nav__link header__item text-link">Blog</a>
                             <a href="cv.html" class="nav__link header__item text-link">Özgeçmiş</a>
-                            <a href="ai.html" class="nav__link header__item text-link is-active" style="color: #ffffff; font-weight: 600;">Sanal Emirhan</a>
+                            <a href="ai.html" class="nav__link header__item text-link is-active" style="font-weight: 600;">Sanal Emirhan</a>
                             <a href="iletisim.html" class="nav__link header__item text-link">İletişim</a>
                         </div>
                         
