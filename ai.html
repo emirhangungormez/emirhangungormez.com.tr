@@ -30,146 +30,198 @@
     <link rel="stylesheet" href="assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        /* Claude / Cursor Inspired AI Chat System */
-        .chat-page {
-            padding: 3rem 0 5rem 0;
+        .ai-layout {
+            padding: 2.5rem 0 5rem 0;
             min-height: calc(100vh - 160px);
             display: flex;
             flex-direction: column;
         }
 
-        .chat-frame {
-            max-width: 44rem;
+        .ai-frame {
+            max-width: 46rem;
             margin: 0 auto;
             width: 100%;
             display: flex;
             flex-direction: column;
-            height: clamp(560px, 74vh, 820px);
+            height: clamp(580px, 75vh, 840px);
             position: relative;
         }
 
-        .chat-stream {
-            flex: 1;
-            overflow-y: auto;
+        /* Image 2 Principle: Micro Breadcrumb Header */
+        .ai-top-bar {
             display: flex;
-            flex-direction: column;
-            gap: 2.2rem;
-            padding: 0.5rem 0.5rem 2rem 0.5rem;
-            scroll-behavior: smooth;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(17, 20, 20, 0.08);
+        }
+        .dark-mode .ai-top-bar {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
         }
 
-        .chat-stream::-webkit-scrollbar {
-            width: 5px;
-        }
-        .chat-stream::-webkit-scrollbar-thumb {
-            background: currentColor;
-            opacity: 0.15;
-            border-radius: 3px;
-        }
-
-        .chat-msg {
-            display: flex;
-            flex-direction: column;
-            gap: 0.45rem;
-            max-width: 100%;
-            animation: msgFade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes msgFade {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .chat-msg--user {
-            align-self: flex-end;
-            max-width: 82%;
-        }
-
-        .chat-msg--assistant {
-            align-self: flex-start;
-            width: 100%;
-        }
-
-        .chat-author {
-            font-size: 0.73rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            opacity: 0.45;
-            color: inherit;
+        .ai-breadcrumb {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            opacity: 0.55;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
-        .chat-msg--user .chat-author {
-            justify-content: flex-end;
+        .ai-breadcrumb strong {
+            opacity: 1;
+            font-weight: 600;
         }
 
-        .chat-content {
-            font-size: 0.98rem;
-            line-height: 1.7;
+        /* Image 2 Principle: Quick Filter Pills */
+        .ai-filter-pills {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .ai-pill {
+            background: rgba(17, 20, 20, 0.05);
+            border: 1px solid rgba(17, 20, 20, 0.1);
+            color: inherit;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dark-mode .ai-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .ai-pill:hover {
+            background: rgba(17, 20, 20, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .dark-mode .ai-pill:hover {
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        /* Messages Stream */
+        .ai-stream {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            padding: 0.5rem 0.2rem 1.5rem 0.2rem;
+            scroll-behavior: smooth;
+        }
+
+        .ai-stream::-webkit-scrollbar {
+            width: 4px;
+        }
+        .ai-stream::-webkit-scrollbar-thumb {
+            background: currentColor;
+            opacity: 0.15;
+            border-radius: 2px;
+        }
+
+        .ai-msg {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            animation: fadeInMsg 0.2s ease forwards;
+        }
+
+        @keyframes fadeInMsg {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-msg--user {
+            align-self: flex-end;
+            max-width: 82%;
+        }
+
+        .ai-msg--assistant {
+            align-self: flex-start;
+            width: 100%;
+        }
+
+        .ai-msg-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+
+        .ai-msg--user .ai-msg-label {
+            text-align: right;
+        }
+
+        .ai-msg-content {
+            font-size: 0.95rem;
+            line-height: 1.65;
             color: inherit;
             word-break: break-word;
         }
 
-        /* Cursor / Claude Style User Bubble */
-        .chat-msg--user .chat-content {
-            background: rgba(17, 20, 20, 0.05);
-            border: 1px solid rgba(17, 20, 20, 0.1);
-            padding: 0.9rem 1.25rem;
-            border-radius: 18px;
-            border-bottom-right-radius: 4px;
+        /* Image 1 Principle: Micro Cards inside User Messages */
+        .ai-msg--user .ai-msg-content {
+            background: rgba(17, 20, 20, 0.04);
+            border: 1px solid rgba(17, 20, 20, 0.08);
+            padding: 0.8rem 1.1rem;
+            border-radius: 14px;
+            border-bottom-right-radius: 3px;
         }
 
-        .dark-mode .chat-msg--user .chat-content {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.12);
+        .dark-mode .ai-msg--user .ai-msg-content {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Cursor / Claude Style Assistant Response */
-        .chat-msg--assistant .chat-content {
+        .ai-msg--assistant .ai-msg-content {
             background: transparent;
             padding: 0.2rem 0;
-            opacity: 0.95;
         }
 
-        .chat-content p {
+        .ai-msg-content p {
             margin: 0 0 0.8rem 0;
-            line-height: 1.7;
-            font-size: 0.98rem;
         }
-        .chat-content p:last-child {
+        .ai-msg-content p:last-child {
             margin-bottom: 0;
         }
 
-        .chat-content a {
+        .ai-msg-content a {
             color: inherit;
             font-weight: 600;
             text-decoration: underline;
             text-underline-offset: 3px;
         }
 
-        .chat-content strong {
+        .ai-msg-content strong {
             color: inherit;
             font-weight: 600;
         }
 
-        .chat-content ul {
+        .ai-msg-content ul {
             margin: 0.6rem 0;
             padding-left: 1.25rem;
         }
 
-        .chat-content li {
+        .ai-msg-content li {
             margin-bottom: 0.35rem;
         }
 
         /* Typing Dots Animation */
-        .typing-box {
+        .typing-dots {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
         }
         .typing-dot {
             width: 5px;
@@ -188,103 +240,131 @@
             40% { opacity: 0.9; transform: scale(1.1); }
         }
 
-        /* Claude / Cursor Style Floating Input Dock */
-        .chat-dock {
+        /* Image 3 Principle: Lovable Prompt Bar */
+        .ai-dock-container {
             margin-top: auto;
-            padding-top: 1rem;
             position: relative;
+            padding-top: 1rem;
         }
 
-        .chat-form {
-            display: flex;
-            align-items: flex-end;
-            gap: 0.75rem;
-            background: rgba(255, 255, 255, 0.75);
+        .ai-dock {
+            position: relative;
+            background: #ffffff;
             border: 1px solid rgba(17, 20, 20, 0.12);
-            border-radius: 20px;
-            padding: 0.6rem 0.6rem 0.6rem 1.25rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(16px);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 16px;
+            padding: 1rem 1rem 0.75rem 1.1rem;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
-        .dark-mode .chat-form {
-            background: rgba(24, 24, 24, 0.85);
+        .dark-mode .ai-dock {
+            background: #1c1c1e;
             border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.4);
         }
 
-        .chat-form:focus-within {
-            border-color: rgba(17, 20, 20, 0.35);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        /* Gradient accent bar from Image 3 */
+        .ai-dock-accent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, #ec4899 0%, #f97316 50%, #eab308 100%);
+            opacity: 0.85;
         }
 
-        .dark-mode .chat-form:focus-within {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .chat-input {
-            flex: 1;
+        .ai-textarea {
+            width: 100%;
             background: transparent;
             border: none;
             outline: none;
             color: inherit;
             font-size: 0.95rem;
             font-family: inherit;
-            padding: 0.4rem 0;
-            line-height: 1.5;
             resize: none;
-            max-height: 140px;
+            line-height: 1.5;
             min-height: 24px;
+            max-height: 120px;
         }
 
-        .chat-input::placeholder {
+        .ai-textarea::placeholder {
             color: inherit;
-            opacity: 0.45;
+            opacity: 0.4;
         }
 
-        .chat-submit {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
-            background: #111414;
+        .ai-dock-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .ai-dock-pills {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .ai-dock-pill {
+            background: rgba(17, 20, 20, 0.04);
+            border: 1px solid rgba(17, 20, 20, 0.08);
+            color: inherit;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            cursor: pointer;
+            opacity: 0.75;
+            transition: all 0.2s ease;
+        }
+
+        .dark-mode .ai-dock-pill {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-dock-pill:hover {
+            opacity: 1;
+            background: rgba(17, 20, 20, 0.08);
+        }
+
+        .dark-mode .ai-dock-pill:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Image 3 Principle: Gradient Send Button */
+        .ai-send-glow-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
             color: #ffffff;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.2s ease, transform 0.15s ease;
-            flex-shrink: 0;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+            transition: transform 0.15s ease, opacity 0.15s ease;
         }
 
-        .dark-mode .chat-submit {
-            background: #ffffff;
-            color: #111414;
-        }
-
-        .chat-submit:hover {
-            opacity: 0.88;
-            transform: scale(1.04);
-        }
-
-        .chat-footnote {
-            font-size: 0.72rem;
-            color: inherit;
-            opacity: 0.4;
-            text-align: center;
-            margin-top: 0.65rem;
+        .ai-send-glow-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.95;
         }
 
         @media screen and (max-width: 768px) {
-            .chat-page {
+            .ai-layout {
                 padding: 1.5rem 0 3rem 0;
             }
-            .chat-frame {
+            .ai-frame {
                 height: calc(100vh - 180px);
             }
-            .chat-msg--user {
+            .ai-msg--user {
                 max-width: 90%;
             }
         }
@@ -321,31 +401,50 @@
                 </div>
             </header>
 
-            <main class="chat-page">
+            <main class="ai-layout">
                 <div class="wrapper">
-                    <div class="chat-frame">
+                    <div class="ai-frame">
+                        <!-- Image 2 Principle: Micro Breadcrumb Header & Segmented Filter Pills -->
+                        <div class="ai-top-bar">
+                            <div class="ai-breadcrumb">
+                                Sanal Emirhan <span>/</span> <strong>AI Asistan</strong>
+                            </div>
+                            <div class="ai-filter-pills">
+                                <button class="ai-pill" onclick="sendQuickPill('Emirhan hangi teknolojilerde uzman?')">Yetkinlikler</button>
+                                <button class="ai-pill" onclick="sendQuickPill('Unreal Engine ve oyun projelerinden bahset')">Oyunlar</button>
+                                <button class="ai-pill" onclick="sendQuickPill('Kuran23 projesinin detayları nedir?')">Kuran23</button>
+                                <button class="ai-pill" onclick="sendQuickPill('Bir projede birlikte nasıl çalışabiliriz?')">İletişim</button>
+                            </div>
+                        </div>
+
                         <!-- Message Thread -->
-                        <div class="chat-stream" id="chatBody">
-                            <div class="chat-msg chat-msg--assistant">
-                                <span class="chat-author">Sanal Emirhan</span>
-                                <div class="chat-content">
+                        <div class="ai-stream" id="chatBody">
+                            <div class="ai-msg ai-msg--assistant">
+                                <span class="ai-msg-label">SANAL EMİRHAN</span>
+                                <div class="ai-msg-content">
                                     <p>Emirhan Güngörmez dijital asistanı. Oyun geliştirme (Unreal Engine / Unity), yazılım mimarisi, yapay zekâ çalışmaları, Kuran23 projesi veya olası iş birlikleri hakkında soru sorabilirsiniz.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Claude / Cursor Style Input Dock -->
-                        <div class="chat-dock">
-                            <form class="chat-form" id="chatForm" onsubmit="handleChatSubmit(event)">
-                                <input type="text" id="chatInput" class="chat-input" placeholder="Sanal Emirhan'a bir soru sorun..." autocomplete="off">
-                                <button type="submit" class="chat-submit" aria-label="Gönder">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="12" y1="19" x2="12" y2="5"></line>
-                                        <polyline points="5 12 12 5 19 12"></polyline>
-                                    </svg>
-                                </button>
+                        <!-- Image 3 Principle: Lovable Prompt Bar -->
+                        <div class="ai-dock-container">
+                            <form class="ai-dock" id="chatForm" onsubmit="handleChatSubmit(event)">
+                                <input type="text" id="chatInput" class="ai-textarea" placeholder="Sanal Emirhan'a bir soru sorun..." autocomplete="off">
+                                <div class="ai-dock-actions">
+                                    <div class="ai-dock-pills">
+                                        <button type="button" class="ai-dock-pill" onclick="sendQuickPill('Emirhan hangi teknolojilerde uzman?')">+ Uzmanlık</button>
+                                        <button type="button" class="ai-dock-pill" onclick="sendQuickPill('Unreal Engine ve oyun projelerinden bahset')">🎮 Projeler</button>
+                                    </div>
+                                    <button type="submit" class="ai-send-glow-btn" title="Gönder">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="ai-dock-accent"></div>
                             </form>
-                            <p class="chat-footnote">Sanal Emirhan, Emirhan Güngörmez'in bilgi birikimi doğrultusunda yanıt üretir.</p>
                         </div>
                     </div>
                 </div>
@@ -385,17 +484,23 @@
     <script src="assets/js/site.js?v=20260604-gallery1"></script>
     
     <script>
+        function sendQuickPill(promptText) {
+            var input = document.getElementById('chatInput');
+            input.value = promptText;
+            document.getElementById('chatForm').dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }
+
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
-            row.className = 'chat-msg ' + (role === 'user' ? 'chat-msg--user' : 'chat-msg--assistant');
+            row.className = 'ai-msg ' + (role === 'user' ? 'ai-msg--user' : 'ai-msg--assistant');
             
             var label = document.createElement('span');
-            label.className = 'chat-author';
-            label.textContent = role === 'user' ? 'Siz' : 'Sanal Emirhan';
+            label.className = 'ai-msg-label';
+            label.textContent = role === 'user' ? 'SİZ' : 'SANAL EMİRHAN';
 
             var content = document.createElement('div');
-            content.className = 'chat-content';
+            content.className = 'ai-msg-content';
             content.innerHTML = text;
 
             row.appendChild(label);
@@ -408,15 +513,15 @@
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
             row.id = 'typingIndicatorRow';
-            row.className = 'chat-msg chat-msg--assistant';
+            row.className = 'ai-msg ai-msg--assistant';
             
             var label = document.createElement('span');
-            label.className = 'chat-author';
-            label.textContent = 'Sanal Emirhan';
+            label.className = 'ai-msg-label';
+            label.textContent = 'SANAL EMİRHAN';
 
             var content = document.createElement('div');
-            content.className = 'chat-content';
-            content.innerHTML = '<div class="typing-box"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            content.className = 'ai-msg-content';
+            content.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
             row.appendChild(label);
             row.appendChild(content);
@@ -436,7 +541,7 @@
                 return "<p>Uzmanlık alanları ve kullanılan teknolojiler:</p>" +
                        "<ul>" +
                        "<li><strong>Oyun Geliştirme:</strong> Unreal Engine 5 (C++, Blueprint Mimarisi), Unity (C#)</li>" +
-                       "<li><strong>Web & Sistemler:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
+                       "<li><strong>Web & Sistem Mimarisi:</strong> React, Next.js, JavaScript, Cloudflare Edge Workers</li>" +
                        "<li><strong>Yapay Zekâ & Ar-Ge:</strong> LLM Entegrasyonları, RAG Sistemleri, Python, Görüntü İşleme</li>" +
                        "<li><strong>Web3 & Siber Güvenlik:</strong> Solidity, Akıllı Sözleşmeler, Ağ Güvenliği</li>" +
                        "</ul>";
@@ -447,7 +552,7 @@
                        "<p><strong>Truck Up:</strong> Co-op araç fiziği ve takım tabanlı aksiyon oyunu.</p>";
             }
             else if (query.includes('kuran23') || query.includes('ayet') || query.includes('tefsir') || query.includes('din')) {
-                return "<p><strong>Kuran23:</strong> Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini tek bir hızlı arayüzde sunan dijital araştırma platformu.</p>" +
+                return "<p><strong>Kuran23:</strong> Kur'an-ı Kerim okuma, meal, tefsir, 60.000+ hadis ve Muallim AI yapay zekâ rehberini sunan dijital kütüphane projesi.</p>" +
                        "<p>Canlı Uygulama: <a href='https://kuran23.emirhangungormez.com.tr' target='_blank'>kuran23.emirhangungormez.com.tr</a></p>";
             }
             else if (query.includes('çalış') || query.includes('iş') || query.includes('iletişim') || query.includes('teklif') || query.includes('proje') || query.includes('mail')) {
