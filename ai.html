@@ -24,151 +24,171 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <meta name="theme-color" content="#0d0d0f">
+    <meta name="theme-color" content="#111414">
     
     <link rel="preload" href="assets/fonts/PPMori-Regular.woff" as="font" type="font/woff" crossorigin>
     <link rel="stylesheet" href="assets/css/bundle.css?v=20260604-cookie1">
     
     <style>
-        /* Exact TakeProfit UI Replica System */
-        .tp-wrapper {
-            min-height: calc(100vh - 120px);
+        .tp-section {
+            min-height: calc(100vh - 180px);
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 3rem 1.5rem;
-            background: #09090b;
-            color: #ffffff;
         }
 
-        .tp-card-frame {
-            max-width: 36rem;
+        .tp-container {
+            max-width: 42rem;
             width: 100%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
         }
 
-        /* Nav Buttons (< and X) */
-        .tp-nav-header {
+        /* Top Bar Controls (< and X) */
+        .tp-header-nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
-        .tp-circle-btn {
-            width: 44px;
-            height: 44px;
+        .tp-nav-circle {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: #1f1f23;
-            border: none;
-            color: #a1a1aa;
+            background: rgba(17, 20, 20, 0.06);
+            border: 1px solid rgba(17, 20, 20, 0.12);
+            color: inherit;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.15s ease;
+            transition: all 0.2s ease;
             text-decoration: none;
         }
 
-        .tp-circle-btn:hover {
-            background: #27272a;
-            color: #ffffff;
+        .dark-mode .tp-nav-circle {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        .tp-nav-circle:hover {
             transform: scale(1.05);
+            background: rgba(17, 20, 20, 0.12);
+        }
+
+        .dark-mode .tp-nav-circle:hover {
+            background: rgba(255, 255, 255, 0.16);
         }
 
         /* Headline: Welcome to TakeProfit style */
-        .tp-headline {
+        .tp-title {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: 400;
             letter-spacing: -0.02em;
-            color: #ffffff;
-            margin: 0 0 1.8rem 0;
-            line-height: 1.15;
+            color: inherit;
+            margin: 0 0 1.6rem 0;
+            line-height: 1.2;
         }
 
-        /* Messages Thread Container */
-        .tp-thread-box {
+        /* Thread Messages Stream */
+        .tp-stream-box {
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
             max-height: 320px;
             overflow-y: auto;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.6rem;
             padding-right: 0.4rem;
             scroll-behavior: smooth;
         }
 
-        .tp-thread-box::-webkit-scrollbar {
+        .tp-stream-box::-webkit-scrollbar {
             width: 4px;
         }
-        .tp-thread-box::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+        .tp-stream-box::-webkit-scrollbar-thumb {
+            background: currentColor;
+            opacity: 0.15;
             border-radius: 2px;
         }
 
-        .tp-msg-row {
+        .tp-row {
             display: flex;
             flex-direction: column;
             gap: 0.3rem;
-            animation: tpFade 0.2s ease forwards;
+            animation: tpFadeIn 0.2s ease forwards;
         }
 
-        @keyframes tpFade {
+        @keyframes tpFadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .tp-msg-row--user {
+        .tp-row--user {
             align-self: flex-end;
             max-width: 85%;
         }
 
-        .tp-msg-row--ai {
+        .tp-row--ai {
             align-self: flex-start;
             width: 100%;
         }
 
-        .tp-msg-author {
+        .tp-role {
             font-size: 0.72rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            color: #71717a;
+            opacity: 0.45;
+            color: inherit;
         }
 
-        .tp-msg-row--user .tp-msg-author {
+        .tp-row--user .tp-role {
             text-align: right;
         }
 
-        .tp-msg-body {
+        .tp-text {
             font-size: 0.98rem;
-            line-height: 1.6;
-            color: #e4e4e7;
+            line-height: 1.65;
+            color: inherit;
+            word-break: break-word;
         }
 
-        .tp-msg-row--user .tp-msg-body {
-            background: #27272a;
-            padding: 0.8rem 1.1rem;
+        .tp-row--user .tp-text {
+            background: rgba(17, 20, 20, 0.05);
+            border: 1px solid rgba(17, 20, 20, 0.1);
+            padding: 0.85rem 1.15rem;
             border-radius: 16px;
             border-bottom-right-radius: 4px;
         }
 
-        .tp-msg-row--ai .tp-msg-body {
-            background: transparent;
-            border-left: 2px solid #3f3f46;
-            padding: 0.2rem 0 0.2rem 1rem;
+        .dark-mode .tp-row--user .tp-text {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
-        .tp-msg-body a {
-            color: #a855f7;
+        .tp-row--ai .tp-text {
+            background: transparent;
+            border-left: 2px solid rgba(17, 20, 20, 0.25);
+            padding: 0.2rem 0 0.2rem 1.0rem;
+        }
+
+        .dark-mode .tp-row--ai .tp-text {
+            border-left-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .tp-text a {
+            color: inherit;
+            font-weight: 600;
             text-decoration: underline;
         }
 
-        .tp-msg-body strong {
-            color: #ffffff;
+        .tp-text strong {
+            color: inherit;
+            font-weight: 600;
         }
 
         .typing-dots {
@@ -181,7 +201,8 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: #a1a1aa;
+            background: currentColor;
+            opacity: 0.4;
             animation: pulseDot 1.4s infinite ease-in-out both;
         }
 
@@ -194,142 +215,167 @@
             40% { opacity: 1; transform: scale(1); }
         }
 
-        /* The Exact TakeProfit Input Component */
-        .tp-input-card {
+        /* TakeProfit Card Component */
+        .tp-card {
             position: relative;
-            background: #38383d;
-            border-radius: 20px;
-            padding: 1.2rem 1.4rem;
+            background: #2b2b2e;
+            border-radius: 22px;
+            padding: 1.25rem 1.4rem 1.25rem 1.6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            min-height: 110px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            min-height: 104px;
         }
 
-        .tp-input-content {
+        .light-mode .tp-card,
+        body:not(.dark-mode) .tp-card {
+            background: #e1e1e5;
+            color: #111414;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        .dark-mode .tp-card {
+            background: #27272a;
+            color: #ffffff;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .tp-card-body {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            z-index: 2;
         }
 
-        .tp-input-label {
-            font-size: 0.85rem;
+        .tp-label {
+            font-size: 0.82rem;
             font-weight: 500;
-            color: #a1a1aa;
+            color: inherit;
+            opacity: 0.6;
             letter-spacing: 0.01em;
         }
 
-        .tp-input-field-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tp-input-field {
+        .tp-input {
             width: 100%;
             background: transparent;
             border: none;
             outline: none;
-            font-size: 1.55rem;
+            font-size: 1.45rem;
             font-family: inherit;
-            color: #ffffff;
-            caret-color: #ffffff;
+            color: inherit;
+            caret-color: #8b5cf6;
+            padding: 0.1rem 0;
         }
 
-        .tp-input-field::placeholder {
-            color: #71717a;
+        .tp-input::placeholder {
+            color: inherit;
+            opacity: 0.38;
         }
 
-        /* Pixel Perfect L-Shaped Purple Enter Button */
-        .tp-l-enter-btn {
-            position: relative;
-            width: 82px;
-            height: 94px;
-            margin-right: -0.4rem;
-            margin-top: -0.4rem;
-            margin-bottom: -0.4rem;
+        /* Pixel-Perfect ISO L-Shaped Purple Enter Button SVG */
+        .tp-l-button-wrap {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 95px;
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-end;
             background: transparent;
             border: none;
             cursor: pointer;
-            flex-shrink: 0;
+            padding: 0;
+            z-index: 3;
             transition: transform 0.15s ease, filter 0.2s ease;
         }
 
-        .tp-l-enter-btn:hover {
-            transform: scale(1.03);
-            filter: brightness(1.1);
+        .tp-l-button-wrap:hover {
+            transform: scale(1.02);
+            filter: brightness(1.08);
         }
 
-        .tp-l-enter-btn svg {
+        .tp-l-button-wrap svg {
             width: 100%;
             height: 100%;
             display: block;
         }
 
-        /* Footer Policy Text */
-        .tp-footer-policy {
-            font-size: 0.82rem;
-            color: #a1a1aa;
-            margin-top: 1.2rem;
+        .tp-policy-note {
+            font-size: 0.78rem;
+            color: inherit;
+            opacity: 0.5;
+            margin-top: 0.9rem;
             line-height: 1.4;
         }
 
-        .tp-footer-policy strong {
-            color: #ffffff;
+        .tp-policy-note strong {
+            color: inherit;
             font-weight: 600;
+            opacity: 1;
         }
 
         @media screen and (max-width: 640px) {
-            .tp-headline {
-                font-size: 1.9rem;
+            .tp-title {
+                font-size: 1.8rem;
             }
-            .tp-input-field {
-                font-size: 1.2rem;
+            .tp-input {
+                font-size: 1.15rem;
             }
-            .tp-l-enter-btn {
-                width: 68px;
-                height: 80px;
+            .tp-l-button-wrap {
+                width: 80px;
             }
         }
     </style>
 </head>
-<body data-barba="wrapper" style="background: #09090b;">
+<body data-barba="wrapper">
     <div id="viewport">
         <div data-barba="container" data-barba-namespace="ai">
 
             <!-- Header -->
-            <header id="header" class="header" style="background: transparent;">
+            <header id="header" class="header">
                 <div class="wrapper">
                     <nav class="nav">
-                        <a href="index.html" class="nav__logo header__item" style="color: #ffffff;">Emirhan Güngörmez</a>
+                        <a href="index.html" class="nav__logo header__item">Emirhan Güngörmez</a>
                         <div class="nav__links">
-                            <a href="index.html" class="nav__link header__item text-link" style="color: #ffffff;">Ana Sayfa</a>
-                            <a href="index.html#about" class="nav__link header__item text-link" style="color: #ffffff;">Hakkımda</a>
-                            <a href="index.html#work" class="nav__link header__item text-link" style="color: #ffffff;">Projeler</a>
-                            <a href="blog.html" class="nav__link header__item text-link" style="color: #ffffff;">Blog</a>
-                            <a href="cv.html" class="nav__link header__item text-link" style="color: #ffffff;">Özgeçmiş</a>
-                            <a href="ai.html" class="nav__link header__item text-link is-active" style="font-weight: 600; color: #ffffff;">Sanal Emirhan</a>
-                            <a href="iletisim.html" class="nav__link header__item text-link" style="color: #ffffff;">İletişim</a>
+                            <a href="index.html" class="nav__link header__item text-link">Ana Sayfa</a>
+                            <a href="index.html#about" class="nav__link header__item text-link">Hakkımda</a>
+                            <a href="index.html#work" class="nav__link header__item text-link">Projeler</a>
+                            <a href="blog.html" class="nav__link header__item text-link">Blog</a>
+                            <a href="cv.html" class="nav__link header__item text-link">Özgeçmiş</a>
+                            <a href="ai.html" class="nav__link header__item text-link is-active" style="font-weight: 600;">Sanal Emirhan</a>
+                            <a href="iletisim.html" class="nav__link header__item text-link">İletişim</a>
                         </div>
+                        
+                        <label class="nav__theme header__item" role="button" tabindex="0">
+                            <div class="nav__theme__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 12 12" class="cc-moon"><path fill="none" d="M0 0h12v12H0z"></path><path fill="currentColor" d="M6.315 10.617q-.223 0-.448-.02a4.93 4.93 0 0 1-.876-9.66.394.394 0 0 1 .486.486 4.142 4.142 0 0 0 5.1 5.1.394.394 0 0 1 .486.486 4.943 4.943 0 0 1-4.748 3.608Zm-1.741-8.69a4.142 4.142 0 1 0 5.5 5.5 4.931 4.931 0 0 1-5.5-5.5Z"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 11.997 11.999" class="cc-sun"><path fill="currentColor" d="M5.599 11.601v-1a.4.4 0 0 1 .4-.4.4.4 0 0 1 .4.4v1a.4.4 0 0 1-.4.4.4.4 0 0 1-.4-.4Zm4.075-1.356-.708-.707a.4.4 0 0 1 0-.565.4.4 0 0 1 .567 0l.705.707a.4.4 0 0 1 0 .565.391.391 0 0 1-.282.117.4.4 0 0 1-.28-.12Zm-7.919 0a.4.4 0 0 1 0-.565l.707-.707a.4.4 0 0 1 .565 0 .4.4 0 0 1 0 .565l-.707.707a.39.39 0 0 1-.283.117.393.393 0 0 1-.28-.12Zm.493-4.533a3.463 3.463 0 0 1 3.457-3.46 3.463 3.463 0 0 1 3.457 3.46 3.46 3.46 0 0 1-3.457 3.456A3.46 3.46 0 0 1 2.25 5.709Zm.813 0a2.648 2.648 0 0 0 2.645 2.642 2.646 2.646 0 0 0 2.645-2.642 2.647 2.647 0 0 0-2.645-2.645 2.649 2.649 0 0 0-2.644 2.642Zm7.537.689a.4.4 0 0 1-.4-.4.4.4 0 0 1 .4-.4h1a.4.4 0 0 1 .4.4.4.4 0 0 1-.4.4Zm-10.2 0a.4.4 0 0 1-.4-.4.4.4 0 0 1 .4-.4h1a.4.4 0 0 1 .4.4.4.4 0 0 1-.4.4Zm8.568-3.367a.4.4 0 0 1 0-.568l.708-.705a.4.4 0 0 1 .564 0 .4.4 0 0 1 0 .565l-.705.708a.407.407 0 0 1-.284.114.406.406 0 0 1-.281-.117Zm-6.5 0-.707-.708a.4.4 0 0 1 0-.565.4.4 0 0 1 .565 0l.707.705a.4.4 0 0 1 0 .568.406.406 0 0 1-.282.114.4.4 0 0 1-.285-.117Zm3.137-1.632v-1a.4.4 0 0 1 .4-.4.4.4 0 0 1 .4.4v1a.4.4 0 0 1-.4.4.4.4 0 0 1-.404-.401Z"></path></svg>
+                            </div>
+                            <input id="toggleTheme" type="checkbox" name="theme" class="nav__theme__toggle">
+                            <div id="toggleThemeText" class="nav__theme__text">Aydınlık</div>
+                        </label>
                     </nav>
                 </div>
             </header>
 
-            <main class="tp-wrapper">
-                <div class="tp-card-frame">
+            <main class="tp-section">
+                <div class="tp-container">
                     
                     <!-- Top Navigation Controls (< and X) -->
-                    <div class="tp-nav-header">
-                        <a href="index.html" class="tp-circle-btn" title="Geri Dön">
+                    <div class="tp-header-nav">
+                        <a href="index.html" class="tp-nav-circle" title="Geri Dön">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
                         </a>
-                        <a href="index.html" class="tp-circle-btn" title="Kapat">
+                        <a href="index.html" class="tp-nav-circle" title="Kapat">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="18" y1="6" x2="6" y2="18"></line>
                                 <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -338,61 +384,59 @@
                     </div>
 
                     <!-- Welcome to TakeProfit Headline -->
-                    <h1 class="tp-headline">Sanal Emirhan'a Sorun</h1>
+                    <h1 class="tp-title">Sanal Emirhan'a Sorun</h1>
 
                     <!-- Message Stream -->
-                    <div class="tp-thread-box" id="chatBody">
-                        <div class="tp-msg-row tp-msg-row--ai">
-                            <span class="tp-msg-author">SANAL EMİRHAN</span>
-                            <div class="tp-msg-body">
+                    <div class="tp-stream-box" id="chatBody">
+                        <div class="tp-row tp-row--ai">
+                            <span class="tp-role">SANAL EMİRHAN</span>
+                            <div class="tp-text">
                                 Emirhan Güngörmez dijital asistanı. Oyun geliştirme (Unreal Engine / Unity), yazılım mimarisi, yapay zekâ çalışmaları, Kuran23 projesi veya olası iş birlikleri hakkında sorularınızı yazabilirsiniz.
                             </div>
                         </div>
                     </div>
 
                     <!-- Exact TakeProfit Input Component -->
-                    <form class="tp-input-card" id="chatForm" onsubmit="handleChatSubmit(event)">
-                        <div class="tp-input-content">
-                            <span class="tp-input-label">Soru</span>
-                            <div class="tp-input-field-group">
-                                <input type="text" id="chatInput" class="tp-input-field" placeholder="Sanal Emirhan'a sorun..." autocomplete="off">
-                            </div>
+                    <form class="tp-card" id="chatForm" onsubmit="handleChatSubmit(event)">
+                        <div class="tp-card-body">
+                            <span class="tp-label">Soru</span>
+                            <input type="text" id="chatInput" class="tp-input" placeholder="Sanal Emirhan'a sorun..." autocomplete="off">
                         </div>
 
-                        <!-- Iconic L-Shaped Purple Enter Button SVG -->
-                        <button type="submit" class="tp-l-enter-btn" title="Gönder (Enter)">
-                            <svg viewBox="0 0 84 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- L-Shaped Polygon with rounded corners -->
-                                <path d="M 28 0 H 66 C 75.941 0 84 8.059 84 18 V 78 C 84 87.941 75.941 96 66 96 H 18 C 8.059 96 0 87.941 0 78 V 46 C 0 36.059 8.059 28 18 28 H 28 V 0 Z" fill="#9333ea"/>
-                                <!-- Enter Arrow Icon ↵ -->
-                                <path d="M 54 62 L 42 62 M 42 62 L 48 56 M 42 62 L 48 68 M 60 44 V 54 C 60 58.418 56.418 62 52 62 H 42" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Pixel-Perfect ISO L-Shaped Purple Enter Key Button -->
+                        <button type="submit" class="tp-l-button-wrap" title="Gönder (Enter)">
+                            <svg viewBox="0 0 95 104" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                                <!-- ISO Enter L-Key Path: Top narrow, extends LEFT at bottom -->
+                                <path d="M 40 0 H 75 C 86.046 0 95 8.954 95 20 V 84 C 95 95.046 86.046 104 75 104 H 20 C 8.954 104 0 95.046 0 84 V 62 C 0 50.954 8.954 42 20 42 H 40 V 0 Z" fill="#8b5cf6"/>
+                                <!-- Return Arrow ↵ -->
+                                <path d="M 64 74 L 50 74 M 50 74 L 57 67 M 50 74 L 57 81 M 72 52 V 64 C 72 69.523 67.523 74 62 74 H 50" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </button>
                     </form>
 
-                    <p class="tp-footer-policy">
+                    <p class="tp-policy-note">
                         Devam'a tıklayarak <strong>Kullanıcı Sözleşmesi</strong> ve <strong>Gizlilik Politikası</strong>'nı kabul etmiş olursunuz.
                     </p>
                 </div>
             </main>
 
             <!-- Footer -->
-            <footer class="footer" style="background: transparent; border-top: 1px solid #1f1f23;">
+            <footer class="footer">
                 <div class="wrapper">
                     <div class="footer__grid">
-                        <div class="footer__copy" style="color: #71717a;">
+                        <div class="footer__copy">
                             <span>©</span>
                             <span id="footerYear">2026</span>
                             <span>Tüm Hakları Saklıdır.</span>
                         </div>
                         <ul class="footer__links">
-                            <li><a href="https://github.com/emirhangungormez" target="_blank" class="text-link" style="color: #a1a1aa;">Github</a></li>
-                            <li><a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link" style="color: #a1a1aa;">Linkedin</a></li>
-                            <li><a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link" style="color: #a1a1aa;">X (Twitter)</a></li>
-                            <li><a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link" style="color: #a1a1aa;">Medium</a></li>
-                            <li><a href="https://www.youtube.com/@han23studio" target="_blank" class="text-link" style="color: #a1a1aa;">YouTube</a></li>
-                            <li><a href="en/ai.html" class="text-link" hreflang="en" style="color: #a1a1aa;">English</a></li>
-                            <li><a href="gizlilik.html" class="text-link" style="color: #a1a1aa;">Gizlilik ve Çerezler</a></li>
+                            <li><a href="https://github.com/emirhangungormez" target="_blank" class="text-link">Github</a></li>
+                            <li><a href="https://www.linkedin.com/in/emirhangungormez" target="_blank" class="text-link">Linkedin</a></li>
+                            <li><a href="https://twitter.com/emirhangngrmz" target="_blank" class="text-link">X (Twitter)</a></li>
+                            <li><a href="https://medium.com/@emirhangungormez" target="_blank" class="text-link">Medium</a></li>
+                            <li><a href="https://www.youtube.com/@han23studio" target="_blank" class="text-link">YouTube</a></li>
+                            <li><a href="en/ai.html" class="text-link" hreflang="en">English</a></li>
+                            <li><a href="gizlilik.html" class="text-link">Gizlilik ve Çerezler</a></li>
                         </ul>
                         <div class="footer__legal">
                             <a href="https://han13.emirhangungormez.com.tr" target="_blank" aria-label="Han13 Studio">
@@ -413,14 +457,14 @@
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
-            row.className = 'tp-msg-row ' + (role === 'user' ? 'tp-msg-row--user' : 'tp-msg-row--ai');
+            row.className = 'tp-row ' + (role === 'user' ? 'tp-row--user' : 'tp-row--ai');
             
             var label = document.createElement('span');
-            label.className = 'tp-msg-author';
+            label.className = 'tp-role';
             label.textContent = role === 'user' ? 'SİZ' : 'SANAL EMİRHAN';
 
             var body = document.createElement('div');
-            body.className = 'tp-msg-body';
+            body.className = 'tp-text';
             body.innerHTML = text;
 
             row.appendChild(label);
@@ -433,14 +477,14 @@
             var chatBody = document.getElementById('chatBody');
             var row = document.createElement('div');
             row.id = 'typingIndicatorRow';
-            row.className = 'tp-msg-row tp-msg-row--ai';
+            row.className = 'tp-row tp-row--ai';
             
             var label = document.createElement('span');
-            label.className = 'tp-msg-author';
+            label.className = 'tp-role';
             label.textContent = 'SANAL EMİRHAN';
 
             var body = document.createElement('div');
-            body.className = 'tp-msg-body';
+            body.className = 'tp-text';
             body.innerHTML = '<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
 
             row.appendChild(label);
