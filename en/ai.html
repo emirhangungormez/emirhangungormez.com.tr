@@ -435,6 +435,51 @@
             if (el) el.remove();
         }
 
+        function createRichLinkCard(url, title) {
+            var domain = '';
+            try {
+                domain = new URL(url).hostname.replace('www.', '');
+            } catch(e) {
+                domain = 'link';
+            }
+
+            var iconSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>';
+
+            if (url.includes('steampowered.com') || url.includes('steam')) {
+                iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.008l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.03 4.524 4.524s-2.03 4.525-4.524 4.525c-.204 0-.405-.017-.601-.044l-4.062 2.87c.005.062.008.126.008.191 0 1.834-1.488 3.322-3.323 3.323-1.636 0-3.003-1.185-3.275-2.753L.328 17.653C1.835 21.439 5.602 24 9.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>';
+            } else if (url.includes('github.com')) {
+                iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>';
+            }
+
+            return '<br><a href="' + url + '" target="_blank" rel="noopener noreferrer" class="tp-rich-link-card">' +
+                   '<span class="tp-rich-link-icon">' + iconSvg + '</span>' +
+                   '<span class="tp-rich-link-title">' + (title || 'Open Link') + '</span>' +
+                   '<span class="tp-rich-link-domain">' + domain + ' ↗</span>' +
+                   '</a>';
+        }
+
+        function formatAiReply(text) {
+            if (!text) return "";
+            var formatted = text;
+
+            formatted = formatted.replace(/<a\s+href=['"]([^'"]+)['"][^>]*>(.*?)<\/a>/gi, function(match, url, title) {
+                return createRichLinkCard(url, title);
+            });
+
+            formatted = formatted.replace(/\[(.*?)\]\((https?:\/\/[^\s\)]+)\)/g, function(match, title, url) {
+                return createRichLinkCard(url, title);
+            });
+
+            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            formatted = formatted.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+            
+            if (!formatted.startsWith('<p>') && !formatted.startsWith('<a')) {
+                formatted = '<p>' + formatted + '</p>';
+            }
+
+            return formatted;
+        }
+
         async function handleChatSubmit(e) {
             e.preventDefault();
             var input = document.getElementById('chatInput');
@@ -462,13 +507,8 @@
                     var data = await response.json();
                     var reply = data.reply || "No response received.";
                     
-                    // Convert Markdown to basic HTML
-                    reply = reply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                 .replace(/\n\n/g, '</p><p>')
-                                 .replace(/\n/g, '<br>');
-                    if (!reply.startsWith('<p>')) reply = '<p>' + reply + '</p>';
-
-                    appendMessage('ai', reply);
+                    var formattedReply = formatAiReply(reply);
+                    appendMessage('ai', formattedReply);
 
                     chatHistory.push({ role: 'user', text: text });
                     chatHistory.push({ role: 'ai', text: data.reply });

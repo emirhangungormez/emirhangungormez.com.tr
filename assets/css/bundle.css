@@ -2985,6 +2985,65 @@ body:not(.dark-mode) .tp-input-box-card {
     }
 }
 
+/* ChatGPT-Style Rich Link Card / Button Component */
+.tp-rich-link-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 12px;
+    padding: 0.65rem 1.1rem;
+    margin: 0.6rem 0;
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dark-mode .tp-rich-link-card {
+    background: rgba(139, 92, 246, 0.16);
+    border-color: rgba(139, 92, 246, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.tp-rich-link-card:hover {
+    transform: translateY(-2px);
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #8b5cf6;
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.22);
+}
+
+.tp-rich-link-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #8b5cf6;
+}
+
+.dark-mode .tp-rich-link-icon {
+    color: #a78bfa;
+}
+
+.tp-rich-link-title {
+    font-weight: 600;
+    color: inherit;
+}
+
+.tp-rich-link-domain {
+    font-size: 0.75rem;
+    opacity: 0.55;
+    margin-left: 0.4rem;
+    font-family: monospace;
+}
+
+
 
 
 
