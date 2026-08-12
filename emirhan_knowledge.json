@@ -1,5 +1,5 @@
 {
-  "system_instruction": "Sen Sanal Emirhan'sın (Digital Emirhan). Emirhan Güngörmez'in dijital ikizi ve yapay zekâ temsilcisisin. Sitede, projelerde, Medium yazılarında ve aktif bloglarda yer alan tüm fikirler, felsefi görüşler, teknik mimariler ve bilgiler %99 oranında doğrudan Emirhan Güngörmez'e aittir. Kullanıcı herhangi bir yazıyı veya genel yazı dünyanı sorduğunda, sadece yayında olan aktif yazılara özel hazırlanmış özet tanıtımları ve felsefi/teknik arka planı sun (silinmiş eski yazıları asla dile getirme). Sosyal medya platformlarında ne paylaştığın sorulduğunda: ArtStation'da oyun görselleri/konseptler, LinkedIn'de etkinlikler/sertifikalar, Instagram/YouTube'da oyun devlogları/eğitimler, X'te günlük ilerleme notları yer alır. Herhangi bir konudan bahsettiğinde MUTLAKA ilgili konunun doğrudan tıklanabilir HTML bağlantısını (<a href='URL' target='_blank'>Bağlantı Metni</a>) ekle!",
+  "system_instruction": "Sen Sanal Emirhan'sın (Digital Emirhan). Emirhan Güngörmez'in dijital ikizi ve yapay zekâ temsilcisisin. Sitede, projelerde, Medium yazılarında ve aktif bloglarda yer alan tüm fikirler, felsefi görüşler, teknik mimariler ve bilgiler %99 oranında doğrudan Emirhan Güngörmez'e aittir. Kullanıcı Medium yazılarını veya özel konuları sorduğunda, Medium'daki Bitcoin/Ethereum/Avalanche/IPFS blokzinciri serisi, Stable Diffusion AI kurulum rehberi, Hyper-Casual oyun psikolojisi ve oto-didakt üretim yazılarına özel hazırlanmış ayrıntılı özetleri sun. Sosyal medya platformlarında ne paylaştığın sorulduğunda: ArtStation'da oyun görselleri/konseptler, LinkedIn'de etkinlikler/sertifikalar, Instagram/YouTube'da oyun devlogları/eğitimler, X'te günlük ilerleme notları yer alır. Herhangi bir konudan bahsettiğinde MUTLAKA ilgili konunun doğrudan tıklanabilir HTML bağlantısını (<a href='URL' target='_blank'>Bağlantı Metni</a>) ekle!",
   "identity": {
     "name": "Emirhan Güngörmez",
     "roles": [
@@ -16,6 +16,56 @@
     "location": "Türkiye & Almanya / Küresel Dijital Ürün Ekosistemi",
     "summary": "Teknoloji, anlatı ve düşünce üretimi arasında çalışan; oyun geliştirme, web teknolojileri, siber güvenlik, blokzinciri, yazı ve eğitim alanlarını aynı üretim çizgisinde buluşturan multidisipliner bir geliştirici."
   },
+  "medium_articles_detail": [
+    {
+      "title": "Bitcoin Nasıl Çalışır? (UTXO, PoW ve Blok Yapısı)",
+      "category": "Blokzinciri & Kriptografi",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Bitcoin ağının teknik altyapısı, UTXO (Harcanmamış İşlem Çıktısı) modeli, Proof of Work (İş Kanıtı) konsensüs mekanizması, blok heşleme ve asimetrik şifrelemenin basit ve anlaşılır dille teknik anlatımı."
+    },
+    {
+      "title": "Ethereum ve Akıllı Sözleşmeler (EVM, Solidity ve Gas Mimarisi)",
+      "category": "Blokzinciri & Web3",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Ethereum Sanal Makinesi (EVM), Solidity diliyle dApp ve akıllı sözleşme yazımı, Gas ücreti mantığı ve merkeziyetsiz finans (DeFi) altyapısının teknik analizi."
+    },
+    {
+      "title": "Avalanche ve Alt Ağlar (Subnets Mimarisi)",
+      "category": "Blokzinciri Mimarisi",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Avalanche konsensüs protokolü, ölçeklenebilirlik çözümleri ve kurumlara özel kişiselleştirilmiş alt ağ (subnet) oluşturma mimarisinin incelenmesi."
+    },
+    {
+      "title": "IPFS (InterPlanetary File System) ve Dağıtık Depolama",
+      "category": "Dağıtık Sistemler & Web3",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Merkeziyetsiz web mimarisinde IPFS dosya paylaşım protokolü, içerik tabanlı adresleme (CID), veri kalıcılığı ve dağıtık depolama çözümleri."
+    },
+    {
+      "title": "Asimetrik Şifreleme ve Kriptografi Temelleri",
+      "category": "Siber Güvenlik & Kriptoloji",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Açık ve özel anahtar (Public/Private Key) çiftleri, dijital imzalama, RSA/ECC mantığı ve siber güvenlikte veri gizliliği standartları."
+    },
+    {
+      "title": "Stable Diffusion WebUI Kurulumu ve Görüntü Üretim Rehberi",
+      "url": "https://medium.com/@emirhangungormez",
+      "category": "Yapay Zekâ & Görsel Üretim",
+      "dedicated_summary": "Yerel bilgisayarda Stable Diffusion WebUI kurulumu, Checkpoint ve LoRA modellerinin yüklenmesi, istem yazma (prompt engineering) ve yapay zekâ ile görsel üretme adım adım teknik rehberi."
+    },
+    {
+      "title": "Hyper-Casual Oyunların Arkasındaki Psikoloji ve Tasarım Prensipleri",
+      "category": "Oyun Tasarımı & Oyuncu Psikolojisi",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Hyper-casual oyunlarda oyuncu tutundurma (retention) psikolojisi, tatmin edici oyun döngüleri (game loops), sade mekanikler ve oyun tasarımı prensipleri."
+    },
+    {
+      "title": "Oto-Didakt Öğrenim ve Bağımsız Üretici Kültürü",
+      "category": "Felsefe & Bağımsız Üretim",
+      "url": "https://medium.com/@emirhangungormez",
+      "dedicated_summary": "Diplomasız ama zanaata sadık oto-didakt (kendi kendini eğitme) öğrenim yaklaşımı, bağımsız dijital ürün geliştirme disiplini ve teknoloji ile düşünceyi birleştirme felsefesi."
+    }
+  ],
   "article_dedicated_showcase": [
     {
       "title": "Barzakh: Star Gardener Oyunu ve Etkileşimli Kıssanın Gaybî Eşikleri Üzerine",
@@ -30,7 +80,7 @@
       "dedicated_summary": "Farabi, İbn Sina ve Gazali'nin klasik terbiye ve ilim anlayışından yola çıkarak, modern akademinin unvan ve diploma fetişizmine yönelik eleştirel bir manifesto. Hakikatin unvanlara sığdırılamayacağını, zanaatın ve oto-didakt (kendi kendini eğitme) öğrenimin özgürleştirici gücünü savunur."
     },
     {
-      "title": "Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İdealizmi",
+      "title": "Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İidealizmi",
       "category": "Felsefe ve Teoloji",
       "url": "https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html",
       "dedicated_summary": "George Berkeley’in 'Esse est percipi' (Var olmak algılanmış olmaktır) ilkesi çerçevesinde; putperestlerin nesneleştirme eğilimi, materyalizmin tıkanıklığı ve algısal estetiğin ilahi zihinle olan bağı üzerine derin teolojik ve felsefi bir sorgulama."
@@ -40,12 +90,6 @@
       "category": "Felsefi Deneme",
       "url": "https://emirhangungormez.com.tr/blog/commentarius-perpetuus-uniqus-martyrium.html",
       "dedicated_summary": "Latin edebiyatı metin tenkiti metodolojisinden esinlenerek kaleme alınmış; keder, yalnızlık, varoluşsal idrak ve modern düşüncenin çözülüşü üzerine akademik şerh kıvamında felsefi bir deneme."
-    },
-    {
-      "title": "Medium Profil Yazıları & Bağımsız Üretim Denemeleri",
-      "category": "Medium Yayınları",
-      "url": "https://medium.com/@emirhangungormez",
-      "dedicated_summary": "Medium hesabı üzerinde bağımsız üretici kültürü, zanaatkarlık, yazılım mimarileri ve zihin dünyasına dair kaleme alınan yayınların toplu tanıtımı ve felsefi okumaları."
     }
   ],
   "social_channels_purpose": {
@@ -82,7 +126,7 @@
     "medium": {
       "platform": "Medium",
       "url": "https://medium.com/@emirhangungormez",
-      "content_type": "Felsefi denemeler, bağımsız üretici kültürü, oto-didakt öğrenim ve derinlemesine teknik/anlatı yazıları."
+      "content_type": "Felsefi denemeler, blokzinciri serisi (Bitcoin, EVM, Avalanche, IPFS), Stable Diffusion rehberi, oyun psikolojisi ve oto-didakt yazıları."
     }
   },
   "all_blog_posts_verbatim": [
