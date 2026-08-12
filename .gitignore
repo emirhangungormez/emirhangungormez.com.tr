@@ -1,0 +1,12 @@
+# Environment Variables & API Keys
+.env
+.env.local
+
+# AI Knowledge & System Memory (Kept local / serverless secret only)
+emirhan_knowledge.json
+
+# Dependencies & Build artifacts
+node_modules/
+dist/
+build/
+.DS_Store
