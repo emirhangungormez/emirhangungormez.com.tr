@@ -3347,14 +3347,14 @@ body.dark-mode .services__item.hero-stat {
     border-radius: 0 !important;
     background: none !important; color: currentColor !important;
     border: none !important; cursor: pointer !important;
-    margin-left: 14px !important; vertical-align: middle !important;
-    transform: translateY(-0.16em) !important;
+    margin-left: 6px !important; vertical-align: middle !important;
+    transform: translateY(-0.04em) !important;
     transition: transform 0.2s ease !important;
     -webkit-tap-highlight-color: transparent !important;
     padding: 0 !important;
   }
   .mobile-portrait-trigger svg {
-    width: 0.52em !important; height: 0.52em !important; /* matches height of letter 'n' */
+    width: 1.15em !important; height: 1.15em !important; /* matches height of letter 'n' when accounting for inner padding */
     transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     display: block !important;
   }
@@ -3362,7 +3362,7 @@ body.dark-mode .services__item.hero-stat {
     transform: translate(3px, -3px) !important; /* interactive slide up and right */
   }
   .mobile-portrait-trigger:active {
-    transform: translateY(-0.16em) scale(0.9) !important;
+    transform: translateY(-0.04em) scale(0.9) !important;
   }
 
   /* Hide direct portrait on mobile (revealed via modal button) */
