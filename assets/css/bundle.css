@@ -2665,6 +2665,42 @@ body.dark-mode .tag-pill--featured {
   }
 }
 
+.tag-pill--color-green {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #065f46 !important;
+}
+body.dark-mode .tag-pill--color-green {
+  background-color: rgba(52, 211, 153, 0.15) !important;
+  color: #6ee7b7 !important;
+}
+
+.tag-pill--color-blue {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  color: #1e40af !important;
+}
+body.dark-mode .tag-pill--color-blue {
+  background-color: rgba(96, 165, 250, 0.15) !important;
+  color: #93c5fd !important;
+}
+
+.tag-pill--color-yellow {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: #854d0e !important;
+}
+body.dark-mode .tag-pill--color-yellow {
+  background-color: rgba(251, 191, 36, 0.15) !important;
+  color: #fde047 !important;
+}
+
+.tag-pill--color-purple {
+  background-color: rgba(139, 92, 246, 0.12) !important;
+  color: #5b21b6 !important;
+}
+body.dark-mode .tag-pill--color-purple {
+  background-color: rgba(167, 139, 250, 0.15) !important;
+  color: #c084fc !important;
+}
+
 /* Vector Icon Alignment Helpers for Social, Process, and Blog */
 .inline-icon {
   display: inline-block;
