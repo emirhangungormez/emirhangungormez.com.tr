@@ -72,6 +72,28 @@
 
   normalizeHeaderNavigation();
 
+  // Every document owns page-specific styles in its <head>. Force a full
+  // document load between pages so the next document's styles are applied.
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link || event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (link.target === "_blank" || link.hasAttribute("download")) return;
+
+    const url = new URL(link.href, window.location.href);
+    if (url.origin !== window.location.origin) return;
+    const sameDocument = url.pathname === window.location.pathname && url.search === window.location.search;
+    if (sameDocument && url.hash) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.location.assign(url.href);
+  }, true);
+
+  document.querySelectorAll('a[href$="/ai.html"], a[href="ai.html"], a[href$="/en/ai.html"], a[href="../ai.html"]').forEach((link) => {
+    link.setAttribute("data-barba-prevent", "self");
+  });
+
   document.querySelectorAll('a[hreflang="tr"], a[hreflang="en"]').forEach((link) => {
     link.addEventListener("click", () => {
       localStorage.setItem("preferredLanguage", link.getAttribute("hreflang"));
