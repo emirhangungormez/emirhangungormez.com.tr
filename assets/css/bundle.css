@@ -2666,39 +2666,39 @@ body.dark-mode .tag-pill--featured {
 }
 
 .tag-pill--color-green {
-  background-color: rgba(16, 185, 129, 0.12) !important;
-  color: #065f46 !important;
+  background-color: #1b4332 !important;
+  color: #d8f3dc !important;
 }
 body.dark-mode .tag-pill--color-green {
-  background-color: rgba(52, 211, 153, 0.15) !important;
-  color: #6ee7b7 !important;
+  background-color: #0f2e22 !important;
+  color: #85e3b2 !important;
 }
 
 .tag-pill--color-blue {
-  background-color: rgba(59, 130, 246, 0.12) !important;
-  color: #1e40af !important;
+  background-color: #1d3557 !important;
+  color: #f1faee !important;
 }
 body.dark-mode .tag-pill--color-blue {
-  background-color: rgba(96, 165, 250, 0.15) !important;
-  color: #93c5fd !important;
+  background-color: #11223f !important;
+  color: #a5d8ff !important;
 }
 
 .tag-pill--color-yellow {
-  background-color: rgba(245, 158, 11, 0.12) !important;
-  color: #854d0e !important;
+  background-color: #744210 !important;
+  color: #fefcbf !important;
 }
 body.dark-mode .tag-pill--color-yellow {
-  background-color: rgba(251, 191, 36, 0.15) !important;
-  color: #fde047 !important;
+  background-color: #4a2800 !important;
+  color: #ffe066 !important;
 }
 
 .tag-pill--color-purple {
-  background-color: rgba(139, 92, 246, 0.12) !important;
-  color: #5b21b6 !important;
+  background-color: #4c1d95 !important;
+  color: #ede9fe !important;
 }
 body.dark-mode .tag-pill--color-purple {
-  background-color: rgba(167, 139, 250, 0.15) !important;
-  color: #c084fc !important;
+  background-color: #2e1065 !important;
+  color: #d8b4fe !important;
 }
 
 /* Vector Icon Alignment Helpers for Social, Process, and Blog */
