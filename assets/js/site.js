@@ -91,6 +91,7 @@
   }
 
   // Hero Stat Numbers — CountUp Animation (IntersectionObserver ile tetiklenir)
+  setupStatsMarquee();
   const statNumbers = document.querySelectorAll(".hero-stat__number");
   if (statNumbers.length) {
     const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
@@ -514,7 +515,300 @@
 
   const galleryObserver = new MutationObserver(() => initProjectGalleries());
   galleryObserver.observe(document.body, { childList: true, subtree: true });
+
+  // Dynamic Mobile Off-Canvas Drawer Setup
+  const setupMobileDrawer = () => {
+    // Only run on mobile viewport
+    if (window.innerWidth > 991) {
+      const existingPanel = document.querySelector(".mobile-drawer-panel");
+      const existingBackdrop = document.querySelector(".mobile-drawer-backdrop");
+      const existingHamburger = document.querySelector(".mobile-hamburger");
+      if (existingPanel) existingPanel.remove();
+      if (existingBackdrop) existingBackdrop.remove();
+      if (existingHamburger) existingHamburger.remove();
+      document.body.style.overflow = "";
+      return;
+    }
+
+    let hamburger = document.querySelector(".mobile-hamburger");
+    let backdrop = document.querySelector(".mobile-drawer-backdrop");
+    let panel = document.querySelector(".mobile-drawer-panel");
+
+    const nav = document.querySelector("header .nav");
+
+    if (nav && !hamburger) {
+      hamburger = document.createElement("button");
+      hamburger.className = "mobile-hamburger";
+      hamburger.setAttribute("aria-label", "Menü");
+      hamburger.innerHTML = "<span></span><span></span><span></span>";
+      nav.appendChild(hamburger);
+    }
+
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.className = "mobile-drawer-backdrop";
+      document.body.appendChild(backdrop);
+    }
+
+    if (!panel) {
+      panel = document.createElement("aside");
+      panel.className = "mobile-drawer-panel";
+      
+      const isEn = window.location.pathname.includes("/en/");
+      const links = isEn ? [
+        { href: "/en/", label: "Home" },
+        { href: "/en/#about", label: "About" },
+        { href: "/en/#work", label: "Work" },
+        { href: "/en/#process", label: "Process" },
+        { href: "/en/blog.html", label: "Blog" },
+        { href: "/en/cv.html", label: "CV" },
+        { href: "/en/ai.html", label: "Digital Emirhan" },
+        { href: "/en/contact.html", label: "Contact" }
+      ] : [
+        { href: "index.html", label: "Ana Sayfa" },
+        { href: "index.html#about", label: "Hakkımda" },
+        { href: "index.html#work", label: "İş" },
+        { href: "index.html#process", label: "Süreç" },
+        { href: "blog.html", label: "Blog" },
+        { href: "cv.html", label: "Özgeçmiş" },
+        { href: "ai.html", label: "Sanal Emirhan" },
+        { href: "iletisim.html", label: "İletişim" }
+      ];
+
+      let linksHtml = links.map(l => `<a href="${l.href}" class="mobile-drawer-link">${l.label}</a>`).join('');
+
+      panel.innerHTML = `
+        <nav class="mobile-drawer-nav">
+          ${linksHtml}
+        </nav>
+        <div class="mobile-drawer-footer">
+          <label class="nav__theme" role="button" tabindex="0">
+            <div class="nav__theme__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 12 12" class="cc-moon"><path fill="none" d="M0 0h12v12H0z"></path><path fill="currentColor" d="M6.315 10.617q-.223 0-.448-.02a4.93 4.93 0 0 1-.876-9.66.394.394 0 0 1 .486.486 4.142 4.142 0 0 0 5.1 5.1.394.394 0 0 1 .486.486 4.943 4.943 0 0 1-4.748 3.608Zm-1.741-8.69a4.142 4.142 0 1 0 5.5 5.5 4.931 4.931 0 0 1-5.5-5.5Z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cc-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            </div>
+            <div class="nav__theme__text">${document.body.classList.contains("dark-mode") ? (isEn ? "Dark" : "Karanlık") : (isEn ? "Light" : "Aydınlık")}</div>
+          </label>
+          <a href="mailto:han23studio@gmail.com" class="mobile-drawer-email">han23studio@gmail.com</a>
+        </div>
+      `;
+      document.body.appendChild(panel);
+    }
+  };
+
+  setupMobileDrawer();
+  window.addEventListener("resize", setupMobileDrawer);
+
+  const toggleDrawer = (open) => {
+    const hamburger = document.querySelector(".mobile-hamburger");
+    const backdrop = document.querySelector(".mobile-drawer-backdrop");
+    const panel = document.querySelector(".mobile-drawer-panel");
+    const isCurrentlyOpen = panel?.classList.contains("is-open");
+    const shouldOpen = open !== undefined ? open : !isCurrentlyOpen;
+
+    if (shouldOpen) {
+      hamburger?.classList.add("is-open");
+      backdrop?.classList.add("is-open");
+      panel?.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    } else {
+      hamburger?.classList.remove("is-open");
+      backdrop?.classList.remove("is-open");
+      panel?.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+  };
+
+  // Mobile Portrait Modal Pop-up (Lightbox)
+  const setupMobilePortraitModal = () => {
+    let backdrop = document.getElementById("portraitModalBackdrop");
+    let card = document.getElementById("portraitModalCard");
+
+    if (!backdrop) {
+      backdrop = document.createElement("div");
+      backdrop.id = "portraitModalBackdrop";
+      backdrop.className = "portrait-modal-backdrop";
+      document.body.appendChild(backdrop);
+    }
+
+    if (!card) {
+      card = document.createElement("div");
+      card.id = "portraitModalCard";
+      card.className = "portrait-modal-card";
+      card.setAttribute("role", "dialog");
+      card.setAttribute("aria-modal", "true");
+
+      const isEn = explicitLanguage === "en";
+      const title = isEn ? "Indie Game Developer & Technical Founder" : "Bağımsız Oyun Geliştiricisi & Teknik Kurucu";
+      const badge = isEn ? "hey, how's it going? 👋" : "selam, nasıl gidiyor? 👋";
+      const portraitImgSrc = isEn ? "../assets/images/emirhan-portrait.jpg?v=2" : "assets/images/emirhan-portrait.jpg?v=2";
+
+      card.innerHTML = `
+        <button type="button" class="portrait-modal-close" id="portraitModalClose" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="portrait-modal-img-wrapper">
+          <img src="${portraitImgSrc}" alt="Emirhan Güngörmez">
+          <div class="portrait-modal-badge">${badge}</div>
+        </div>
+        <div class="portrait-modal-caption">
+          <h3>Emirhan Güngörmez</h3>
+          <p>${title}</p>
+        </div>
+      `;
+      document.body.appendChild(card);
+    }
+  };
+
+  const togglePortraitModal = (open) => {
+    setupMobilePortraitModal();
+    const backdrop = document.getElementById("portraitModalBackdrop");
+    const card = document.getElementById("portraitModalCard");
+    const isOpen = card?.classList.contains("is-open");
+    const shouldOpen = open !== undefined ? open : !isOpen;
+
+    if (shouldOpen) {
+      backdrop?.classList.add("is-open");
+      card?.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+    } else {
+      backdrop?.classList.remove("is-open");
+      card?.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+  };
+
+  // Dynamic Mobile Portrait Trigger Button (Injects ONLY on screens <= 991px, ZERO DOM element on Desktop)
+  const setupMobilePortraitTriggerButton = () => {
+    const isMobile = window.innerWidth <= 991;
+    const existingBtn = document.getElementById("mobilePortraitTrigger");
+
+    if (isMobile) {
+      if (!existingBtn) {
+        const h1Span = document.querySelector(".h-hero__title h1 span:not(.text-hidden)");
+        if (h1Span) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "mobile-portrait-trigger";
+          btn.id = "mobilePortraitTrigger";
+          const ariaLabel = explicitLanguage === "en" ? "View profile photo" : "Profil resmini gör";
+          btn.setAttribute("aria-label", ariaLabel);
+          btn.setAttribute("title", ariaLabel);
+          btn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          `;
+          const br = h1Span.querySelector(".mobile-break");
+          if (br) {
+            h1Span.insertBefore(btn, br);
+          } else {
+            h1Span.appendChild(btn);
+          }
+        }
+      }
+    } else {
+      if (existingBtn) {
+        existingBtn.remove();
+      }
+    }
+  };
+
+  // Dynamic mobile content rearrangement: Moves name explanation above "veri sınırsızdır" text on mobile
+  const handleMobileContentMove = () => {
+    const isMobile = window.innerWidth <= 991;
+    const subContainer = document.querySelector(".h-hero__sub");
+    const subP = subContainer?.querySelector("p");
+    const heroText = document.querySelector(".h-hero__text");
+
+    if (isMobile) {
+      if (subP && heroText && !heroText.querySelector(".mobile-moved-sub")) {
+        subP.classList.add("mobile-moved-sub");
+        heroText.insertBefore(subP, heroText.firstChild);
+      }
+    } else {
+      const movedP = heroText?.querySelector(".mobile-moved-sub");
+      if (movedP && subContainer) {
+        movedP.classList.remove("mobile-moved-sub");
+        subContainer.insertBefore(movedP, subContainer.firstChild);
+      }
+    }
+  };
+  // Dynamic Stats Infinite Marquee (Global for Desktop & Mobile)
+  function setupStatsMarquee() {
+    const container = document.querySelector(".hero-stats-container");
+    if (!container) return;
+
+    if (!container.querySelector(".hero-stats-track")) {
+      const items = Array.from(container.querySelectorAll(".hero-stat"));
+      if (items.length > 0) {
+        container.removeAttribute("style");
+        
+        const track = document.createElement("div");
+        track.className = "hero-stats-track";
+        
+        items.forEach(item => {
+          item.removeAttribute("style");
+          track.appendChild(item);
+        });
+        
+        // Duplicate items to ensure seamless loop
+        items.forEach(item => {
+          const clone = item.cloneNode(true);
+          track.appendChild(clone);
+        });
+        
+        container.appendChild(track);
+      }
+    }
+  };
+
+  setupMobilePortraitTriggerButton();
+  handleMobileContentMove();
+  setupStatsMarquee();
+  window.addEventListener("resize", () => {
+    setupMobilePortraitTriggerButton();
+    handleMobileContentMove();
+    setupStatsMarquee();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".mobile-hamburger")) {
+      e.preventDefault();
+      toggleDrawer();
+    } else if (e.target.closest(".mobile-drawer-close") || e.target.closest(".mobile-drawer-backdrop") || e.target.closest(".mobile-drawer-link")) {
+      toggleDrawer(false);
+    } else if (e.target.closest(".mobile-portrait-trigger")) {
+      e.preventDefault();
+      togglePortraitModal(true);
+    } else if (e.target.closest(".portrait-modal-close") || e.target.closest(".portrait-modal-backdrop")) {
+      togglePortraitModal(false);
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      togglePortraitModal(false);
+    }
+  });
+
+  // Re-run setup after Barba page transitions
+  if (window.barba) {
+    window.barba.hooks.after(() => {
+      setupMobileDrawer();
+      setupMobilePortraitModal();
+      setupMobilePortraitTriggerButton();
+      handleMobileContentMove();
+      setupStatsMarquee();
+    });
+  }
 })();
+
+
 
 
 
