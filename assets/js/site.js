@@ -24,6 +24,54 @@
   const currentPath = normalizePath(window.location.pathname);
   const explicitLanguage = currentPath === "/en/" || currentPath.startsWith("/en/") ? "en" : "tr";
 
+  const normalizeHeaderNavigation = () => {
+    const isEnglish = explicitLanguage === "en";
+    const homePath = isEnglish ? "/en/" : "/";
+    const isHome = currentPath === homePath || currentPath === `${homePath}index.html`;
+    const items = isEnglish
+      ? [
+          ["Home", homePath],
+          ["About", `${homePath}#about`],
+          ["Work", `${homePath}#work`],
+          ["Process", `${homePath}#process`],
+          ["Blog", "/en/blog.html"],
+          ["CV", "/en/cv.html"],
+          ["Digital Emirhan", "/en/ai.html"],
+          ["Contact", "/en/contact.html"],
+        ]
+      : [
+          ["Ana Sayfa", homePath],
+          ["Hakkımda", `${homePath}#about`],
+          ["İş", `${homePath}#work`],
+          ["Süreç", `${homePath}#process`],
+          ["Blog", "/blog.html"],
+          ["Özgeçmiş", "/cv.html"],
+          ["Sanal Emirhan", "/ai.html"],
+          ["İletişim", "/iletisim.html"],
+        ];
+
+    document.querySelectorAll("header .nav").forEach((nav) => {
+      const logo = nav.querySelector(".nav__logo");
+      const links = nav.querySelector(".nav__links");
+      if (logo) logo.setAttribute("href", homePath);
+      if (!links) return;
+
+      links.replaceChildren(...items.map(([label, href]) => {
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        link.className = "nav__link header__item text-link";
+        if (isHome && href.includes("#")) link.classList.add("js--nav-link");
+        if (!href.includes("#") && normalizePath(new URL(link.href).pathname) === currentPath) {
+          link.classList.add("is-active");
+        }
+        return link;
+      }));
+    });
+  };
+
+  normalizeHeaderNavigation();
+
   document.querySelectorAll('a[hreflang="tr"], a[hreflang="en"]').forEach((link) => {
     link.addEventListener("click", () => {
       localStorage.setItem("preferredLanguage", link.getAttribute("hreflang"));
