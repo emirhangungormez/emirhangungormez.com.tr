@@ -2665,38 +2665,54 @@ body.dark-mode .tag-pill--featured {
   }
 }
 
-.tag-pill--color-green {
+.services__item span.tag-pill.tag-pill--color-green,
+.services__item .tag-pill.tag-pill--color-green,
+.tag-pill.tag-pill--color-green {
   background-color: #1b4332 !important;
   color: #d8f3dc !important;
 }
-body.dark-mode .tag-pill--color-green {
+body.dark-mode .services__item span.tag-pill.tag-pill--color-green,
+body.dark-mode .services__item .tag-pill.tag-pill--color-green,
+body.dark-mode .tag-pill.tag-pill--color-green {
   background-color: #0f2e22 !important;
   color: #85e3b2 !important;
 }
 
-.tag-pill--color-blue {
+.services__item span.tag-pill.tag-pill--color-blue,
+.services__item .tag-pill.tag-pill--color-blue,
+.tag-pill.tag-pill--color-blue {
   background-color: #1d3557 !important;
   color: #f1faee !important;
 }
-body.dark-mode .tag-pill--color-blue {
+body.dark-mode .services__item span.tag-pill.tag-pill--color-blue,
+body.dark-mode .services__item .tag-pill.tag-pill--color-blue,
+body.dark-mode .tag-pill.tag-pill--color-blue {
   background-color: #11223f !important;
   color: #a5d8ff !important;
 }
 
-.tag-pill--color-yellow {
+.services__item span.tag-pill.tag-pill--color-yellow,
+.services__item .tag-pill.tag-pill--color-yellow,
+.tag-pill.tag-pill--color-yellow {
   background-color: #744210 !important;
   color: #fefcbf !important;
 }
-body.dark-mode .tag-pill--color-yellow {
+body.dark-mode .services__item span.tag-pill.tag-pill--color-yellow,
+body.dark-mode .services__item .tag-pill.tag-pill--color-yellow,
+body.dark-mode .tag-pill.tag-pill--color-yellow {
   background-color: #4a2800 !important;
   color: #ffe066 !important;
 }
 
-.tag-pill--color-purple {
+.services__item span.tag-pill.tag-pill--color-purple,
+.services__item .tag-pill.tag-pill--color-purple,
+.tag-pill.tag-pill--color-purple {
   background-color: #4c1d95 !important;
   color: #ede9fe !important;
 }
-body.dark-mode .tag-pill--color-purple {
+body.dark-mode .services__item span.tag-pill.tag-pill--color-purple,
+body.dark-mode .services__item .tag-pill.tag-pill--color-purple,
+body.dark-mode .tag-pill.tag-pill--color-purple {
   background-color: #2e1065 !important;
   color: #d8b4fe !important;
 }
