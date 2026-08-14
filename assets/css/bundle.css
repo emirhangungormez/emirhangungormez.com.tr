@@ -172,7 +172,14 @@ header .nav__links {
   order: 2;
   margin-left: auto;
   justify-content: flex-end;
-  column-gap: 2em;
+  column-gap: clamp(0.65rem, 1.35vw, 2em);
+  min-width: 0;
+}
+
+header .nav__links .nav__link {
+  flex: 0 1 auto;
+  white-space: nowrap;
+  font-size: clamp(10px, 0.8em, 13px);
 }
 
 header .nav.cc-project > .nav__link {
@@ -518,6 +525,26 @@ body.dark-mode .footer__cta .button__text {
   color: #111414 !important;
 }
 
+body.dark-mode .footer__cta {
+  background-color: #efefef !important;
+  border: 1px solid rgba(239, 239, 239, .35);
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.dark-mode .footer__cta .button__icon {
+  color: #111414 !important;
+}
+
+body.dark-mode .footer__cta .button__icon svg {
+  color: #efefef !important;
+  opacity: 0;
+}
+
+body.dark-mode .footer__cta:hover .button__icon svg {
+  opacity: 1;
+}
+
 @media screen and (max-width: 990px) {
   .footer .wrapper {
     padding-left: 20px;
@@ -527,7 +554,12 @@ body.dark-mode .footer__cta .button__text {
 @media screen and (max-width: 767px) {
   .footer {
     padding-top: 1em;
-    padding-bottom: 4em;
+    padding-bottom: 2.5em;
+  }
+
+  .footer .wrapper {
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .footer__grid {
@@ -557,6 +589,8 @@ body.dark-mode .footer__cta .button__text {
   .footer__contact {
     margin-top: 2em;
     margin-bottom: 1.25em;
+    font-size: 18px;
+    overflow-wrap: anywhere;
   }
 
   .footer__cta {
@@ -567,21 +601,44 @@ body.dark-mode .footer__cta .button__text {
   .footer__legal {
     justify-self: start;
     margin-top: 1.5em;
+    width: 100%;
   }
 
   .footer__legal a {
     justify-content: flex-start;
   }
 
+  .footer__legal img,
+  .footer__logo-img {
+    width: min(250px, 100%) !important;
+    height: auto !important;
+  }
+
   .footer__links {
     grid-template-columns: 1fr 1fr;
-    padding: 2.5em 0 3em;
+    gap: 14px 20px;
+    width: 100%;
+    padding: 2em 0 2.5em;
+    font-size: 16px;
+  }
+
+  .footer__links a {
+    display: inline-block;
+    line-height: 1.4;
   }
 
   .footer__links::before {
     grid-column: 1 / -1;
     grid-row: auto;
     margin-bottom: 1.5em;
+    max-width: 100%;
+    font-size: 15px;
+  }
+
+  .footer__copy {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
   }
 }
 
@@ -2932,6 +2989,14 @@ body.dark-mode .footer__logo-img {
   opacity: 1 !important;
 }
 
+@media screen and (max-width: 767px) {
+  .footer__legal img,
+  .footer__logo-img {
+    width: min(250px, 100%) !important;
+    height: auto !important;
+  }
+}
+
 
 .tag-pill--featured {
   background-color: #111414 !important;
@@ -3284,7 +3349,7 @@ body:not(.dark-mode) .tp-input-box-card {
     display: block;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 767px) {
     .tp-headline-title {
         font-size: 1.8rem;
     }
@@ -3363,7 +3428,7 @@ body:not(.dark-mode) .tp-input-box-card {
 /* ==========================================================================
    Dedicated Mobile UX (Sticky Glassmorphism Header, Enlarged Theme Toggle, Mobile Dividers)
    ========================================================================== */
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 767px) {
   /* 1. Dedicated Mobile Sticky Header with Glassmorphism & Bottom Separator Line */
   header {
     position: sticky !important;
@@ -3646,7 +3711,7 @@ body.dark-mode .services__item.hero-stat {
 }
 
 /* -- Mobile Only Rules (≤767px) — Desktop >767px Untouched ----------------- */
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 767px) {
 
   /* Mobile Header Icon Sizing & Strict Single Theme Icon Display */
   header .nav .nav__theme {
@@ -3905,10 +3970,12 @@ body.dark-mode .services__item.hero-stat {
 
   .mobile-drawer-footer {
     display: flex !important;
-    flex-direction: column !important;
-    gap: 1.25rem !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1.5rem !important;
     border-top: 1px solid rgba(17, 20, 20, 0.08) !important;
-    padding-top: 1.5rem !important;
+    padding-top: 2rem !important;
   }
   body.dark-mode .mobile-drawer-footer {
     border-top-color: rgba(255, 255, 255, 0.08) !important;
@@ -3924,16 +3991,27 @@ body.dark-mode .services__item.hero-stat {
     border: none !important;
     padding: 0 !important;
     margin-left: 0 !important;
+    order: 2 !important;
+    flex-shrink: 0 !important;
+  }
+  .mobile-drawer-footer .nav__theme__icon,
+  .mobile-drawer-footer .nav__theme__icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
   }
   .mobile-drawer-footer .nav__theme__text {
     display: block !important;
     font-family: "PP Mori", sans-serif !important;
-    font-size: 0.95rem !important;
+    font-size: 14px !important;
     font-weight: 500 !important;
   }
   .mobile-drawer-email {
     font-family: "PP Mori", sans-serif !important;
-    font-size: 0.95rem !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    order: 1 !important;
     color: inherit !important;
     opacity: 0.6 !important;
     text-decoration: none !important;
