@@ -172,14 +172,14 @@ header .nav__links {
   order: 2;
   margin-left: auto;
   justify-content: flex-end;
-  column-gap: clamp(0.65rem, 1.35vw, 2em);
+  column-gap: 2em;
   min-width: 0;
 }
 
 header .nav__links .nav__link {
   flex: 0 1 auto;
   white-space: nowrap;
-  font-size: clamp(10px, 0.8em, 13px);
+  font-size: 16px;
 }
 
 header .nav.cc-project > .nav__link {
