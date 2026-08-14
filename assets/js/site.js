@@ -1,9 +1,24 @@
 (() => {
   const adSenseClient = "ca-pub-1008190701714140";
+  const siteRootUrl = new URL("../../", document.currentScript?.src || new URL("assets/js/site.js", window.location.href));
+  const resolveSiteHref = (href) => {
+    let resolvedHref = href.replace(/^\//, "");
+    if (siteRootUrl.protocol === "file:") {
+      const [pathWithQuery, hash = ""] = resolvedHref.split("#");
+      resolvedHref = `${pathWithQuery.endsWith("/") || pathWithQuery === "" ? `${pathWithQuery}index.html` : pathWithQuery}${hash ? `#${hash}` : ""}`;
+    }
+    return new URL(resolvedHref, siteRootUrl).href;
+  };
   const languageRoutes = {
     "/": "/en/",
     "/index.html": "/en/",
+    "/404.html": "/en/404.html",
+    "/500.html": "/en/500.html",
+    "/admin.html": "/en/admin.html",
+    "/ai.html": "/en/ai.html",
     "/blog.html": "/en/blog.html",
+    "/blog/": "/en/blog/",
+    "/blog/index.html": "/en/blog/index.html",
     "/cv.html": "/en/cv.html",
     "/iletisim.html": "/en/contact.html",
     "/kuran23.html": "/en/kuran23.html",
@@ -15,13 +30,19 @@
     "/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html": "/en/blog/barzakh-star-gardener-interactive-parable-unseen-thresholds.html",
     "/blog/commentarius-perpetuus-uniqus-martyrium.html": "/en/blog/commentarius-perpetuus-uniqus-martyrium.html",
     "/blog/immateryalizm-ve-berkeleyin-idealizmi.html": "/en/blog/immateryalizm-ve-berkeleyin-idealizmi.html",
+    "/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html": "/en/blog/society-of-the-untitled-an-ecology-of-truth-without-diplomas.html",
   };
   const reverseLanguageRoutes = Object.fromEntries(Object.entries(languageRoutes).map(([tr, en]) => [en, tr]));
   const normalizePath = (pathname) => {
     const clean = pathname.replace(/\/{2,}/g, "/");
     return clean.endsWith("/en/index.html") ? "/en/" : clean;
   };
-  const currentPath = normalizePath(window.location.pathname);
+  const getRoutePath = (pathname) => {
+    const rootPath = siteRootUrl.pathname.replace(/\/$/, "");
+    const relativePath = pathname.startsWith(rootPath) ? pathname.slice(rootPath.length) : pathname;
+    return normalizePath(relativePath || "/");
+  };
+  const currentPath = getRoutePath(window.location.pathname);
   const explicitLanguage = currentPath === "/en/" || currentPath.startsWith("/en/") ? "en" : "tr";
 
   const normalizeHeaderNavigation = () => {
@@ -53,16 +74,16 @@
     document.querySelectorAll("header .nav").forEach((nav) => {
       const logo = nav.querySelector(".nav__logo");
       const links = nav.querySelector(".nav__links");
-      if (logo) logo.setAttribute("href", homePath);
+      if (logo) logo.setAttribute("href", resolveSiteHref(homePath));
       if (!links) return;
 
       links.replaceChildren(...items.map(([label, href]) => {
         const link = document.createElement("a");
-        link.href = href;
+        link.setAttribute("href", isHome && href.includes("#") ? href.slice(href.indexOf("#")) : resolveSiteHref(href));
         link.textContent = label;
         link.className = "nav__link header__item text-link";
         if (isHome && href.includes("#")) link.classList.add("js--nav-link");
-        if (!href.includes("#") && normalizePath(new URL(link.href).pathname) === currentPath) {
+        if (!href.includes("#") && getRoutePath(new URL(link.href).pathname) === currentPath) {
           link.classList.add("is-active");
         }
         return link;
@@ -71,6 +92,48 @@
   };
 
   normalizeHeaderNavigation();
+
+  const scrollVirtualViewportTo = (hash) => {
+    const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
+    const viewport = document.getElementById("viewport");
+    const content = viewport?.querySelector(".scroll-content");
+    if (!target || !viewport || !content) return false;
+
+    const matrix = new DOMMatrixReadOnly(getComputedStyle(content).transform);
+    const currentOffset = -matrix.m42;
+    const targetOffset = target.getBoundingClientRect().top + currentOffset;
+    viewport.dispatchEvent(new WheelEvent("wheel", {
+      deltaY: targetOffset - currentOffset,
+      bubbles: true,
+      cancelable: true,
+    }));
+    return true;
+  };
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+
+    const url = new URL(link.href, window.location.href);
+    if (!url.hash || url.pathname !== window.location.pathname || !scrollVirtualViewportTo(url.hash)) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.history.replaceState(window.history.state, "", url.hash);
+
+    if (link.classList.contains("mobile-drawer-link")) {
+      document.querySelector(".mobile-hamburger")?.classList.remove("is-open");
+      document.querySelector(".mobile-drawer-backdrop")?.classList.remove("is-open");
+      document.querySelector(".mobile-drawer-panel")?.classList.remove("is-open");
+      document.body.style.overflow = "";
+    }
+  }, true);
+
+  if (window.location.hash) {
+    window.requestAnimationFrame(() => {
+      scrollVirtualViewportTo(window.location.hash);
+    });
+  }
 
   // Every document owns page-specific styles in its <head>. Force a full
   // document load between pages so the next document's styles are applied.
@@ -85,6 +148,11 @@
     const sameDocument = url.pathname === window.location.pathname && url.search === window.location.search;
     if (sameDocument && url.hash) return;
 
+    const selectedLanguage = link.getAttribute("hreflang");
+    if (selectedLanguage === "tr" || selectedLanguage === "en") {
+      localStorage.setItem("preferredLanguage", selectedLanguage);
+    }
+
     event.preventDefault();
     event.stopImmediatePropagation();
     window.location.assign(url.href);
@@ -95,8 +163,15 @@
   });
 
   document.querySelectorAll('a[hreflang="tr"], a[hreflang="en"]').forEach((link) => {
+    const linkLanguage = link.getAttribute("hreflang");
+    const mappedPath = linkLanguage === "en" ? languageRoutes[currentPath] : reverseLanguageRoutes[currentPath];
+    if (mappedPath) {
+      link.setAttribute("href", resolveSiteHref(mappedPath));
+    } else {
+      link.setAttribute("href", resolveSiteHref(link.getAttribute("href")));
+    }
     link.addEventListener("click", () => {
-      localStorage.setItem("preferredLanguage", link.getAttribute("hreflang"));
+      localStorage.setItem("preferredLanguage", linkLanguage);
     });
   });
 
@@ -114,8 +189,11 @@
 
   if (canRedirect && targetLanguage !== explicitLanguage) {
     const targetPath = targetLanguage === "en" ? languageRoutes[currentPath] : reverseLanguageRoutes[currentPath];
+    const targetUrl = new URL(resolveSiteHref(targetPath));
+    targetUrl.search = window.location.search;
+    targetUrl.hash = window.location.hash;
     sessionStorage.setItem(redirectKey, "1");
-    window.location.replace(`${targetPath}${window.location.search}${window.location.hash}`);
+    window.location.replace(targetUrl.href);
     return;
   }
 
@@ -589,7 +667,7 @@
   // Dynamic Mobile Off-Canvas Drawer Setup
   const setupMobileDrawer = () => {
     // Only run on mobile viewport
-    if (window.innerWidth > 991) {
+    if (window.innerWidth > 767) {
       const existingPanel = document.querySelector(".mobile-drawer-panel");
       const existingBackdrop = document.querySelector(".mobile-drawer-backdrop");
       const existingHamburger = document.querySelector(".mobile-hamburger");
@@ -645,7 +723,7 @@
         { href: "iletisim.html", label: "İletişim" }
       ];
 
-      let linksHtml = links.map(l => `<a href="${l.href}" class="mobile-drawer-link">${l.label}</a>`).join('');
+      let linksHtml = links.map(l => `<a href="${resolveSiteHref(l.href)}" class="mobile-drawer-link">${l.label}</a>`).join('');
 
       panel.innerHTML = `
         <nav class="mobile-drawer-nav">
@@ -751,9 +829,9 @@
     }
   };
 
-  // Dynamic Mobile Portrait Trigger Button (Injects ONLY on screens <= 991px, ZERO DOM element on Desktop)
+  // Dynamic Mobile Portrait Trigger Button (Injects ONLY on screens <= 767px, ZERO DOM element on Desktop)
   const setupMobilePortraitTriggerButton = () => {
-    const isMobile = window.innerWidth <= 991;
+    const isMobile = window.innerWidth <= 767;
     const existingBtn = document.getElementById("mobilePortraitTrigger");
 
     if (isMobile) {
@@ -790,7 +868,7 @@
 
   // Dynamic mobile content rearrangement: Moves name explanation above "veri sınırsızdır" text on mobile
   const handleMobileContentMove = () => {
-    const isMobile = window.innerWidth <= 991;
+    const isMobile = window.innerWidth <= 767;
     const subContainer = document.querySelector(".h-hero__sub");
     const subP = subContainer?.querySelector("p");
     const heroText = document.querySelector(".h-hero__text");

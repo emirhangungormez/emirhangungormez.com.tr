@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#111414">
     
     <link rel="preload" href="assets/fonts/PPMori-Regular.woff" as="font" type="font/woff" crossorigin>
-    <link rel="stylesheet" href="assets/css/bundle.css?v=20260813-ai-route1">
+    <link rel="stylesheet" href="assets/css/bundle.css?v=20260814-ai-responsive3">
     
     <style>
         .tp-pure-page {
@@ -67,6 +67,9 @@
             margin-bottom: 1.6rem;
             padding-right: 0.4rem;
             scroll-behavior: smooth;
+            touch-action: pan-y;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
         }
 
         .tp-stream-thread:empty {
@@ -81,6 +84,13 @@
             background: currentColor;
             opacity: 0.15;
             border-radius: 2px;
+        }
+
+        .tp-stream-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            width: 100%;
         }
 
         .tp-row {
@@ -276,21 +286,119 @@
             display: block;
         }
 
-        @media screen and (max-width: 640px) {
+        @media screen and (max-width: 767px) {
+            body,
+            #viewport,
+            [data-barba="container"] {
+                height: 100dvh;
+                min-height: 100dvh;
+            }
+            #viewport {
+                position: fixed;
+                inset: 0;
+            }
+            header.header {
+                padding: 0.85rem 0;
+            }
+            header .nav__links {
+                display: none;
+            }
+            header .nav__theme__text {
+                display: none;
+            }
+            .tp-pure-page {
+                height: calc(100dvh - 58px);
+                min-height: 0;
+                padding: 0;
+                align-items: stretch;
+            }
+            .tp-pure-frame {
+                position: relative;
+                max-width: none;
+                height: 100%;
+                margin: 0;
+                padding: 0 14px max(10px, env(safe-area-inset-bottom));
+                overflow: hidden;
+            }
             .tp-headline-title {
-                font-size: 1.8rem;
+                flex: 0 0 auto;
+                font-size: 24px !important;
+                font-weight: 500;
+                margin: 0;
+                padding: 16px 2px 14px;
+            }
+            .tp-stream-thread,
+            .tp-stream-thread:empty {
+                position: absolute;
+                top: 58px;
+                left: 14px;
+                right: 14px;
+                bottom: 84px;
+                display: flex;
+                max-height: none !important;
+                min-height: 0;
+                margin: 0;
+                padding: 8px 2px 12px;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+            }
+            .tp-stream-messages {
+                min-height: 100%;
+            }
+            .tp-stream-messages::before {
+                content: "";
+                margin-top: auto;
+            }
+            .tp-stream-messages .tp-row {
+                flex: 0 0 auto;
+            }
+            .tp-row--user {
+                max-width: 88%;
+            }
+            .tp-role-label {
+                font-size: 11px !important;
+                letter-spacing: .03em;
+            }
+            .tp-bubble-body {
+                font-size: 16px !important;
+                line-height: 1.55;
+            }
+            .tp-row--user .tp-bubble-body {
+                padding: 10px 14px;
+                border-radius: 15px;
+                border-bottom-right-radius: 4px;
+            }
+            .tp-input-box-card {
+                position: absolute;
+                left: 14px;
+                right: 14px;
+                bottom: max(10px, env(safe-area-inset-bottom));
+                min-height: 64px;
+                border-radius: 18px;
+                padding: 0.65rem 0.75rem 0.65rem 1rem;
             }
             .tp-main-input {
-                font-size: 1.15rem;
+                font-size: 16px !important;
+                line-height: 1.4;
+            }
+            .tp-field-label {
+                display: none;
             }
             .tp-exact-l-enter-btn {
-                width: 76px;
+                width: 56px;
             }
             .tp-exact-l-enter-btn svg {
-                width: 76px;
+                width: 56px;
             }
             .tp-input-group {
-                padding-right: 82px;
+                padding-right: 60px;
+                gap: 0;
+            }
+            body:has(.cookie-consent) .tp-input-box-card {
+                bottom: calc(150px + env(safe-area-inset-bottom));
+            }
+            .footer {
+                display: none;
             }
         }
     </style>
@@ -386,13 +494,32 @@
 
     <script src="assets/js/bundle.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/site.js?v=20260813-ai-route1"></script>
+    <script src="assets/js/site.js?v=20260814-anchor-scroll1"></script>
     
     <script>
         var chatHistory = [];
 
+        document.getElementById('chatBody').addEventListener('wheel', function (event) {
+            if (this.scrollHeight <= this.clientHeight) return;
+            event.preventDefault();
+            event.stopPropagation();
+            this.scrollTop += event.deltaY;
+        }, { passive: false });
+
+        function getChatMessages() {
+            var chatBody = document.getElementById('chatBody');
+            var messages = chatBody.querySelector('.tp-stream-messages');
+            if (!messages) {
+                messages = document.createElement('div');
+                messages.className = 'tp-stream-messages';
+                chatBody.appendChild(messages);
+            }
+            return messages;
+        }
+
         function appendMessage(role, text) {
             var chatBody = document.getElementById('chatBody');
+            var messages = getChatMessages();
             var row = document.createElement('div');
             row.className = 'tp-row ' + (role === 'user' ? 'tp-row--user' : 'tp-row--ai');
             
@@ -406,12 +533,13 @@
 
             row.appendChild(label);
             row.appendChild(body);
-            chatBody.appendChild(row);
+            messages.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         function showTypingIndicator() {
             var chatBody = document.getElementById('chatBody');
+            var messages = getChatMessages();
             var row = document.createElement('div');
             row.id = 'typingIndicatorRow';
             row.className = 'tp-row tp-row--ai';
@@ -426,7 +554,7 @@
 
             row.appendChild(label);
             row.appendChild(body);
-            chatBody.appendChild(row);
+            messages.appendChild(row);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
