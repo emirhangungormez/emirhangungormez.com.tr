@@ -3201,6 +3201,11 @@ body.dark-mode .tag-pill.tag-pill--color-purple {
     word-break: break-word;
 }
 
+.tp-bubble-body p {
+    font-size: inherit;
+    line-height: inherit;
+}
+
 .tp-row--user .tp-bubble-body {
     background: rgba(17, 20, 20, 0.05);
     border: 1px solid rgba(17, 20, 20, 0.1);
@@ -3367,62 +3372,69 @@ body:not(.dark-mode) .tp-input-box-card {
     }
 }
 
-/* ChatGPT-Style Rich Link Card / Button Component */
+/* Minimal chat link */
 .tp-rich-link-card {
     display: inline-flex;
     align-items: center;
-    gap: 0.65rem;
-    background: rgba(139, 92, 246, 0.08);
-    border: 1px solid rgba(139, 92, 246, 0.25);
-    border-radius: 12px;
-    padding: 0.65rem 1.1rem;
-    margin: 0.6rem 0;
+    gap: 0.5rem;
+    max-width: 100%;
+    background: transparent;
+    border: 1px solid rgba(17, 20, 20, 0.18);
+    border-radius: 6px;
+    padding: 0.45rem 0.65rem;
+    margin: 0.45rem 0;
     color: inherit !important;
     text-decoration: none !important;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    font-size: 0.92rem;
-    font-weight: 500;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    font-size: inherit;
+    font-weight: 400;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: none;
 }
 
 .dark-mode .tp-rich-link-card {
-    background: rgba(139, 92, 246, 0.16);
-    border-color: rgba(139, 92, 246, 0.35);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
 }
 
 .tp-rich-link-card:hover {
-    transform: translateY(-2px);
-    background: rgba(139, 92, 246, 0.2);
-    border-color: #8b5cf6;
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.22);
+    transform: none;
+    background: rgba(17, 20, 20, 0.04);
+    border-color: rgba(17, 20, 20, 0.35);
+    box-shadow: none;
+}
+
+.dark-mode .tp-rich-link-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
 .tp-rich-link-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #8b5cf6;
+    color: inherit;
+    opacity: 0.65;
 }
 
 .dark-mode .tp-rich-link-icon {
-    color: #a78bfa;
+    color: inherit;
 }
 
 .tp-rich-link-title {
-    font-weight: 600;
+    font-weight: 500;
     color: inherit;
 }
 
 .tp-rich-link-domain {
-    font-size: 0.75rem;
-    opacity: 0.55;
-    margin-left: 0.4rem;
-    font-family: monospace;
+    font-size: 0.78em;
+    opacity: 0.5;
+    margin-left: 0.25rem;
+    font-family: inherit;
 }
 
 /* ==========================================================================
