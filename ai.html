@@ -307,7 +307,7 @@
                 display: none;
             }
             .tp-pure-page {
-                height: calc(100dvh - 58px);
+                height: calc(var(--chat-visual-height, 100dvh) - 58px);
                 min-height: 0;
                 padding: 0;
                 align-items: stretch;
@@ -393,9 +393,6 @@
             .tp-input-group {
                 padding-right: 60px;
                 gap: 0;
-            }
-            body:has(.cookie-consent) .tp-input-box-card {
-                bottom: calc(150px + env(safe-area-inset-bottom));
             }
             .footer {
                 display: none;
@@ -494,10 +491,29 @@
 
     <script src="assets/js/bundle.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/site.js?v=20260814-anchor-scroll1"></script>
+    <script src="assets/js/site.js?v=20260816-mobile-nav1"></script>
     
     <script>
         var chatHistory = [];
+
+        (function syncChatViewport() {
+            var chatBody = document.getElementById('chatBody');
+
+            function update() {
+                var viewport = window.visualViewport;
+                var height = viewport ? viewport.height : window.innerHeight;
+                document.documentElement.style.setProperty('--chat-visual-height', height + 'px');
+                if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            update();
+            window.addEventListener('resize', update);
+            window.visualViewport?.addEventListener('resize', update);
+            window.visualViewport?.addEventListener('scroll', update);
+            document.getElementById('chatInput').addEventListener('blur', function () {
+                window.setTimeout(update, 150);
+            });
+        })();
 
         document.getElementById('chatBody').addEventListener('wheel', function (event) {
             if (this.scrollHeight <= this.clientHeight) return;

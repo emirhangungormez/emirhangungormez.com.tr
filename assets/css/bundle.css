@@ -1767,87 +1767,6 @@ body.dark-mode .footer__cta:hover .button__icon svg {
   line-height: 1.6;
 }
 
-.cookie-consent {
-  position: fixed;
-  right: 2em;
-  bottom: 2em;
-  z-index: 1000;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1.25em;
-  align-items: center;
-  width: min(48em, calc(100vw - 4em));
-  padding: 1.1em 1.2em;
-  color: #111414;
-  background: rgba(239, 239, 239, 0.96);
-  border: 1px solid rgba(17, 20, 20, 0.14);
-  backdrop-filter: blur(16px);
-}
-
-.dark-mode .cookie-consent {
-  color: #efefef;
-  background: rgba(17, 20, 20, 0.94);
-  border-color: rgba(239, 239, 239, 0.18);
-}
-
-.cookie-consent__copy strong {
-  display: block;
-  margin-bottom: 0.35em;
-  font-size: 1.02em;
-  font-weight: 400;
-}
-
-.cookie-consent__copy p {
-  max-width: 34em;
-  margin: 0;
-  color: rgba(17, 20, 20, 0.68);
-  line-height: 1.45;
-}
-
-.dark-mode .cookie-consent__copy p {
-  color: rgba(239, 239, 239, 0.7);
-}
-
-.cookie-consent__actions {
-  display: flex;
-  gap: 0.55em;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.cookie-consent__link,
-.cookie-consent__button {
-  display: inline-flex;
-  min-height: 2.6em;
-  padding: 0 1em;
-  align-items: center;
-  justify-content: center;
-  color: inherit;
-  background: transparent;
-  border: 1px solid rgba(17, 20, 20, 0.16);
-  font: inherit;
-  line-height: 1;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.dark-mode .cookie-consent__link,
-.dark-mode .cookie-consent__button {
-  border-color: rgba(239, 239, 239, 0.2);
-}
-
-.cookie-consent__button.cc-primary {
-  color: #efefef;
-  background: #111414;
-  border-color: #111414;
-}
-
-.dark-mode .cookie-consent__button.cc-primary {
-  color: #111414;
-  background: #efefef;
-  border-color: #efefef;
-}
-
 @media (max-width: 990px) {
   .contact-hero {
     padding-top: 10em;
@@ -1954,17 +1873,6 @@ body.dark-mode .footer__cta:hover .button__icon svg {
     row-gap: 1.25em;
   }
 
-  .cookie-consent {
-    right: 1em;
-    bottom: 1em;
-    grid-template-columns: 1fr;
-    width: calc(100vw - 2em);
-  }
-
-  .cookie-consent__actions {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
 }
 
 /* Portrait Always Visible + Speech Bubble Hover Effects */
@@ -4071,13 +3979,113 @@ body.dark-mode .services__item.hero-stat {
   }
 }
 
+@media screen and (max-width: 767px) {
+  .cta {
+    display: block;
+    min-height: 0;
+    padding: 2.5em 0 .75em;
+  }
 
+  .cta .wrapper {
+    width: 100%;
+  }
 
+  .cta__content {
+    padding-top: 0;
+  }
 
+  .cta__image {
+    top: -.2em;
+  }
 
+  .contribution-days {
+    width: 100%;
+    overflow: visible;
+  }
 
+  .contribution-days__grid {
+    --contribution-day-size: min(7px, calc((100vw - 134px) / 52));
+    grid-template-rows: repeat(7, var(--contribution-day-size));
+    grid-auto-columns: var(--contribution-day-size);
+    gap: 2px;
+    min-height: 0;
+    width: 100%;
+  }
 
+  .contribution-day {
+    width: var(--contribution-day-size);
+  }
 
+  .footer {
+    padding-top: 0;
+  }
+
+  .footer__contact {
+    margin-top: .75em;
+    margin-bottom: 1em;
+  }
+
+  .contact-hero h1 {
+    font-size: 48px;
+    line-height: 1;
+  }
+
+  .contact-hero p,
+  .contact-row__content p {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+
+  .contact-row h2 {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  .blog-post__lead,
+  .blog-post__body p {
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .blog-post__body.cc-essay p {
+    font-size: 18px;
+  }
+
+  .blog-post__body h2 {
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  .blog-post__meta,
+  .blog-post__author {
+    font-size: 15px;
+  }
+
+  .blog-post__signature {
+    font-size: 18px;
+  }
+}
+
+html[lang="en"] .footer__links::before {
+  content: "I turn research, technology and design into work that creates lasting value.";
+}
+
+/* Keep article footers focused on the writing rather than social profiles. */
+body:has(.blog-post) .footer__social-icons {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .blog-post__body p,
+  .blog-post__body.cc-essay p {
+    font-size: 20px !important;
+    line-height: 1.7;
+  }
+
+  .blog-post__signature {
+    font-size: 20px !important;
+  }
+}
 
 
 

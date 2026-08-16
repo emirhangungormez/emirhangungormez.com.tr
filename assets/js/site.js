@@ -1,5 +1,4 @@
 (() => {
-  const adSenseClient = "ca-pub-1008190701714140";
   const siteRootUrl = new URL("../../", document.currentScript?.src || new URL("assets/js/site.js", window.location.href));
   const resolveSiteHref = (href) => {
     let resolvedHref = href.replace(/^\//, "");
@@ -92,6 +91,49 @@
   };
 
   normalizeHeaderNavigation();
+
+  const normalizeFooterNavigation = () => {
+    const isEnglish = explicitLanguage === "en";
+    const translatedPath = isEnglish ? reverseLanguageRoutes[currentPath] : languageRoutes[currentPath];
+    const languagePath = translatedPath || (isEnglish ? "/" : "/en/");
+    const links = isEnglish
+      ? [
+          ["GitHub", "https://github.com/emirhangungormez"],
+          ["LinkedIn", "https://www.linkedin.com/in/emirhangungormez"],
+          ["X (Twitter)", "https://twitter.com/emirhangngrmz"],
+          ["Medium", "https://medium.com/@emirhangungormez"],
+          ["YouTube", "https://www.youtube.com/@han23studio"],
+          ["ArtStation", "https://www.artstation.com/han23studio"],
+          ["Türkçe", languagePath, "tr"],
+          ["Privacy & Cookies", "/en/privacy.html"],
+        ]
+      : [
+          ["GitHub", "https://github.com/emirhangungormez"],
+          ["LinkedIn", "https://www.linkedin.com/in/emirhangungormez"],
+          ["X (Twitter)", "https://twitter.com/emirhangngrmz"],
+          ["Medium", "https://medium.com/@emirhangungormez"],
+          ["YouTube", "https://www.youtube.com/@han23studio"],
+          ["ArtStation", "https://www.artstation.com/han23studio"],
+          ["English", languagePath, "en"],
+          ["Gizlilik ve Çerezler", "/gizlilik.html"],
+        ];
+
+    document.querySelectorAll(".footer__links").forEach((footerLinks) => {
+      footerLinks.replaceChildren(...links.map(([label, href, language]) => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.textContent = label;
+        link.href = href.startsWith("http") ? href : resolveSiteHref(href);
+        link.className = "text-link";
+        if (href.startsWith("http")) link.target = "_blank";
+        if (language) link.hreflang = language;
+        item.appendChild(link);
+        return item;
+      }));
+    });
+  };
+
+  normalizeFooterNavigation();
 
   const scrollVirtualViewportTo = (hash) => {
     const target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
@@ -328,55 +370,6 @@
       frameworkCols.forEach((col) => col.classList.add("is-visible"));
     }
   }
-
-  const loadAds = () => {
-    if (document.querySelector('script[data-consent-ad="adsense"]')) return;
-    const script = document.createElement("script");
-    script.async = true;
-    script.crossOrigin = "anonymous";
-    script.dataset.consentAd = "adsense";
-    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adSenseClient}`;
-    document.head.appendChild(script);
-  };
-
-  const consent = localStorage.getItem("cookieConsent");
-  if (consent === "accepted") {
-    loadAds();
-  } else if (!consent) {
-    const isEnglish = document.documentElement.lang?.toLowerCase().startsWith("en");
-    const cookiePolicyHref = isEnglish
-      ? currentPath.startsWith("/en/blog/")
-        ? "../cookie-policy.html"
-        : "cookie-policy.html"
-      : currentPath.startsWith("/blog/")
-        ? "../cerez-politikasi.html"
-        : "cerez-politikasi.html";
-    const banner = document.createElement("section");
-    banner.className = "cookie-consent";
-    banner.setAttribute("aria-label", isEnglish ? "Cookie notice" : "\u00c7erez bildirimi");
-    banner.innerHTML = `
-      <div class="cookie-consent__copy">
-        <strong>${isEnglish ? "Cookie preferences" : "\u00c7erez tercihleri"}</strong>
-        <p>${isEnglish ? "We use essential preferences for the site and, with your consent, advertising cookies such as Google AdSense." : "Site i\u00e7in zorunlu tercihleri ve onay\u0131n\u0131zla Google AdSense gibi reklam \u00e7erezlerini kullan\u0131yoruz."}</p>
-      </div>
-      <div class="cookie-consent__actions">
-        <a class="cookie-consent__link" href="${cookiePolicyHref}">${isEnglish ? "Details" : "Detaylar"}</a>
-        <button type="button" class="cookie-consent__button" data-cookie-choice="rejected">${isEnglish ? "Reject" : "Reddet"}</button>
-        <button type="button" class="cookie-consent__button cc-primary" data-cookie-choice="accepted">${isEnglish ? "Accept" : "Kabul et"}</button>
-      </div>
-    `;
-    document.body.appendChild(banner);
-    banner.querySelectorAll("[data-cookie-choice]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const choice = button.getAttribute("data-cookie-choice");
-        localStorage.setItem("cookieConsent", choice);
-        banner.remove();
-        if (choice === "accepted") loadAds();
-      });
-    });
-  }
-
-
 
   const hasMainAnimationBundle = Boolean(document.querySelector('script[src*="assets/js/app.js"]'));
   const headerItems = Array.from(document.querySelectorAll(".header .header__item"));
