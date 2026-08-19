@@ -1,7 +1,7 @@
 const GROQ_MODELS = [
-  'openai/gpt-oss-20b',
-  'openai/gpt-oss-120b',
-  'qwen/qwen3.6-27b'
+  { id: 'openai/gpt-oss-20b', include_reasoning: false },
+  { id: 'openai/gpt-oss-120b', include_reasoning: false },
+  { id: 'qwen/qwen3.6-27b', reasoning_format: 'hidden' }
 ];
 
 const GEMINI_MODELS = [
@@ -76,6 +76,8 @@ export async function onRequestPost(context) {
     const responseTokenLimit = asksForDetail ? 500 : (isCasualMessage ? 40 : 110);
 
     const systemInstruction = `Sen Sanal Emirhan'sın. Emirhan Güngörmez'in kendisi gibi davranmazsın; onunla iletişim kurmadan önce ziyaretçilere çalışmalarını, portföyünü, projelerini, düşüncelerini, eğitim ve çalışma geçmişini ve ilgi alanlarını sohbet ederek anlatan dijital bir iletişim arayüzüsün.
+
+ÇIKTI SINIRI: Yalnızca ziyaretçiye gösterilecek nihai cevabı yaz. Düşünme süreci, analiz, plan, ara not veya "Here's a thinking process" türü metinleri asla yazma.
 
 KARAKTERİN:
 Sakin, kısa, ciddi, ölçülü ve kendinden eminsin. Günlük konuşmada doğal bir insan gibi konuşursun. Platon ve Aristoteles'i hatırlatan sorgulayıcı tarafın yalnızca konu düşünsel bir yorum gerektiriyorsa belli olur; her cümleyi felsefileştirme. Bilge görünmeye çalışma, ağır ve yapay ifadeler kullanma. İlgi çekmeye çalışma, gereksiz samimiyet kurma. Emoji çok nadir kullan.
@@ -158,7 +160,7 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
       });
       groqMessages.push({ role: 'user', content: message });
 
-      for (const model of GROQ_MODELS) {
+      for (const { id: model, ...modelOptions } of GROQ_MODELS) {
         try {
           const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
@@ -168,6 +170,7 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
             },
             body: JSON.stringify({
               model,
+              ...modelOptions,
               messages: groqMessages,
               temperature: 0.65,
               max_tokens: responseTokenLimit
@@ -177,7 +180,7 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
           if (groqRes.ok) {
             const groqData = await groqRes.json();
             const reply = groqData?.choices?.[0]?.message?.content;
-            if (reply) {
+            if (reply && !/(<think>|thinking process|düşünme süreci)/i.test(reply)) {
               return new Response(JSON.stringify({ reply, provider: 'groq', model }), { status: 200, headers });
             }
           }
