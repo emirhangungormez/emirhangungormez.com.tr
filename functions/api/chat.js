@@ -1,3 +1,17 @@
+const GROQ_MODELS = [
+  'openai/gpt-oss-20b',
+  'openai/gpt-oss-120b',
+  'qwen/qwen3.6-27b'
+];
+
+const GEMINI_MODELS = [
+  'gemini-2.5-flash-lite',
+  'gemini-2.5-flash',
+  'gemini-3.5-flash-lite',
+  'gemini-3.5-flash',
+  'gemini-3.6-flash'
+];
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -133,49 +147,48 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
 - İletişim: Yalnızca han23studio@gmail.com, emirhangungormez.com.tr
 `;
 
-    // 1. ÖNCELİK: GROQ API (Llama 3.3 70B - Ultra Hızlı)
+    // 1. ÖNCELİK: GROQ API
     if (groqApiKey) {
-      try {
-        const groqMessages = [{ role: 'system', content: systemInstruction }];
-        if (safeHistory.length) {
-          safeHistory.forEach(h => {
-            groqMessages.push({
-              role: h.role === 'user' ? 'user' : 'assistant',
-              content: h.text
-            });
-          });
-        }
-        groqMessages.push({ role: 'user', content: message });
-
-        const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${groqApiKey}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            model: 'llama-3.3-70b-versatile',
-            messages: groqMessages,
-            temperature: 0.65,
-            max_tokens: responseTokenLimit
-          })
+      const groqMessages = [{ role: 'system', content: systemInstruction }];
+      safeHistory.forEach(h => {
+        groqMessages.push({
+          role: h.role === 'user' ? 'user' : 'assistant',
+          content: h.text
         });
+      });
+      groqMessages.push({ role: 'user', content: message });
 
-        if (groqRes.ok) {
-          const groqData = await groqRes.json();
-          const reply = groqData?.choices?.[0]?.message?.content;
-          if (reply) {
-            return new Response(JSON.stringify({ reply, provider: 'groq' }), { status: 200, headers });
+      for (const model of GROQ_MODELS) {
+        try {
+          const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${groqApiKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              model,
+              messages: groqMessages,
+              temperature: 0.65,
+              max_tokens: responseTokenLimit
+            })
+          });
+
+          if (groqRes.ok) {
+            const groqData = await groqRes.json();
+            const reply = groqData?.choices?.[0]?.message?.content;
+            if (reply) {
+              return new Response(JSON.stringify({ reply, provider: 'groq', model }), { status: 200, headers });
+            }
           }
+        } catch (err) {
+          console.error(`Groq ${model} hatası:`, err);
         }
-      } catch (err) {
-        console.error('Groq hatası, Gemini yedek sistemine geçiliyor:', err);
       }
     }
 
-    // 2. ÖNCELİK: GEMINI API (Yedek Sistem)
+    // 2. ÖNCELİK: GEMINI API (ücretsiz katman yedekleri)
     if (geminiApiKey) {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`;
       const contents = [];
       if (safeHistory.length) {
         safeHistory.forEach(h => {
@@ -187,21 +200,28 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
       }
       contents.push({ role: 'user', parts: [{ text: message }] });
 
-      const geminiRes = await fetch(geminiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: systemInstruction }] },
-          contents,
-          generationConfig: { temperature: 0.65, maxOutputTokens: responseTokenLimit }
-        })
-      });
+      for (const model of GEMINI_MODELS) {
+        try {
+          const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiApiKey}`;
+          const geminiRes = await fetch(geminiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: systemInstruction }] },
+              contents,
+              generationConfig: { temperature: 0.65, maxOutputTokens: responseTokenLimit }
+            })
+          });
 
-      if (geminiRes.ok) {
-        const data = await geminiRes.json();
-        const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (reply) {
-          return new Response(JSON.stringify({ reply, provider: 'gemini' }), { status: 200, headers });
+          if (geminiRes.ok) {
+            const data = await geminiRes.json();
+            const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (reply) {
+              return new Response(JSON.stringify({ reply, provider: 'gemini', model }), { status: 200, headers });
+            }
+          }
+        } catch (err) {
+          console.error(`Gemini ${model} hatası:`, err);
         }
       }
     }
