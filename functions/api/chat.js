@@ -1,15 +1,15 @@
 const GROQ_MODELS = [
-  { id: 'openai/gpt-oss-20b', include_reasoning: false },
   { id: 'openai/gpt-oss-120b', include_reasoning: false },
+  { id: 'openai/gpt-oss-20b', include_reasoning: false },
   { id: 'qwen/qwen3.6-27b', reasoning_format: 'hidden' }
 ];
 
 const GEMINI_MODELS = [
-  'gemini-2.5-flash-lite',
+  'gemini-3.6-flash',
+  'gemini-3.5-flash',
   'gemini-2.5-flash',
   'gemini-3.5-flash-lite',
-  'gemini-3.5-flash',
-  'gemini-3.6-flash'
+  'gemini-2.5-flash-lite'
 ];
 
 export async function onRequestPost(context) {
@@ -69,7 +69,7 @@ export async function onRequestPost(context) {
     }
 
     const safeHistory = Array.isArray(history)
-      ? history.slice(-8).filter(h => h && typeof h.text === 'string').map(h => ({ ...h, text: h.text.slice(0, 1500) }))
+      ? history.slice(-20).filter(h => h && typeof h.text === 'string').map(h => ({ ...h, text: h.text.slice(0, 1500) }))
       : [];
     const asksForDetail = /\b(detaylı|ayrıntılı|uzun uzun|derinlemesine|kapsamlı|adım adım)\b/i.test(normalizedMessage);
     const isCasualMessage = /^(selam|merhaba|hey|naber|nasılsın|ne haber|iyi|iyiyim|sağ ol|teşekkürler)[!?. ]*$/i.test(normalizedMessage);

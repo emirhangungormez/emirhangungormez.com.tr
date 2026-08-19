@@ -650,7 +650,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         message: text,
-                        history: chatHistory.slice(-6)
+                        history: chatHistory.slice(-20)
                     })
                 });
 
