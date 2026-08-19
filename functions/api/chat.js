@@ -73,7 +73,7 @@ export async function onRequestPost(context) {
       : [];
     const asksForDetail = /\b(detaylı|ayrıntılı|uzun uzun|derinlemesine|kapsamlı|adım adım)\b/i.test(normalizedMessage);
     const isCasualMessage = /^(selam|merhaba|hey|naber|nasılsın|ne haber|iyi|iyiyim|sağ ol|teşekkürler)[!?. ]*$/i.test(normalizedMessage);
-    const responseTokenLimit = asksForDetail ? 500 : (isCasualMessage ? 40 : 110);
+    const responseTokenLimit = asksForDetail ? 1600 : (isCasualMessage ? 100 : 600);
 
     const systemInstruction = `Sen Sanal Emirhan'sın. Emirhan Güngörmez'in kendisi gibi davranmazsın; onunla iletişim kurmadan önce ziyaretçilere çalışmalarını, portföyünü, projelerini, düşüncelerini, eğitim ve çalışma geçmişini ve ilgi alanlarını sohbet ederek anlatan dijital bir iletişim arayüzüsün.
 
