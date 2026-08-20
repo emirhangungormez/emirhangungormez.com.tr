@@ -12,6 +12,52 @@ const GEMINI_MODELS = [
   'gemini-2.5-flash-lite'
 ];
 
+const decodeXml = (value = '') => value
+  .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+  .replace(/&quot;/g, '"')
+  .replace(/&apos;|&#39;/g, "'")
+  .replace(/&amp;/g, '&')
+  .replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+async function loadBlogContext(requestUrl, language) {
+  try {
+    const origin = new URL(requestUrl).origin;
+    const feedPath = language === 'en' ? '/en/feed.xml' : '/feed.xml';
+    const response = await fetch(`${origin}${feedPath}`, {
+      cf: { cacheEverything: true, cacheTtl: 300 }
+    });
+    if (!response.ok) return '';
+
+    const xml = await response.text();
+    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0, 12);
+    const articles = items.map(([, item]) => {
+      const read = (tag) => decodeXml(item.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`, 'i'))?.[1]);
+      return { title: read('title'), description: read('description'), link: read('link') };
+    }).filter(article => article.title && article.link);
+
+    if (!articles.length) return '';
+    return articles.map(article =>
+      `- ${article.title}\n  Özet: ${article.description}\n  Bağlantı: ${article.link}`
+    ).join('\n');
+  } catch (error) {
+    console.error('Blog bağlamı yüklenemedi:', error);
+    return '';
+  }
+}
+
+function isUsableReply(reply, finishReason, language) {
+  if (!reply || finishReason === 'length' || finishReason === 'MAX_TOKENS') return false;
+  const text = reply.trim();
+  if (!/[.!?…>)]$/.test(text)) return false;
+  if (/^(bu konuda bilgi veremiyorum|yardımcı olamam|i['’]?m sorry|i can(?:not|'t) help)/i.test(text)) return false;
+  if (language === 'tr' && /^(i['’]?m|i am|sorry|unfortunately|as an ai)\b/i.test(text)) return false;
+  return !/(<think>|thinking process|düşünme süreci)/i.test(text);
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -36,7 +82,8 @@ export async function onRequestPost(context) {
       }), { status: 500, headers });
     }
 
-    const { message, history } = await request.json();
+    const { message, history, language = 'tr' } = await request.json();
+    const responseLanguage = language === 'en' ? 'en' : 'tr';
 
     if (!message || typeof message !== 'string') {
       return new Response(JSON.stringify({ error: "Görünen mesaj boş olamaz." }), { status: 400, headers });
@@ -47,6 +94,26 @@ export async function onRequestPost(context) {
     }
 
     const normalizedMessage = message.toLocaleLowerCase('tr-TR').replace(/\s+/g, ' ').trim();
+    const asksAboutIncome = /\b(ne kadar|çok|kaç para)?\s*(para )?(kazanıyor|kazanıyordur|kazanıyor mudur|geliri|kazancı|maaşı)\b/.test(normalizedMessage);
+    if (asksAboutIncome) {
+      return new Response(JSON.stringify({
+        reply: responseLanguage === 'en'
+          ? "Emirhan's personal income is private, so I don't estimate or disclose it."
+          : "Emirhan'ın kişisel kazancı özel bilgidir; bu konuda tahmin yürütmüyor veya bilgi paylaşmıyorum."
+      }), { status: 200, headers });
+    }
+
+    const asksForProjectPrice = /\b(fiyat|ücret|maliyet|teklif|kaç para)/.test(normalizedMessage)
+      && /\b(web|site|proje|uygulama|oyun|yazılım|tasarım|iş)\b/.test(normalizedMessage);
+    if (asksForProjectPrice) {
+      const pricingPage = `<a href='https://han13.emirhangungormez.com.tr/#pricing' target='_blank'>${responseLanguage === 'en' ? 'Han13 pricing page' : 'Han13 fiyatlandırma sayfası'}</a>`;
+      return new Response(JSON.stringify({
+        reply: responseLanguage === 'en'
+          ? `Han13's current starting prices are €1,000 for a landing page, €1,300 for a corporate website, €1,700 for a website with a management panel and €3,500 for e-commerce; custom software is quoted after reviewing the requirements. These are reference prices rather than a final quote: ${pricingPage}. Which type best matches your project?`
+          : `Han13'ün güncel başlangıç fiyatları landing page için 1.000 €, kurumsal site için 1.300 €, yönetim panelli site için 1.700 €, e-ticaret için 3.500 €; özel yazılım ise ihtiyaç analizi sonrası tekliflendiriliyor. Bunlar kesin teklif değil, referans fiyatlardır: ${pricingPage}. Projen bunlardan hangisine daha yakın?`
+      }), { status: 200, headers });
+    }
+
     const asksPrivateFamilyInfo = /\b(babasının|annesinin|kardeşinin|eşinin|ailesinin)\b.*\b(adı|ismi|kim)|\b(babası|annesi|kardeşi|eşi) kim\b/.test(normalizedMessage);
     if (asksPrivateFamilyInfo) {
       return new Response(JSON.stringify({
@@ -73,11 +140,21 @@ export async function onRequestPost(context) {
       : [];
     const asksForDetail = /\b(detaylı|ayrıntılı|uzun uzun|derinlemesine|kapsamlı|adım adım)\b/i.test(normalizedMessage);
     const isCasualMessage = /^(selam|merhaba|hey|naber|nasılsın|ne haber|iyi|iyiyim|sağ ol|teşekkürler)[!?. ]*$/i.test(normalizedMessage);
-    const responseTokenLimit = asksForDetail ? 1600 : (isCasualMessage ? 100 : 600);
+    const responseTokenLimit = asksForDetail ? 2000 : (isCasualMessage ? 150 : 1200);
+    const blogContext = await loadBlogContext(request.url, responseLanguage);
 
     const systemInstruction = `Sen Sanal Emirhan'sın. Emirhan Güngörmez'in kendisi gibi davranmazsın; onunla iletişim kurmadan önce ziyaretçilere çalışmalarını, portföyünü, projelerini, düşüncelerini, eğitim ve çalışma geçmişini ve ilgi alanlarını sohbet ederek anlatan dijital bir iletişim arayüzüsün.
 
-ÇIKTI SINIRI: Yalnızca ziyaretçiye gösterilecek nihai cevabı yaz. Düşünme süreci, analiz, plan, ara not veya "Here's a thinking process" türü metinleri asla yazma.
+ÇIKTI SINIRI: Yalnızca ziyaretçiye gösterilecek nihai cevabı yaz. Düşünme süreci, analiz, plan, ara not veya "Here's a thinking process" türü metinleri asla yazma. Yanıt dili ${responseLanguage === 'en' ? 'İngilizce' : 'Türkçe'} olmalı.
+
+ÖNCELİKLİ ÇALIŞMA ŞEKLİ:
+- Önce konuşmanın son mesajlardaki konusunu takip et; kullanıcı aynı yazı veya projeden söz ediyorsa yeniden adını sorma.
+- Aşağıdaki güncel blog kataloğunda yaklaşık ifade, çeviri veya başlığın bir parçasıyla eşleşen yazıyı bul. Başlığını, doğrulanmış özetini ve tıklanabilir bağlantısını ver. Katalogda olmayan ayrıntıyı uydurma.
+- "Şehitlik", din veya felsefe gibi tek bir kelimeyi ret sebebi sayma. Soru Emirhan'ın kendi yazısı veya çalışması hakkındaysa doğrudan cevapla.
+- Cevabı mutlaka tamamlanmış bir cümleyle bitir; dil değiştirme ve genel bir "yardım edemem" cevabına kaçma.
+
+GÜNCEL BLOG KATALOĞU:
+${blogContext || '- Blog kataloğu şu anda alınamadı; yalnızca aşağıdaki doğrulanmış genel bilgileri kullan.'}
 
 KARAKTERİN:
 Sakin, kısa, ciddi, ölçülü ve kendinden eminsin. Günlük konuşmada doğal bir insan gibi konuşursun. Platon ve Aristoteles'i hatırlatan sorgulayıcı tarafın yalnızca konu düşünsel bir yorum gerektiriyorsa belli olur; her cümleyi felsefileştirme. Bilge görünmeye çalışma, ağır ve yapay ifadeler kullanma. İlgi çekmeye çalışma, gereksiz samimiyet kurma. Emoji çok nadir kullan.
@@ -102,7 +179,7 @@ KONUŞMA KURALLARI (KRİTİK — BUNLARI İHLAL ETME):
 
 9. BAĞLANTI FORMATI: Tıklanabilir HTML bağlantısı vereceğin zaman doğrudan <a href='URL' target='_blank'>Bağlantı Metni</a> formatı kullan.
 
-10. TARTIŞMALI KONULAR: Din, siyaset veya felsefe tartışmalarına girme, polemik döngüsüne sapma. Kendi duruşunu bir cümleyle ifade edip konuyu asıl meseleye çek: "Bu konuda derinlemesine polemiğe girmeyelim, senin asıl derdin neydi?"
+10. TARTIŞMALI KONULAR: Emirhan'ın yayımlanmış dinî veya felsefi yazılarını açıklayabilir ve özetleyebilirsin. Yalnızca Emirhan'la ilgisiz, uzayan polemiklerde konuyu asıl meseleye çek.
 
 11. KAPSAM SINIRI: Matematik sorusu, genel kod yazma, ödev çözme, ders anlatma, metin işleme veya ilgisiz ChatGPT taleplerini yerine getirme. Kibar ve profesyonel biçimde bu alanın Emirhan'ın çalışmaları, yetkinlikleri ve proje görüşmeleriyle sınırlı olduğunu söyle.
 
@@ -115,6 +192,8 @@ KONUŞMA KURALLARI (KRİTİK — BUNLARI İHLAL ETME):
 15. İŞ VE YETKİNLİK: Yazılım ve tasarım kapsamındaki oyun, mobil, web, otomasyon, sistem, güvenlik, blokzinciri, startup, eğitim ve danışmanlık tekliflerine açık olduğunu belirt. Emirhan adına kesin söz verme; ciddi teklifi e-postaya yönlendir.
 
 16. İLETİŞİM: Ciddi iş veya ortaklık teklifini yalnızca han23studio@gmail.com adresine yönlendir. Ön koşul koyma; kişinin fikrini veya talebini kısaca anlatması yeterlidir. Başka e-posta adresi verme.
+
+16A. FİYATLANDIRMA: Yalnızca Han13'ün doğrulanmış başlangıç fiyatlarını referans olarak kullan: landing page 1.000 €, kurumsal site 1.300 €, yönetim panelli site 1.700 €, e-ticaret 3.500 €; özel yazılım ihtiyaç analizi sonrası tekliflendirilir. Bunları kesin teklif gibi sunma; nihai fiyatın kapsam, özellikler ve teslim koşullarına özel hazırlandığını belirt. Başka rakam veya aralık uydurma. En fazla bir somut kapsam sorusu sor ve fiyatlandırma sayfasını paylaş: https://han13.emirhangungormez.com.tr/#pricing
 
 17. KISA GİRİŞLERE KISA CEVAP: "Naber?" için "İyidir, sen?" kadar kısa cevap ver. "Selam" veya "merhaba" için tek, doğal bir cümle yeterlidir. Basit sohbete açıklama, portföy bilgisi veya felsefi yorum ekleme.
 
@@ -179,8 +258,9 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
 
           if (groqRes.ok) {
             const groqData = await groqRes.json();
-            const reply = groqData?.choices?.[0]?.message?.content;
-            if (reply && !/(<think>|thinking process|düşünme süreci)/i.test(reply)) {
+            const choice = groqData?.choices?.[0];
+            const reply = choice?.message?.content;
+            if (isUsableReply(reply, choice?.finish_reason, responseLanguage)) {
               return new Response(JSON.stringify({ reply, provider: 'groq', model }), { status: 200, headers });
             }
           }
@@ -218,8 +298,9 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
 
           if (geminiRes.ok) {
             const data = await geminiRes.json();
-            const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-            if (reply) {
+            const candidate = data?.candidates?.[0];
+            const reply = candidate?.content?.parts?.map(part => part.text || '').join('').trim();
+            if (isUsableReply(reply, candidate?.finishReason, responseLanguage)) {
               return new Response(JSON.stringify({ reply, provider: 'gemini', model }), { status: 200, headers });
             }
           }
