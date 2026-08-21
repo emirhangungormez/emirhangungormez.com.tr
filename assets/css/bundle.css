@@ -296,20 +296,18 @@ body.dark-mode .button.button--ai .button__text {
 }
 
 .contribution-days {
-  grid-area: contributions;
-  justify-self: start;
-  align-self: end;
-  padding: .25em 0 1.5em;
+  flex: 0 0 auto;
+  padding: 0;
 }
 
 .contribution-days__grid {
   display: grid;
-  grid-template-rows: repeat(7, 1fr);
+  grid-template-rows: repeat(3, 11px);
   grid-auto-flow: column;
   grid-auto-columns: 11px;
   gap: 4px;
   width: max-content;
-  min-height: 101px;
+  min-height: 41px;
 }
 
 .contribution-day {
@@ -336,15 +334,16 @@ body.dark-mode .contribution-day[data-level="4"] { background: #a78bfa; }
   .contribution-days {
     justify-self: start;
     max-width: 100%;
-    padding: .25em 0 1.5em;
+    padding: 0;
     overflow: hidden;
   }
 
   .contribution-days__grid {
+    grid-template-rows: repeat(3, 7px);
     grid-auto-columns: 7px;
     width: max-content;
     gap: 3px;
-    min-height: 67px;
+    min-height: 27px;
   }
 
   .contribution-day {
@@ -369,7 +368,6 @@ body.dark-mode .contribution-day[data-level="4"] { background: #a78bfa; }
   display: grid;
   grid-template-columns: 1.4fr 2fr;
   grid-template-areas:
-    "contributions ."
     "contact cta"
     "links links"
     "copy brand";
@@ -380,7 +378,7 @@ body.dark-mode .contribution-day[data-level="4"] { background: #a78bfa; }
 .footer__grid::after {
   content: "";
   grid-column: 1 / -1;
-    grid-row: 4;
+  grid-row: 3;
   align-self: start;
   width: 100%;
   height: 1px;
@@ -452,6 +450,10 @@ body.dark-mode .contribution-day[data-level="4"] { background: #a78bfa; }
   justify-self: stretch;
   align-self: end;
   padding: 1.5em 0 .25em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.25em;
 }
 
 .footer__legal a {
@@ -478,11 +480,22 @@ body.dark-mode .contribution-day[data-level="4"] { background: #a78bfa; }
 }
 
 .footer__links::before {
-  content: "Araştırma, teknoloji ve tasarımı kalıcı değer üreten işlere dönüştürüyorum.";
+  content: none;
+}
+
+.footer__intro {
   max-width: 24em;
+  grid-row: 1 / span 3;
+}
+
+.footer__intro p {
+  margin: 0;
   font-size: .9em;
   line-height: 1.45;
-  grid-row: 1 / span 3;
+}
+
+.footer__intro .contribution-days {
+  margin-top: 1.25em;
 }
 
 .footer__links li {
@@ -579,11 +592,11 @@ body.dark-mode .footer__cta:hover .button__icon svg {
   .footer__grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: "contact" "contributions" "cta" "links" "copy" "brand";
+    grid-template-areas: "contact" "cta" "links" "copy" "brand";
   }
 
   .footer__grid::after {
-    grid-row: 5;
+    grid-row: 4;
   }
 
   .footer__contact {
@@ -602,6 +615,8 @@ body.dark-mode .footer__cta:hover .button__icon svg {
     justify-self: start;
     margin-top: 1.5em;
     width: 100%;
+    justify-content: space-between;
+    gap: 1em;
   }
 
   .footer__legal a {
@@ -610,7 +625,7 @@ body.dark-mode .footer__cta:hover .button__icon svg {
 
   .footer__legal img,
   .footer__logo-img {
-    width: min(250px, 100%) !important;
+    width: min(12em, 58vw) !important;
     height: auto !important;
   }
 
@@ -2934,53 +2949,18 @@ body.dark-mode .tag-pill--featured {
 
 .services__item span.tag-pill.tag-pill--color-green,
 .services__item .tag-pill.tag-pill--color-green,
-.tag-pill.tag-pill--color-green {
-  background-color: #10b981 !important;
-  color: #ffffff !important;
-}
-body.dark-mode .services__item span.tag-pill.tag-pill--color-green,
-body.dark-mode .services__item .tag-pill.tag-pill--color-green,
-body.dark-mode .tag-pill.tag-pill--color-green {
-  background-color: #10b981 !important;
-  color: #ffffff !important;
-}
-
+.tag-pill.tag-pill--color-green,
 .services__item span.tag-pill.tag-pill--color-blue,
 .services__item .tag-pill.tag-pill--color-blue,
-.tag-pill.tag-pill--color-blue {
-  background-color: #3b82f6 !important;
-  color: #ffffff !important;
-}
-body.dark-mode .services__item span.tag-pill.tag-pill--color-blue,
-body.dark-mode .services__item .tag-pill.tag-pill--color-blue,
-body.dark-mode .tag-pill.tag-pill--color-blue {
-  background-color: #3b82f6 !important;
-  color: #ffffff !important;
-}
-
+.tag-pill.tag-pill--color-blue,
 .services__item span.tag-pill.tag-pill--color-yellow,
 .services__item .tag-pill.tag-pill--color-yellow,
-.tag-pill.tag-pill--color-yellow {
-  background-color: #f59e0b !important;
-  color: #422006 !important;
-}
-body.dark-mode .services__item span.tag-pill.tag-pill--color-yellow,
-body.dark-mode .services__item .tag-pill.tag-pill--color-yellow,
-body.dark-mode .tag-pill.tag-pill--color-yellow {
-  background-color: #f59e0b !important;
-  color: #422006 !important;
-}
-
+.tag-pill.tag-pill--color-yellow,
 .services__item span.tag-pill.tag-pill--color-purple,
 .services__item .tag-pill.tag-pill--color-purple,
-.tag-pill.tag-pill--color-purple {
-  background-color: #8b5cf6 !important;
-  color: #ffffff !important;
-}
-body.dark-mode .services__item span.tag-pill.tag-pill--color-purple,
-body.dark-mode .services__item .tag-pill.tag-pill--color-purple,
-body.dark-mode .tag-pill.tag-pill--color-purple {
-  background-color: #8b5cf6 !important;
+.tag-pill.tag-pill--color-purple,
+body.dark-mode .services__item .tag-pill.tag-pill--service-badge {
+  background-color: #111414 !important;
   color: #ffffff !important;
 }
 
@@ -3999,17 +3979,24 @@ body.dark-mode .services__item.hero-stat {
   }
 
   .contribution-days {
-    width: 100%;
+    width: auto;
     overflow: visible;
   }
 
+  .footer__intro {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    max-width: 24em;
+    margin-bottom: .75em;
+  }
+
   .contribution-days__grid {
-    --contribution-day-size: min(7px, calc((100vw - 134px) / 52));
-    grid-template-rows: repeat(7, var(--contribution-day-size));
+    --contribution-day-size: 7px;
+    grid-template-rows: repeat(3, var(--contribution-day-size));
     grid-auto-columns: var(--contribution-day-size);
-    gap: 2px;
+    gap: 3px;
     min-height: 0;
-    width: 100%;
+    width: max-content;
   }
 
   .contribution-day {
@@ -4067,7 +4054,7 @@ body.dark-mode .services__item.hero-stat {
 }
 
 html[lang="en"] .footer__links::before {
-  content: "I turn research, technology and design into work that creates lasting value.";
+  content: none;
 }
 
 /* Keep article footers focused on the writing rather than social profiles. */

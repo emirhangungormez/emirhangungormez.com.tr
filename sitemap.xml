@@ -181,24 +181,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://emirhangungormez.com.tr/yayin-politikasi.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/yayin-politikasi.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/publishing-policy.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/yayin-politikasi.html" />
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://emirhangungormez.com.tr/en/publishing-policy.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/yayin-politikasi.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/publishing-policy.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/yayin-politikasi.html" />
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/barzakh-star-gardener-interactive-parable-unseen-thresholds.html" />
@@ -235,56 +217,38 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/kuran23-digital-library-research-platform.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html" />
-    <lastmod>2026-06-04</lastmod>
+    <loc>https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/immateryalizm-ve-berkeleyin-idealizmi.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html" />
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://emirhangungormez.com.tr/en/blog/kuran23-digital-library-research-platform.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/kuran23-digital-library-research-platform.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/kuran23-dijital-kutuphane-arastirma-platformu.html" />
-    <lastmod>2026-06-04</lastmod>
+    <loc>https://emirhangungormez.com.tr/en/blog/immateryalizm-ve-berkeleyin-idealizmi.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/immateryalizm-ve-berkeleyin-idealizmi.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/immateryalizm-ve-berkeleyin-idealizmi.html" />
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/unreal-engine-independent-game-development-notes.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html" />
-    <lastmod>2026-06-04</lastmod>
+    <loc>https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/society-of-the-untitled-an-ecology-of-truth-without-diplomas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" />
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://emirhangungormez.com.tr/en/blog/unreal-engine-independent-game-development-notes.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/unreal-engine-independent-game-development-notes.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/unreal-engine-bagimsiz-oyun-gelistirme-notlari.html" />
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/website-strategy-for-companies-in-germany.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html" />
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://emirhangungormez.com.tr/en/blog/website-strategy-for-companies-in-germany.html</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/website-strategy-for-companies-in-germany.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/almanyadaki-firmalar-icin-web-sitesi-stratejisi.html" />
-    <lastmod>2026-06-04</lastmod>
+    <loc>https://emirhangungormez.com.tr/en/blog/society-of-the-untitled-an-ecology-of-truth-without-diplomas.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://emirhangungormez.com.tr/en/blog/society-of-the-untitled-an-ecology-of-truth-without-diplomas.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emirhangungormez.com.tr/blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" />
+    <lastmod>2026-08-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -6,9 +6,9 @@
       var today = new Date();
       today.setHours(0, 0, 0, 0);
       var start = new Date(today);
-      start.setDate(today.getDate() - 370 - today.getDay());
+      start.setDate(today.getDate() - 29);
 
-      for (var index = 0; index < 371; index += 1) {
+      for (var index = 0; index < 30; index += 1) {
         var date = new Date(start);
         date.setDate(start.getDate() + index);
         var key = date.toISOString().slice(0, 10);
@@ -36,6 +36,10 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', renderContributionDays);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderContributionDays);
+  } else {
+    renderContributionDays();
+  }
   window.addEventListener('pageshow', renderContributionDays);
 })();

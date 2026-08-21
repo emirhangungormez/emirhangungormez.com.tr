@@ -119,7 +119,27 @@
         ];
 
     document.querySelectorAll(".footer__links").forEach((footerLinks) => {
-      footerLinks.replaceChildren(...links.map(([label, href, language]) => {
+      const intro = document.createElement("li");
+      intro.className = "footer__intro";
+
+      const description = document.createElement("p");
+      description.textContent = isEnglish
+        ? "I turn research, technology and design into work that creates lasting value."
+        : "Araştırma, teknoloji ve tasarımı kalıcı değer üreten işlere dönüştürüyorum.";
+
+      const contributions = document.createElement("div");
+      contributions.className = "contribution-days";
+      contributions.setAttribute("aria-label", isEnglish
+        ? "GitHub contributions for the last 30 days"
+        : "Son 30 günlük GitHub katkıları");
+
+      const contributionGrid = document.createElement("div");
+      contributionGrid.className = "contribution-days__grid";
+      contributionGrid.dataset.githubUser = "emirhangungormez";
+      contributions.appendChild(contributionGrid);
+      intro.append(description, contributions);
+
+      footerLinks.replaceChildren(intro, ...links.map(([label, href, language]) => {
         const item = document.createElement("li");
         const link = document.createElement("a");
         link.textContent = label;
@@ -131,6 +151,12 @@
         return item;
       }));
     });
+
+    if (!document.querySelector('script[src*="contributions.js"]')) {
+      const contributionScript = document.createElement("script");
+      contributionScript.src = resolveSiteHref("/assets/js/contributions.js");
+      document.head.appendChild(contributionScript);
+    }
   };
 
   normalizeFooterNavigation();

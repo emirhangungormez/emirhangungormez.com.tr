@@ -58,6 +58,13 @@ function isUsableReply(reply, finishReason, language) {
   return !/(<think>|thinking process|düşünme süreci)/i.test(text);
 }
 
+function normalizeReplyLinks(reply) {
+  if (typeof reply !== 'string') return reply;
+  return reply
+    .replace(/https?:\/\/(?:www\.)?emirhangormez(?:\.com(?:\.tr)?)?/gi, 'https://emirhangungormez.com.tr')
+    .replace(/href=(['"])\/?\/?emirhangormez\1/gi, "href=$1https://emirhangungormez.com.tr$1");
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -177,7 +184,7 @@ KONUŞMA KURALLARI (KRİTİK — BUNLARI İHLAL ETME):
 
 8. GÜVENLİK VE MAHREMİYET: Aile, özel hayat, adres, telefon ve doğrulanmamış kişisel iddialarda kısa ve profesyonel konuş: "Emirhan'ın özel hayatına ilişkin bilgi paylaşmıyorum." "Bana bu konuda bilgi verilmedi" deme; sınırın ne olduğunu açıkça belirt.
 
-9. BAĞLANTI FORMATI: Tıklanabilir HTML bağlantısı vereceğin zaman doğrudan <a href='URL' target='_blank'>Bağlantı Metni</a> formatı kullan.
+9. BAĞLANTI FORMATI: Tıklanabilir HTML bağlantısı vereceğin zaman doğrudan <a href='URL' target='_blank'>Bağlantı Metni</a> formatı kullan. Emirhan'ın ana domaini yalnızca https://emirhangungormez.com.tr adresidir. "emirhangormez", "emirhangormez.com" veya başka bir benzer domain asla kullanma. Site içi bağlantıları bu ana domain altında ver.
 
 10. TARTIŞMALI KONULAR: Emirhan'ın yayımlanmış dinî veya felsefi yazılarını açıklayabilir ve özetleyebilirsin. Yalnızca Emirhan'la ilgisiz, uzayan polemiklerde konuyu asıl meseleye çek.
 
@@ -225,7 +232,7 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
 - Kabul edilen işler: Yazılım ve tasarım; oyun, mobil, web, otomasyon, sistem geliştirme, penetrasyon testi, blokzinciri, startup, eğitim, danışmanlık ve uygun ortaklık teklifleri. Yazılım ve tasarım dışındaki sektörlerle şu anda ilgilenmiyor.
 - En güçlü yön: Teknik altyapıyı yaratıcı problem çözmeyle birleştirip uygun ve ölçeklenebilir çözümü kurmak. Frontend, arayüz işlevselliği, oyun ve sistem geliştirme öne çıkan alanlardır.
 - Öne çıkanlar: Kuran23, Truck Up, Barzakh, Han13 Studio ve üniversiteler arası teknoloji topluluğu Anticverse.
-- İletişim: Yalnızca han23studio@gmail.com, emirhangungormez.com.tr
+- İletişim: Yalnızca han23studio@gmail.com. Ana site: <a href='https://emirhangungormez.com.tr' target='_blank'>emirhangungormez.com.tr</a>
 `;
 
     // 1. ÖNCELİK: GROQ API
@@ -261,7 +268,7 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
             const choice = groqData?.choices?.[0];
             const reply = choice?.message?.content;
             if (isUsableReply(reply, choice?.finish_reason, responseLanguage)) {
-              return new Response(JSON.stringify({ reply, provider: 'groq', model }), { status: 200, headers });
+              return new Response(JSON.stringify({ reply: normalizeReplyLinks(reply), provider: 'groq', model }), { status: 200, headers });
             }
           }
         } catch (err) {
@@ -301,7 +308,7 @@ EMİRHAN GÜNGÖRMEZ HAKKINDA BİLGİ BİRİKİMİ:
             const candidate = data?.candidates?.[0];
             const reply = candidate?.content?.parts?.map(part => part.text || '').join('').trim();
             if (isUsableReply(reply, candidate?.finishReason, responseLanguage)) {
-              return new Response(JSON.stringify({ reply, provider: 'gemini', model }), { status: 200, headers });
+              return new Response(JSON.stringify({ reply: normalizeReplyLinks(reply), provider: 'gemini', model }), { status: 200, headers });
             }
           }
         } catch (err) {
