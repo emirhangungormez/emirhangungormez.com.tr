@@ -162,6 +162,32 @@
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
         }
 
+        .blog-card__image {
+            width: 100% !important;
+            aspect-ratio: 16 / 9 !important;
+            overflow: hidden !important;
+            border-radius: 10px !important;
+            margin-bottom: 1.4em !important;
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .blog-card__image img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+
+        img[src*="george-berkeley"] {
+            object-position: center 15% !important;
+        }
+
+        .blog-card:hover .blog-card__image img {
+            transform: scale(1.04) !important;
+        }
+
         .card-dots {
             display: block;
             margin-bottom: 1.8em;
@@ -193,6 +219,25 @@
             text-transform: uppercase !important;
             display: block;
             margin-bottom: 0.6em;
+        }
+
+        .blog-card__meta {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            color: rgba(255, 255, 255, 0.45) !important;
+            font-size: 0.78rem !important;
+            letter-spacing: 0.02em !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            padding-top: 0.9em !important;
+            margin-top: auto !important;
+        }
+
+        .blog-card__meta span {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.35em !important;
+            white-space: nowrap !important;
         }
 
         @media screen and (max-width: 768px) {
@@ -241,11 +286,111 @@
             <main>
                 <section class="blog-hero"><div class="wrapper"><span>/ Blog</span><h1>Yazılar, notlar ve üretim kayıtları</h1><p>Oyun geliştirme, web teknolojileri, Kuran23, dijital ürünler, ajans faaliyetleri, felsefi denemeler ve üretim disiplini üzerine düzenli yayın alanı.</p></div></section>
                 <section class="blog-list"><div class="wrapper">
-                    <a href="blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Felsefe ve Ekoloji &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-08-10 &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 7 dk</small><h2>Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi</h2><p>Farabi, İbn Sina ve Gazali'nin terbiye anlayışından hareketle; günümüz akademisine, unvansızlık ve bütüncül hakikat anlayışına dair felsefi bir sorgulama.</p></div></a>
-                    <a href="blog/immateryalizm-ve-berkeleyin-idealizmi.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Felsefe ve Teoloji &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-08-02 &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 6 dk</small><h2>Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İidealizmi</h2><p>Putperestlerin tanrıtanımaz eğilimleri, algısal estetik ve George Berkeley’in varoluş ilkesi üzerine felsefi bir sorgulama.</p></div></a>
-                    <a href="blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Oyun ve Felsefi Anlatı &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-06-02 &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 9 dk</small><h2>Barzakh: Star Gardener Oyunu ve Etkileşimli Kıssanın Gaybî Eşikleri Üzerine</h2><p>Dede Korkut, Küçük Prens, Dante ve tasavvufî eşikler üzerinden Barzakh anlatısına uzun bir okuma.</p></div></a>
-                    <a href="blog/commentarius-perpetuus-uniqus-martyrium.html" class="blog-card"><div><svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/></svg><small>Felsefi Deneme &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-06-02 &bull; <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65; vertical-align: -1px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 12 dk</small><h2>Commentarius Perpetuus in "Uniqus Martyrium"</h2><p>Keder, idrak, yalnızlık ve modern düşünmenin çözülüşü üzerine felsefi ve edebi bir deneme.</p></div></a>
+                    <a href="blog/unvansizlar-cemiyeti-diplomasiz-bir-hakikat-ekolojisi.html" class="blog-card blog-card--has-image">
+                        <div>
+                            <div class="blog-card__image"><img src="assets/images/blog/unvansizlar-cemiyeti.webp" alt="Unvansızlar Cemiyeti görseli" loading="lazy"></div>
+                            <small>Felsefe ve Ekoloji</small>
+                            <h2>Unvansızlar Cemiyeti; Diplomasız Bir Hakikat Ekolojisi</h2>
+                            <p>Farabi, İbn Sina ve Gazali'nin terbiye anlayışından hareketle; günümüz akademisine, unvansızlık ve bütüncül hakikat anlayışına dair felsefi bir sorgulama.</p>
+                        </div>
+                        <div class="blog-card__meta">
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-08-10</span>
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 7 dk</span>
+                        </div>
+                    </a>
+                    <a href="blog/immateryalizm-ve-berkeleyin-idealizmi.html" class="blog-card blog-card--has-image">
+                        <div>
+                            <div class="blog-card__image"><img src="assets/images/blog/george-berkeley.jpg" alt="George Berkeley görseli" loading="lazy"></div>
+                            <small>Felsefe ve Teoloji</small>
+                            <h2>Meçhul Hakikatin Biçimsiz Tasvirlerinde: İmmateryalizm ve Berkeley'in İidealizmi</h2>
+                            <p>Putperestlerin tanrıtanımaz eğilimleri, algısal estetik ve George Berkeley’in varoluş ilkesi üzerine felsefi bir sorgulama.</p>
+                        </div>
+                        <div class="blog-card__meta">
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-08-02</span>
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 6 dk</span>
+                        </div>
+                    </a>
+                    <a href="blog/barzakh-star-gardener-etkilesimli-kissa-gaybi-esikler.html" class="blog-card blog-card--has-image">
+                        <div>
+                            <div class="blog-card__image"><img src="assets/images/projects/steam/barzakh-hero.jpg" alt="Barzakh: Star Gardener görseli" loading="lazy"></div>
+                            <small>Oyun ve Felsefi Anlatı</small>
+                            <h2>Barzakh: Star Gardener Oyunu ve Etkileşimli Kıssanın Gaybî Eşikleri Üzerine</h2>
+                            <p>Dede Korkut, Küçük Prens, Dante ve tasavvufî eşikler üzerinden Barzakh anlatısına uzun bir okuma.</p>
+                        </div>
+                        <div class="blog-card__meta">
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-06-02</span>
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 9 dk</span>
+                        </div>
+                    </a>
+                    <a href="blog/commentarius-perpetuus-uniqus-martyrium.html" class="blog-card blog-card--has-image">
+                        <div>
+                            <div class="blog-card__image"><img src="assets/images/blog/kudus-uniqus-martyrium.jpg" alt="Kudüs ve Biricik Şehitlik görseli" loading="lazy"></div>
+                            <small>Felsefi Deneme</small>
+                            <h2>Commentarius Perpetuus in "Uniqus Martyrium"</h2>
+                            <p>Keder, idrak, yalnızlık ve modern düşünmenin çözülüşü üzerine felsefi ve edebi bir deneme.</p>
+                        </div>
+                        <div class="blog-card__meta">
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-06-02</span>
+                            <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 12 dk</span>
+                        </div>
+                    </a>
                 </div></section>
+
+                <section id="youtube-videos" class="yt-section">
+                    <div class="wrapper">
+                        <div class="yt-section__header">
+                            <div>
+                                <span>/ YouTube</span>
+                                <h2>Son Videolar</h2>
+                            </div>
+                            <a href="https://www.youtube.com/@han23studio" target="_blank" rel="noopener noreferrer" class="text-link">Tüm Videolar</a>
+                        </div>
+                        <div class="yt-grid" aria-label="Son YouTube videoları">
+                            <a href="https://www.youtube.com/watch?v=69vnDbbrs2g" target="_blank" rel="noopener noreferrer" class="yt-video">
+                                <div class="yt-video__thumb-wrap">
+                                    <img src="assets/images/youtube/sequence-node.jpg" alt="Unreal Engine Blueprint – Sequence Node" class="yt-video__thumb" loading="lazy">
+                                    <div class="yt-video__play-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                                <h3 class="yt-video__title">Unreal Engine Blueprint – Sequence Node | 100 Temel Blueprint Node'u</h3>
+                                <div class="yt-video__meta">
+                                    <span>Han13 Studio</span>
+                                    <span>•</span>
+                                    <span>2026-08-27</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=R1vvp-JH_1U" target="_blank" rel="noopener noreferrer" class="yt-video">
+                                <div class="yt-video__thumb-wrap">
+                                    <img src="assets/images/youtube/branch-node.jpg" alt="Unreal Engine Blueprint – Branch Node" class="yt-video__thumb" loading="lazy">
+                                    <div class="yt-video__play-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                                <h3 class="yt-video__title">Unreal Engine Blueprint – Branch Node | 100 Temel Blueprint Node'u</h3>
+                                <div class="yt-video__meta">
+                                    <span>Han13 Studio</span>
+                                    <span>•</span>
+                                    <span>2026-08-25</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=dhsVbxH0BX4" target="_blank" rel="noopener noreferrer" class="yt-video">
+                                <div class="yt-video__thumb-wrap">
+                                    <img src="assets/images/youtube/barzakh-devlog-1.jpg" alt="#Devlog 1 - Barzakh: Star Gardener" class="yt-video__thumb" loading="lazy">
+                                    <div class="yt-video__play-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                                <h3 class="yt-video__title">#Devlog 1 - Barzakh: Star Gardener - A New Puzzle/Adventure Indie Game!</h3>
+                                <div class="yt-video__meta">
+                                    <span>Han13 Studio</span>
+                                    <span>•</span>
+                                    <span>2025-07-09</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
             </main>
             <footer class="footer">
                 <div class="wrapper">

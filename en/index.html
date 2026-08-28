@@ -394,12 +394,13 @@
             }
         }
 
-        /* Matte Dark Card Theme matching user screenshot */
+        /* Matte Dark Card Theme matching blog page */
         .home-journal__shelf,
+        .blog-list .wrapper,
         .blog-list {
             display: grid !important;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
-            gap: 1.25em !important;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+            gap: 1.5em !important;
         }
 
         .home-journal__book,
@@ -409,8 +410,8 @@
             flex-direction: column !important;
             justify-content: space-between !important;
             aspect-ratio: auto !important;
-            min-height: 230px !important;
-            padding: 2.2em 1.8em 1.8em !important;
+            min-height: 240px !important;
+            padding: 2.2em 1.8em !important;
             background-color: #181818 !important;
             color: #ffffff !important;
             border: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -420,7 +421,8 @@
             text-decoration: none !important;
         }
 
-        .home-journal__book::before {
+        .home-journal__book::before,
+        .blog-card > span {
             display: none !important;
         }
 
@@ -431,6 +433,33 @@
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38) !important;
         }
 
+        .blog-card__image {
+            width: 100% !important;
+            aspect-ratio: 16 / 9 !important;
+            overflow: hidden !important;
+            border-radius: 10px !important;
+            margin-bottom: 1.4em !important;
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .blog-card__image img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+        }
+
+        img[src*="george-berkeley"] {
+            object-position: center 15% !important;
+        }
+
+        .home-journal__book:hover .blog-card__image img,
+        .blog-card:hover .blog-card__image img {
+            transform: scale(1.04) !important;
+        }
+
         .card-dots {
             display: block;
             margin-bottom: 1.8em;
@@ -439,24 +468,23 @@
         }
 
         .home-journal__book h3,
+        .home-journal__book h2,
         .blog-card h2 {
             color: #ffffff !important;
-            font-size: 1.22rem !important;
+            font-size: 1.25rem !important;
             font-weight: 500 !important;
             line-height: 1.35 !important;
             letter-spacing: -0.01em !important;
             margin-bottom: 0.6em !important;
             max-width: 100% !important;
-            -webkit-line-clamp: 3 !important;
         }
 
         .home-journal__book p,
         .blog-card p {
             color: rgba(255, 255, 255, 0.68) !important;
-            font-size: 0.85rem !important;
+            font-size: 0.88rem !important;
             line-height: 1.5 !important;
             margin-bottom: 1.2em !important;
-            -webkit-line-clamp: 4 !important;
         }
 
         .home-journal__book small,
@@ -469,25 +497,41 @@
             margin-bottom: 0.6em;
         }
 
-        .home-journal__meta {
+        .home-journal__meta,
+        .blog-card__meta {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
             color: rgba(255, 255, 255, 0.45) !important;
+            font-size: 0.78rem !important;
+            letter-spacing: 0.02em !important;
             border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-            padding-top: 0.85em !important;
+            padding-top: 0.9em !important;
             margin-top: auto !important;
         }
 
+        .home-journal__meta span,
+        .blog-card__meta span {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.35em !important;
+            white-space: nowrap !important;
+        }
+
         @media screen and (max-width: 768px) {
-            .home-journal__book h3 {
-                font-size: 21px !important;
-            }
-            .home-journal__book p {
+            .home-journal__book h3,
+            .blog-card h2 {
                 font-size: 18px !important;
-                line-height: 1.55 !important;
+            }
+            .home-journal__book p,
+            .blog-card p {
+                font-size: 15px !important;
+                line-height: 1.6 !important;
             }
             .home-journal__book small,
-            .home-journal__meta span {
-                font-size: 15px !important;
-                line-height: 1.4 !important;
+            .blog-card small {
+                font-size: 12px !important;
+                line-height: 1.5 !important;
             }
         }
     </style>
@@ -834,44 +878,109 @@
                             <a href="blog.html" class="text-link">See All</a>
                         </div>
                         <div class="home-journal__shelf" aria-label="Recent journal posts">
-                            <a href="blog/immateryalizm-ve-berkeleyin-idealizmi.html" class="home-journal__book">
+                            <a href="blog/society-of-the-untitled-an-ecology-of-truth-without-diplomas.html" class="blog-card blog-card--has-image home-journal__book">
                                 <div>
-                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
-                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
-                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
-                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
-                                    </svg>
+                                    <div class="blog-card__image"><img src="../assets/images/blog/unvansizlar-cemiyeti.webp" alt="Society of the Untitled" loading="lazy"></div>
+                                    <small>Philosophy &amp; Ecology</small>
+                                    <h3>Society of the Untitled: An Ecology of Truth Without Diplomas</h3>
+                                    <p>A philosophical inquiry into contemporary academia, intellectual formation, and a holistic understanding of truth through Al-Farabi, Avicenna, and Al-Ghazali.</p>
+                                </div>
+                                <div class="home-journal__meta blog-card__meta">
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-08-10</span>
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 7 min</span>
+                                </div>
+                            </a>
+                            <a href="blog/immateryalizm-ve-berkeleyin-idealizmi.html" class="blog-card blog-card--has-image home-journal__book">
+                                <div>
+                                    <div class="blog-card__image"><img src="../assets/images/blog/george-berkeley.jpg" alt="George Berkeley" loading="lazy"></div>
                                     <small>Philosophy &amp; Theology</small>
-                                    <h3>In Formless Depictions of Unknown Truth: Immaterialism and Berkeley's Idealism</h3>
-                                    <p>A philosophical inquiry into the atheistic tendencies of idolaters, perceptual aesthetics, and George Berkeley’s principle of existence.</p>
+                                    <h3>In the Shapeless Depictions of the Unknown Truth: Immaterialism and Berkeley's Idealism</h3>
+                                    <p>A philosophical inquiry into the atheistic tendencies of idolaters, perceptual aesthetics, and George Berkeley's principle of existence.</p>
                                 </div>
-                                <div class="home-journal__meta"><span>2026-08-02</span><span>6 min</span></div>
-                            </a>
-                            <a href="blog/barzakh-star-gardener-interactive-parable-unseen-thresholds.html" class="home-journal__book">
-                                <div>
-                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
-                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
-                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
-                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
-                                    </svg>
-                                    <small>Gaming &amp; Philosophical Narrative</small>
-                                    <h3>On Barzakh: Star Gardener and the Unseen Thresholds of Interactive Parables</h3>
-                                    <p>A lengthy reading on the Barzakh narrative through Dede Korkut, The Little Prince, Dante, and mystical thresholds.</p>
+                                <div class="home-journal__meta blog-card__meta">
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-08-02</span>
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 6 min</span>
                                 </div>
-                                <div class="home-journal__meta"><span>2026-06-02</span><span>9 min</span></div>
                             </a>
-                            <a href="blog/commentarius-perpetuus-uniqus-martyrium.html" class="home-journal__book">
+                            <a href="blog/barzakh-star-gardener-interactive-parable-unseen-thresholds.html" class="blog-card blog-card--has-image home-journal__book">
                                 <div>
-                                    <svg class="card-dots" width="18" height="22" viewBox="0 0 16 22" fill="currentColor">
-                                        <circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/>
-                                        <circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/>
-                                        <circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>
-                                    </svg>
+                                    <div class="blog-card__image"><img src="../assets/images/projects/steam/barzakh-hero.jpg" alt="Barzakh: Star Gardener and the Unseen Thresholds of an Interactive Parable" loading="lazy"></div>
+                                    <small>Game and Philosophical Narrative</small>
+                                    <h3>Barzakh: Star Gardener and the Unseen Thresholds of an Interactive Parable</h3>
+                                    <p>A long essay on Barzakh: Star Gardener through Dede Korkut, The Little Prince, Dante, Charon, symbolic thresholds and interactive narrative.</p>
+                                </div>
+                                <div class="home-journal__meta blog-card__meta">
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-06-02</span>
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 9 min</span>
+                                </div>
+                            </a>
+                            <a href="blog/commentarius-perpetuus-uniqus-martyrium.html" class="blog-card blog-card--has-image home-journal__book">
+                                <div>
+                                    <div class="blog-card__image"><img src="../assets/images/blog/kudus-uniqus-martyrium.jpg" alt="Jerusalem and Singular Martyrdom" loading="lazy"></div>
                                     <small>Philosophical Essay</small>
                                     <h3>Commentarius Perpetuus in "Uniqus Martyrium"</h3>
-                                    <p>A philosophical and literary essay on grief, perception, loneliness, and the unraveling of modern thought.</p>
+                                    <p>A literary and philosophical essay on grief, perception, solitude, tyranny and the collapse of modern thinking.</p>
                                 </div>
-                                <div class="home-journal__meta"><span>2026-06-02</span><span>12 min</span></div>
+                                <div class="home-journal__meta blog-card__meta">
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> 2026-06-02</span>
+                                    <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.65;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 12 min</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="youtube-videos" class="yt-section">
+                    <div class="wrapper">
+                        <div class="yt-section__header">
+                            <div>
+                                <span>/ YouTube</span>
+                                <h2>Recent Videos</h2>
+                            </div>
+                            <a href="https://www.youtube.com/@han23studio" target="_blank" rel="noopener noreferrer" class="text-link">All Videos</a>
+                        </div>
+                        <div class="yt-grid" aria-label="Recent YouTube videos">
+                            <a href="https://www.youtube.com/watch?v=69vnDbbrs2g" target="_blank" rel="noopener noreferrer" class="yt-video">
+                                <div class="yt-video__thumb-wrap">
+                                    <img src="../assets/images/youtube/sequence-node.jpg" alt="Unreal Engine Blueprint – Sequence Node" class="yt-video__thumb" loading="lazy">
+                                    <div class="yt-video__play-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                                <h3 class="yt-video__title">Unreal Engine Blueprint – Sequence Node | 100 Basic Blueprint Nodes</h3>
+                                <div class="yt-video__meta">
+                                    <span>Han13 Studio</span>
+                                    <span>•</span>
+                                    <span>2026-08-27</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=R1vvp-JH_1U" target="_blank" rel="noopener noreferrer" class="yt-video">
+                                <div class="yt-video__thumb-wrap">
+                                    <img src="../assets/images/youtube/branch-node.jpg" alt="Unreal Engine Blueprint – Branch Node" class="yt-video__thumb" loading="lazy">
+                                    <div class="yt-video__play-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                                <h3 class="yt-video__title">Unreal Engine Blueprint – Branch Node | 100 Basic Blueprint Nodes</h3>
+                                <div class="yt-video__meta">
+                                    <span>Han13 Studio</span>
+                                    <span>•</span>
+                                    <span>2026-08-25</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=dhsVbxH0BX4" target="_blank" rel="noopener noreferrer" class="yt-video">
+                                <div class="yt-video__thumb-wrap">
+                                    <img src="../assets/images/youtube/barzakh-devlog-1.jpg" alt="#Devlog 1 - Barzakh: Star Gardener" class="yt-video__thumb" loading="lazy">
+                                    <div class="yt-video__play-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </div>
+                                </div>
+                                <h3 class="yt-video__title">#Devlog 1 - Barzakh: Star Gardener - A New Puzzle/Adventure Indie Game!</h3>
+                                <div class="yt-video__meta">
+                                    <span>Han13 Studio</span>
+                                    <span>•</span>
+                                    <span>2025-07-09</span>
+                                </div>
                             </a>
                         </div>
                     </div>

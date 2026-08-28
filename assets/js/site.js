@@ -501,22 +501,29 @@
     const renderLatestBlogPosts = (cards) => {
       const posts = cards
         .map((card, index) => {
-          const meta = card.querySelector("small")?.textContent || "";
-          const metaParts = meta.split("•").map((part) => part.trim()).filter(Boolean);
-          const category = metaParts[0] || "Blog";
-          const date = metaParts.find((part) => /\b\d{4}-\d{1,2}-\d{1,2}\b/.test(part)) || "";
-          const duration = metaParts.find((part) => /\bdk\b/i.test(part)) || "";
-          const title = card.querySelector("h2")?.textContent.trim() || "";
+          const rawSmall = card.querySelector("small");
+          const category = rawSmall ? rawSmall.textContent.trim() : "";
+          const metaEl = card.querySelector(".blog-card__meta, .home-journal__meta");
+          const metaHtml = metaEl ? metaEl.innerHTML : "";
+          const metaText = (metaEl ? metaEl.textContent : "") + " " + (rawSmall ? rawSmall.textContent : "");
+          const dateMatch = metaText.match(/\b\d{4}-\d{1,2}-\d{1,2}\b/);
+          const date = dateMatch ? dateMatch[0] : "";
+          const title = card.querySelector("h2, h3")?.textContent.trim() || "";
           const description = card.querySelector("p")?.textContent.trim() || "";
           const href = card.getAttribute("href") || "";
+          const imgEl = card.querySelector(".blog-card__image img, img:not(.footer__logo-img)");
+          const imageSrc = imgEl ? imgEl.getAttribute("src") : null;
+          const imageAlt = imgEl ? imgEl.getAttribute("alt") : "";
 
           return {
             category,
+            metaHtml,
             date,
-            duration,
             title,
             description,
             href,
+            imageSrc,
+            imageAlt,
             index,
             rank: dateToRank(date),
           };
@@ -529,40 +536,68 @@
 
       homeJournalShelf.replaceChildren(
         ...posts.map((post) => {
-          const book = document.createElement("a");
-          book.href = post.href;
-          book.className = "home-journal__book";
+          const card = document.createElement("a");
+          card.href = post.href;
+          card.className = post.imageSrc
+            ? "blog-card blog-card--has-image home-journal__book"
+            : "blog-card home-journal__book";
 
-          const category = document.createElement("small");
-          category.textContent = post.category;
+          const contentDiv = document.createElement("div");
+
+          if (post.imageSrc) {
+            const imgContainer = document.createElement("div");
+            imgContainer.className = "blog-card__image";
+            const img = document.createElement("img");
+            img.src = post.imageSrc;
+            img.alt = post.imageAlt || post.title;
+            img.loading = "lazy";
+            imgContainer.appendChild(img);
+            contentDiv.appendChild(imgContainer);
+          } else {
+            const dotsSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            dotsSvg.setAttribute("class", "card-dots");
+            dotsSvg.setAttribute("width", "18");
+            dotsSvg.setAttribute("height", "22");
+            dotsSvg.setAttribute("viewBox", "0 0 16 22");
+            dotsSvg.setAttribute("fill", "currentColor");
+            dotsSvg.innerHTML = `<circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="11" r="1.8"/><circle cx="12" cy="11" r="1.8"/><circle cx="4" cy="18" r="1.8"/><circle cx="12" cy="18" r="1.8"/>`;
+            contentDiv.appendChild(dotsSvg);
+          }
+
+          if (post.category) {
+            const small = document.createElement("small");
+            small.textContent = post.category;
+            contentDiv.appendChild(small);
+          }
 
           const title = document.createElement("h3");
           title.textContent = post.title;
+          contentDiv.appendChild(title);
 
-          const description = document.createElement("p");
-          description.textContent = post.description;
+          const desc = document.createElement("p");
+          desc.textContent = post.description;
+          contentDiv.appendChild(desc);
 
-          const meta = document.createElement("div");
-          meta.className = "home-journal__meta";
+          card.appendChild(contentDiv);
 
-          const date = document.createElement("span");
-          date.textContent = post.date;
+          if (post.metaHtml) {
+            const metaDiv = document.createElement("div");
+            metaDiv.className = "home-journal__meta blog-card__meta";
+            metaDiv.innerHTML = post.metaHtml;
+            card.appendChild(metaDiv);
+          }
 
-          const duration = document.createElement("span");
-          duration.textContent = post.duration;
-
-          meta.append(date, duration);
-          book.append(category, title, description, meta);
-          return book;
+          return card;
         }),
       );
     };
 
-    const blogCards = Array.from(document.querySelectorAll(".blog-card"));
+    const blogCards = Array.from(document.querySelectorAll(".blog-list .blog-card"));
     if (blogCards.length) {
       renderLatestBlogPosts(blogCards);
     } else {
-      fetch("blog.html", { cache: "no-store" })
+      const blogFetchUrl = explicitLanguage === "en" ? "en/blog.html" : "blog.html";
+      fetch(blogFetchUrl, { cache: "no-store" })
         .then((response) => {
           if (!response.ok) throw new Error("Blog list could not be loaded.");
           return response.text();
@@ -934,9 +969,84 @@
     }
   };
 
+  const enrichBlogCardsWithImages = () => {
+    const cards = Array.from(document.querySelectorAll(".blog-card:not([data-image-checked])"));
+    if (!cards.length) return;
+
+    cards.forEach((card) => {
+      card.setAttribute("data-image-checked", "true");
+      if (card.querySelector(".blog-card__image, img")) return;
+
+      const href = card.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("http")) return;
+
+      fetch(href, { cache: "force-cache" })
+        .then((res) => {
+          if (!res.ok) return null;
+          return res.text();
+        })
+        .then((html) => {
+          if (!html) return;
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const figureImg = doc.querySelector(".blog-post__image img, .blog-post figure img, .blog-post img:not(.footer__logo-img)");
+          let imgSrc = figureImg ? figureImg.getAttribute("src") : null;
+          let imgAlt = figureImg ? figureImg.getAttribute("alt") : "";
+
+          if (!imgSrc) {
+            const ogImage = doc.querySelector('meta[property="og:image"]')?.getAttribute("content");
+            if (ogImage && !ogImage.includes("og-min.jpg")) {
+              imgSrc = ogImage;
+            }
+          }
+
+          if (imgSrc) {
+            let resolvedSrc = imgSrc;
+            if (!imgSrc.startsWith("http") && !imgSrc.startsWith("/")) {
+              const postDir = href.includes("/") ? href.slice(0, href.lastIndexOf("/") + 1) : "";
+              const combinedPath = postDir + imgSrc;
+              const stack = [];
+              const segments = combinedPath.split("/");
+              for (const seg of segments) {
+                if (seg === ".." && stack.length && stack[stack.length - 1] !== "..") {
+                  stack.pop();
+                } else if (seg !== "." && seg !== "") {
+                  stack.push(seg);
+                }
+              }
+              resolvedSrc = stack.join("/");
+              if (window.location.pathname.includes("/blog/") || window.location.pathname.includes("/en/blog/")) {
+                if (!resolvedSrc.startsWith("../")) {
+                  resolvedSrc = "../" + resolvedSrc;
+                }
+              }
+            }
+
+            const imgContainer = document.createElement("div");
+            imgContainer.className = "blog-card__image";
+            const img = document.createElement("img");
+            img.src = resolvedSrc;
+            img.alt = imgAlt || card.querySelector("h2")?.textContent.trim() || "Blog görseli";
+            img.loading = "lazy";
+            imgContainer.appendChild(img);
+
+            const innerDiv = card.querySelector("div") || card;
+            const dots = innerDiv.querySelector(".card-dots");
+            if (dots) {
+              innerDiv.replaceChild(imgContainer, dots);
+            } else {
+              innerDiv.insertBefore(imgContainer, innerDiv.firstChild);
+            }
+            card.classList.add("blog-card--has-image");
+          }
+        })
+        .catch(() => {});
+    });
+  };
+
   setupMobilePortraitTriggerButton();
   handleMobileContentMove();
   setupStatsMarquee();
+  enrichBlogCardsWithImages();
   window.addEventListener("resize", () => {
     setupMobilePortraitTriggerButton();
     handleMobileContentMove();
@@ -971,6 +1081,7 @@
       setupMobilePortraitTriggerButton();
       handleMobileContentMove();
       setupStatsMarquee();
+      enrichBlogCardsWithImages();
     });
   }
 })();
