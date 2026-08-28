@@ -33,7 +33,7 @@
     <link rel="manifest" href="https://emirhangungormez.com.tr/assets/favicon/site.webmanifest">
     <meta name="theme-color" content="#efefef">
     <link rel="preload" href="../assets/fonts/PPMori-Regular.woff" as="font" type="font/woff" crossorigin>
-    <link rel="stylesheet" href="../assets/css/bundle.css?v=20260816-footer-mobile4">
+    <link rel="stylesheet" href="../assets/css/bundle.css?v=20260828-yt3">
     <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -534,6 +534,182 @@
                 line-height: 1.5 !important;
             }
         }
+    
+        /* YouTube Video Section */
+        .yt-section {
+            padding: 4.5em 0 5.5em;
+            position: relative;
+            width: 100%;
+        }
+
+        .yt-section__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2em;
+        }
+
+        .yt-section__header span {
+            display: block;
+            font-size: 0.85em;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.48);
+            margin-bottom: 0.35em;
+        }
+
+        body:not(.dark-mode) .yt-section__header span {
+            color: rgba(17, 20, 20, 0.52);
+        }
+
+        .yt-section__header h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        body.dark-mode .yt-section__header h2 {
+            color: #efefef;
+        }
+
+        body:not(.dark-mode) .yt-section__header h2 {
+            color: #111414;
+        }
+
+        .yt-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 1.8em !important;
+            width: 100% !important;
+        }
+
+        .yt-video {
+            display: flex !important;
+            flex-direction: column !important;
+            text-decoration: none !important;
+            color: inherit !important;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            min-width: 0 !important;
+            width: 100% !important;
+        }
+
+        .yt-video:hover {
+            opacity: 0.95;
+        }
+
+        .yt-video__thumb-wrap {
+            position: relative !important;
+            width: 100% !important;
+            aspect-ratio: 16 / 9 !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            background-color: #111 !important;
+            margin-bottom: 0.85em !important;
+        }
+
+        .yt-video__thumb {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .yt-video:hover .yt-video__thumb {
+            transform: scale(1.04);
+        }
+
+        .yt-video__play-icon {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 46px !important;
+            height: 46px !important;
+            background: rgba(0, 0, 0, 0.65) !important;
+            backdrop-filter: blur(6px) !important;
+            -webkit-backdrop-filter: blur(6px) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #ffffff !important;
+            transition: all 0.25s ease !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+            pointer-events: none !important;
+            z-index: 2 !important;
+        }
+
+        .yt-video__play-icon svg {
+            margin-left: 2px;
+            fill: #ffffff;
+        }
+
+        .yt-video:hover .yt-video__play-icon {
+            background: #ff0000 !important;
+            transform: translate(-50%, -50%) scale(1.1) !important;
+            box-shadow: 0 6px 18px rgba(255, 0, 0, 0.45) !important;
+        }
+
+        .yt-video__title {
+            font-size: 0.98rem !important;
+            font-weight: 500 !important;
+            line-height: 1.42 !important;
+            margin: 0 0 0.4em !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+            transition: color 0.2s ease;
+        }
+
+        body.dark-mode .yt-video__title {
+            color: #ffffff !important;
+        }
+
+        body:not(.dark-mode) .yt-video__title {
+            color: #111414 !important;
+        }
+
+        .yt-video:hover .yt-video__title {
+            color: #ff2a2a !important;
+        }
+
+        body:not(.dark-mode) .yt-video:hover .yt-video__title {
+            color: #cc0000 !important;
+        }
+
+        .yt-video__meta {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.45em !important;
+            font-size: 0.82rem !important;
+        }
+
+        body.dark-mode .yt-video__meta {
+            color: rgba(255, 255, 255, 0.48) !important;
+        }
+
+        body:not(.dark-mode) .yt-video__meta {
+            color: rgba(17, 20, 20, 0.52) !important;
+        }
+
+        @media screen and (max-width: 900px) {
+            .yt-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .yt-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2em !important;
+            }
+        }
+
     </style>
 </head>
 
