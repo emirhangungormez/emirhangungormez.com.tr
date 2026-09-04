@@ -580,7 +580,7 @@
     "url": "https://github.com/emirhangungormez",
     "bio": "Unreal Authorized Instructor, UE5/Unity Md. Indie Game Developer, R&D Manager and Blockchain/Cyber Researcher",
     "stats": {
-      "public_repos": 54,
+      "public_repos": 56,
       "followers": 39,
       "location": "Türkiye / Bursa"
     },
@@ -872,6 +872,18 @@
         "url": "https://github.com/emirhangungormez/php_web_upload",
         "language": "PHP",
         "description": "PHP dosya yükleme ve web güvenlik açığı test ortamı."
+      },
+      {
+        "name": "paytrapi",
+        "url": "https://github.com/emirhangungormez/paytrapi",
+        "language": "PHP",
+        "description": "Zero-dependency, cURL-based PHP SDK for PayTR Payment Gateway (iFrame Token, Callback Webhook, Refund, Installments, BIN Lookup)."
+      },
+      {
+        "name": "uyumsoftapi",
+        "url": "https://github.com/emirhangungormez/uyumsoftapi",
+        "language": "PHP",
+        "description": "Zero-dependency, cURL-based PHP SDK for Uyumsoft E-Dönüşüm (e-Fatura, e-Arşiv, UBL-TR 2.1) SOAP API."
       }
     ],
     "ai_data_and_research_repos": [
@@ -932,6 +944,6 @@
     ]
   },
   "metadata": {
-    "last_auto_updated_at": "2026-09-03T02:59:59.333Z"
+    "last_auto_updated_at": "2026-09-04T02:58:49.564Z"
   }
 }
