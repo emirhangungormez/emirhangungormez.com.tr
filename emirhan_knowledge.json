@@ -580,7 +580,7 @@
     "url": "https://github.com/emirhangungormez",
     "bio": "Unreal Authorized Instructor, UE5/Unity Md. Indie Game Developer, R&D Manager and Blockchain/Cyber Researcher",
     "stats": {
-      "public_repos": 56,
+      "public_repos": 58,
       "followers": 39,
       "location": "Türkiye / Bursa"
     },
@@ -744,6 +744,12 @@
         "url": "https://github.com/emirhangungormez/java_learning",
         "language": "Java",
         "description": "Yeni eklenen GitHub projesi."
+      },
+      {
+        "name": "key23",
+        "url": "https://github.com/emirhangungormez/key23",
+        "language": "TypeScript",
+        "description": "Free & open-source real-time keyboard & mouse visualizer for Windows with 3D keycaps"
       }
     ],
     "game_development_repos": [
@@ -940,10 +946,16 @@
         "name": "square-ui",
         "url": "https://github.com/emirhangungormez/square-ui",
         "description": "shadcn/ui tabanlı açık kaynak arayüz düzenleri koleksiyonu (Fork)."
+      },
+      {
+        "name": "cap",
+        "url": "https://github.com/emirhangungormez/cap",
+        "language": "Bilinmiyor",
+        "description": "Open source Loom alternative. Beautiful, shareable screen recordings."
       }
     ]
   },
   "metadata": {
-    "last_auto_updated_at": "2026-10-01T04:15:13.514Z"
+    "last_auto_updated_at": "2026-10-02T04:08:11.264Z"
   }
 }
