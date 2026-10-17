@@ -580,7 +580,7 @@
     "url": "https://github.com/emirhangungormez",
     "bio": "Unreal Authorized Instructor, UE5/Unity Md. Indie Game Developer, R&D Manager and Blockchain/Cyber Researcher",
     "stats": {
-      "public_repos": 58,
+      "public_repos": 59,
       "followers": 39,
       "location": "Türkiye / Bursa"
     },
@@ -750,6 +750,12 @@
         "url": "https://github.com/emirhangungormez/key23",
         "language": "TypeScript",
         "description": "Free & open-source real-time keyboard & mouse visualizer for Windows with 3D keycaps"
+      },
+      {
+        "name": "email-routing-template",
+        "url": "https://github.com/emirhangungormez/email-routing-template",
+        "language": "TypeScript",
+        "description": "Yeni eklenen GitHub projesi."
       }
     ],
     "game_development_repos": [
@@ -956,6 +962,6 @@
     ]
   },
   "metadata": {
-    "last_auto_updated_at": "2026-10-16T03:12:00.333Z"
+    "last_auto_updated_at": "2026-10-17T03:03:28.624Z"
   }
 }
